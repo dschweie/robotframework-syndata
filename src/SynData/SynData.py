@@ -1,13 +1,17 @@
 # import random
 import datetime
 import time
+import os
 
 import pandas as pd
 
+from typing import Literal
 from robot.api.deco import keyword, not_keyword, library
 from robot.libraries.BuiltIn import BuiltIn
 
 from item_builder_engine import ItemBuilderEngine
+
+from common.country import Country
 
 @library(scope='GLOBAL', version='0.0.2')
 class SynData:
@@ -93,28 +97,17 @@ class SynData:
         | ``logfile``      | During initialization, the caller can specify the name of the file for recording the test data. The specification is only evaluated if ``logging`` has the value ``True``. The default value is ``None``. In this case, the name is generated automatically. The format contains the date and time when the test was started. A concrete example might look like this: ``SynData-20260204-124643.log`` |
         | ``replayfile``   | The parameter can be used to pass the full path to a log file so that the file is set as the data source for the keywords. If a file name is transferred here, many functions of the library, such as context management, are overridden. The default value is ``None``, which means that the generators are used to generate data. |
         """
+        self.context = None
+        self.data = {}
+        self.ibe = ItemBuilderEngine()
+        self.rbt_bi = None
         if(None == replayfile):
             self.mode = SynData.MODE_DEF
             self.replayfile = None
         else:
             self.mode = SynData.MODE_REP
             self.replayfile = replayfile
-        self.context = None
-        self.data = {}
-        self.default_localization = localization
-        self.ibe = ItemBuilderEngine()
-        self.logging = (True == logging)
-        if (self.logging):
-            path = BuiltIn().get_variable_value("${OUTPUT DIR}")
-            if (None == logfile):
-                file_name = datetime.datetime.now().strftime("SynData-%Y%m%d-%H%M%S")
-                self.logfile = f"{path}/{file_name}.csv"
-            else:
-                if (-1 == logfile.find(".")):
-                    self.logfile = f"{path}/{logfile}.csv"
-                else:
-                    self.logfile = f"{path}/{logfile}"
-            self.logdata = pd.DataFrame(None, columns=["timestamp", "item", "value", "test_suite", "test_case", "keyword"])
+        self.set_configuration(self.mode, localization, logging, logfile, replayfile)
         SynData.INSTANCE = self
 
     def get_keyword_names(self):
@@ -126,9 +119,46 @@ class SynData:
         # Return value of 'robot_name', if given, or the original 'name'.
         return [value.robot_name or name for name, value in keywords]
 
+
+    #   ========================================================================
+    #       Keywords for Mode-Management
+    #   ========================================================================
+
     @staticmethod
-    @keyword(tags=["Context"])
-    def Set_Context(context: str, localization: str ='en_US', focus: str ='test') -> str:
+    @keyword(tags=["Management"])
+    def Set_SynData_Configuration(mode: Literal["default", "replay"] = "default", localization: str ="en_US", logging: bool =False, logfile: str =None , replay_file: str = None):
+        """
+        This keyword can be used to reset the library configuration.
+
+        In principle, the library can also be configured using import 
+        parameters. If a new test suite starts and a previous test suite has 
+        initialized SynData, the import parameters of the current test suite 
+        may be ignored because the library is not reinitialized.
+
+        To be independent of a previous configuration, this keyword is 
+        recommended instead of import parameters and can be called up in 
+        the ``Suite Setup``, for example.
+
+        The keyword has no effect on previously saved data.
+        
+        | =Arguments=      | =Descripion= |
+        | ``mode``         | The caller can choose between ``default`` and ``replay`` here. The ``default`` mode, which is also the default value, should be selected if the library is to be used to generate test data. For the ``replay`` mode, the path to a log file must be passed in the “replay_file” parameter, from which the values used as return values for the keywords are then taken. This mode is suitable for repeating a test case with data from a previous test execution. |
+        | ``localization`` | The parameter can be used to specify the localization for this context. The default value is ``en_US``. |
+        | ``logging``      | The caller can use this parameter to control whether the generated data should be logged. The default value ``False`` disables logging. |
+        | ``logfile``      | If logging has been enabled, the data is written to the Robot Framework output directory. Optionally, a file name can be specified; otherwise, the file name is generated from the date and time. |     
+        | ``replay_file``  | If the value ``replay`` is passed in the ``mode`` parameter, this parameter must contain the full path to the log file from which the data is to be replayed. |     
+        """
+        SynData.INSTANCE.set_configuration(mode, localization, logging, logfile, replay_file)
+
+
+
+    #   ========================================================================
+    #       Keywords for Context-Management
+    #   ========================================================================
+
+    @staticmethod
+    @keyword(tags=["Management"])
+    def Set_Context(context: str, localization: str ='en_US', focus: Literal["global", "suite", "test"] ='test') -> str:
         """
         The keyword can be used to set a context.
 
@@ -156,15 +186,13 @@ class SynData:
         | ``localization`` | The parameter can be used to specify the localization for this context. The default value is ``en_US``. |
         | ``focus``        | The parameter can be used to define the scope of the context. The valid values for this parameter are ``global``, ``suite``, and ``test``. The default value is ``test``, which means that the context is limited to the test case in which it is set. |
         """
-        print(context)
-        print(localization)
         match focus.lower():
             case "global":
                 context_id=f"global.{context}"
             case "suite":
-                context_id=f"{SynData.INSTANCE._get_current_test_suite()}.{context}"
+                context_id=f"{SynData.INSTANCE.get_current_test_suite()}.{context}"
             case "test":
-                context_id=f"{SynData.INSTANCE._get_current_test_suite()}.{SynData.INSTANCE._get_current_test_case()}.{context}"
+                context_id=f"{SynData.INSTANCE.get_current_test_suite()}.{SynData.INSTANCE.get_current_test_case()}.{context}"
             case _:
                 context_id=f"global.{context}"
                 focus = "global"
@@ -174,7 +202,7 @@ class SynData:
         SynData.INSTANCE.context = context_id
     
     @staticmethod
-    @keyword(tags=["Context"])
+    @keyword(tags=["Management"])
     def Release_Context():
         """
         This keyword removes the context.
@@ -186,7 +214,7 @@ class SynData:
         SynData.INSTANCE.context = None
 
     @staticmethod
-    @keyword(tags=["Context"])
+    @keyword(tags=["Management"])
     def Get_Context() -> str:
         """
         The keyword returns the name of the context, if a context is set.
@@ -200,11 +228,11 @@ class SynData:
         if (None != SynData.INSTANCE.context):
             context_name = SynData.INSTANCE.data.get(SynData.INSTANCE.context).get("meta").get("name")
             context_focus = SynData.INSTANCE.data.get(SynData.INSTANCE.context).get("meta").get("focus")
-            if(       (f"{SynData.INSTANCE._get_current_test_suite()}.{SynData.INSTANCE._get_current_test_case()}.{context_name}" == SynData.INSTANCE.context)
+            if(       (f"{SynData.INSTANCE.get_current_test_suite()}.{SynData.INSTANCE.get_current_test_case()}.{context_name}" == SynData.INSTANCE.context)
                   and ("test" == context_focus)):
                 # In this case, a context was detected that exactly matches the test case currently being executed.
                 return context_name
-            elif(     (f"{SynData.INSTANCE._get_current_test_suite()}.{context_name}" == SynData.INSTANCE.context)
+            elif(     (f"{SynData.INSTANCE.get_current_test_suite()}.{context_name}" == SynData.INSTANCE.context)
                   and ("suite" == context_focus)):
                 # In this case, a context was detected that exactly matches the test suite currently being executed.
                 return context_name
@@ -220,10 +248,141 @@ class SynData:
         else: 
             # In this case, no context is set and therefore None is returned.
             return None
-    
+
+    #   ========================================================================
+    #       Keywords for Test Data Domain: Address Data
+    #   ========================================================================
+
+    @staticmethod
+    @keyword(tags=["Address"])
+    def Get_Address() -> str:
+        """
+        The keyword returns an address as a string with a line break.
+        
+        An address usually consists of two lines with the following content:
+        - Street name and house number
+        - Postal code and city
+        
+        An example of a German address could be: 
+        | Friedrich-Neukirchen-Straße 53b
+        | 50181 Bedburg      
+        """
+        return SynData.INSTANCE.ibe.execute(SynData.INSTANCE, SynData.INSTANCE.get_current_localization(), "Get Address", "address.address", {})
+
+    @staticmethod
+    @keyword(tags=["Address"])
+    def Get_Address_And_Country() -> str:
+        """
+        The keyword returns an address as a string with two line breaks.
+        
+        An address usually consists of two lines with the following content:
+        - Street name and house number
+        - Postal code and city
+        This keywords adds the name of the country in the third line.
+        
+        An example of a German address could be: 
+        | Friedrich-Neukirchen-Straße 53b
+        | 50181 Bedburg      
+        | Deutschland
+        """
+        return SynData.INSTANCE.ibe.execute(SynData.INSTANCE, SynData.INSTANCE.get_current_localization(), "Get Address And Country", "address.address_country", {})
+
+    @staticmethod
+    @keyword(tags=["Address"])
+    def Get_Street_And_House_Number() -> str:
+        """
+        The keyword provides a street name and a house number.
+        """
+        return SynData.INSTANCE.ibe.execute(SynData.INSTANCE, SynData.INSTANCE.get_current_localization(), "Get Street And House Number", "address.street_address", {})
+
+    @staticmethod
+    @keyword(tags=["Address"])
+    def Get_Street() -> str:
+        """
+        The keyword provides a street name with a house number.
+        """
+        return SynData.INSTANCE.ibe.execute(SynData.INSTANCE, SynData.INSTANCE.get_current_localization(), "Get Street", "address.street", {})
+
+    @staticmethod
+    @keyword(tags=["Address"])
+    def Get_House_Number() -> str:
+        """
+        The keyword provides a house number.
+        """
+        return SynData.INSTANCE.ibe.execute(SynData.INSTANCE, SynData.INSTANCE.get_current_localization(), "Get House Number", "address.house_number", {})
+
+    @staticmethod
+    @keyword(tags=["Address"])
+    def Get_Postcode_And_City() -> str:
+        """
+        The keyword provides a string containing a postal code and a city.
+        """
+        return SynData.INSTANCE.ibe.execute(SynData.INSTANCE, SynData.INSTANCE.get_current_localization(), "Get Postcode And City", "address.postcode_city", {})
+
+    @staticmethod
+    @keyword(tags=["Address"])
+    def Get_Postcode() -> str:
+        """
+        The keyword returns a string containing a postal code.
+        """
+        return SynData.INSTANCE.ibe.execute(SynData.INSTANCE, SynData.INSTANCE.get_current_localization(), "Get Postcode", "address.postcode", {})
+
+    @staticmethod
+    @keyword(tags=["Address"])
+    def Get_City() -> str:
+        """
+        The keyword provides a string containing the name of a city.
+        """
+        return SynData.INSTANCE.ibe.execute(SynData.INSTANCE, SynData.INSTANCE.get_current_localization(), "Get City", "address.city", {})
+
+    @staticmethod
+    @keyword(tags=["Address"])
+    def Get_State() -> str:
+        """
+        The keyword contains the name of a state.
+
+        Depending on the location, the keyword may return a different result. 
+
+        Germany is divided into 16 federal states. The keyword returns the name 
+        of one of these federal states and, if a context is set, the return 
+        value is consistent with other address data.
+        """
+        return SynData.INSTANCE.ibe.execute(SynData.INSTANCE, SynData.INSTANCE.get_current_localization(), "Get State", "address.state", {})
+
+    @staticmethod
+    @keyword(tags=["Address"])
+    def Get_Country() -> str:
+        """
+        The keyword returns the name of a country in the local language.
+
+        If a context is set, the country that matches the localization is 
+        returned. Otherwise, the address data would not be consistent.
+
+        If the keyword is to return any country names, it must be used without 
+        context.
+        """
+        return SynData.INSTANCE.ibe.execute(SynData.INSTANCE, SynData.INSTANCE.get_current_localization(), "Get Country", "address.country", {})
+
+    @staticmethod
+    @keyword(tags=["Address"])
+    def Get_Country_Code() -> str:
+        """
+        The keyword provides a country code in the form of two uppercase letters.
+        
+        If a context is set and a specialized generator is used, the identifier 
+        of the country that matches the localization is provided.
+        
+        If no context is set, a random code is generated that matches a country.        
+        """
+        return SynData.INSTANCE.ibe.execute(SynData.INSTANCE, SynData.INSTANCE.get_current_localization(), "Get Country Code", "address.country_code", {})
+
+    #   ========================================================================
+    #       Keywords for Test Data Domain: Personal Data
+    #   ========================================================================
+
     @staticmethod
     @keyword(tags=["Person"])
-    def Get_Name(sex="*") -> str:
+    def Get_Name(sex: Literal["f", "m", "d", "*"] ="*") -> str:
         """
         The keyword provides a name consisting of a first name and a last name.
         
@@ -238,7 +397,7 @@ class SynData:
 
     @staticmethod    
     @keyword(tags=["Person"])
-    def Get_First_Name(sex="*") -> str:
+    def Get_First_Name(sex: Literal["f", "m", "d", "*"] ="*") -> str:
         """
         The keyword provides a first name.
         
@@ -257,11 +416,39 @@ class SynData:
         """
         The keyword provides a last name.
         """
-        if ( None == SynData.Get_Context() ):
-            localization = SynData.INSTANCE.default_localization
-        else:
-            localization = SynData.INSTANCE.data.get(SynData.INSTANCE.context).get("meta").get("localization")
-        return SynData.INSTANCE.ibe.execute(SynData.INSTANCE, localization, "Get Last Name", "person.last_name", {})
+        return SynData.INSTANCE.ibe.execute(SynData.INSTANCE, SynData.INSTANCE.get_current_localization(), "Get Last Name", "person.last_name", {})
+
+    #   ========================================================================
+    #       Methods for internal management                 @not_keyword
+    #   ========================================================================
+    
+    @not_keyword
+    def set_configuration(self, mode: Literal["default", "replay"] = "default", localization: str ="en_US", logging: bool =False, logfile: str =None , replay_file: str = None):
+        self.mode = SynData.MODE_DEF
+        self.default_localization = localization
+        self.logging = (True == logging)
+        match(mode):
+            case "default":
+                self.replayfile = None
+            case "replay":
+                if(None == replay_file):
+                    self.add_rbt_log_message("The keyword Set Mode expects a full qualified path in parameter replay_file!", "ERROR")
+                elif(not(os.path.isfile(replay_file))) : 
+                    self.add_rbt_log_message(f"A file with the path '{replay_file}' could not be found!", "ERROR")
+                else:
+                    self.mode = SynData.MODE_REP
+                    self.replayfile = replay_file        
+        if (self.logging):
+            path = self.get_rbt_variable_value("${OUTPUT DIR}")
+            if (None == logfile):
+                file_name = datetime.datetime.now().strftime("SynData-%Y%m%d-%H%M%S")
+                self.logfile = f"{path}/{file_name}.csv"
+            else:
+                if (-1 == logfile.find(".")):
+                    self.logfile = f"{path}/{logfile}.csv"
+                else:
+                    self.logfile = f"{path}/{logfile}"
+            self.logdata = pd.DataFrame(None, columns=["timestamp", "item", "value", "test_suite", "test_case", "keyword"])
 
     @not_keyword
     def get_mode(self) -> int:
@@ -282,27 +469,56 @@ class SynData:
     @not_keyword
     def add_log_entry(self, keyword, item, value):
         if ((self.logging) and (None != self.logfile)):
+            if(0 == len(self.logdata)):
+                if(os.path.exists(self.logfile)):
+                    self.logdata = pd.read_csv(self.logfile, index_col="index")
             ts = datetime.datetime.now().strftime("%Y-%m-%d %X") + ("-" if time.timezone > 0 else "+") + time.strftime("%H:%M", time.gmtime(abs(time.timezone)))
-            suite = BuiltIn().get_variable_value("${SUITE NAME}")
-            test_case = BuiltIn().get_variable_value("${TEST NAME}")
+            suite = self.get_rbt_variable_value("${SUITE NAME}")
+            test_case = self.get_rbt_variable_value("${TEST NAME}")
             self.logdata.loc[len(self.logdata)] = [ts, item, value, suite, test_case, keyword]
-            print(self.logdata)
             self.logdata.to_csv(self.logfile, index_label="index")
-            #file = open(self.logfile, "a")
-            #file.write(f"{ts},{suite},{test_case},{keyword},{item},{value}\n")
-            #file.close()
 
     @not_keyword
-    def _get_current_test_suite(self) -> str:
-        return BuiltIn().get_variable_value("${SUITE NAME}")
+    def add_rbt_log_message(self, message: str, level):
+        if(None == self.rbt_bi):
+            self.rbt_bi = BuiltIn()
+        self.rbt_bi.log(message, level=level)
+
 
     @not_keyword
-    def _get_current_test_case(self) -> str:    
-        return BuiltIn().get_variable_value("${TEST NAME}")
+    def get_rbt_variable_value(self, variable: str) -> str:
+        if(None == self.rbt_bi):
+            self.rbt_bi = BuiltIn()
+        return self.rbt_bi.get_variable_value(variable)
+
+    @not_keyword
+    def get_current_test_suite(self) -> str:
+        return self.get_rbt_variable_value("${SUITE NAME}")
+
+    @not_keyword
+    def get_current_test_case(self) -> str:    
+        return self.get_rbt_variable_value("${TEST NAME}")
+    
+    @not_keyword
+    def get_current_localization(self) -> str:
+        if ( None == SynData.Get_Context() ):
+            return self.default_localization
+        else:
+            return self.data.get(self.context).get("meta").get("localization")
+
     
     def get_replay_file(self) -> str:
         return self.replayfile
 
+
+    @not_keyword
+    def get_common_country_name(self, item_data:dict, language: str) -> str:
+        return Country.get_country_name(item_data, language)
+        
+    @not_keyword
+    def get_common_country_code(self, item_data:dict, code: Literal["ALPHA-2", "ALPHA-3"] ="ALPHA-2") -> str:
+        return Country.get_country_code(item_data, code)
+        
     # @not_keyword
     # def Hello_World(self):
     #     """ Bei diesem Schlüsselwort ist der Name verdächtig. ;-) Es ist das erste Schlüsselwort und

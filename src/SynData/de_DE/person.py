@@ -26,15 +26,35 @@ class Person(object):
         if(marker < 8):
             # In 8% of cases, two first names are connected with a hyphen. 
             first_first_name = data.iat[random.randrange(0, data.shape[0]), 0]
-            second_first_name = data.iat[random.randrange(0, data.shape[0]), 0]
-            return f"{first_first_name}-{second_first_name}"
+            if(-1 < first_first_name.find("-")):
+                # The list of first names contains common combinations of first 
+                # names with hyphens. If one of these names is selected, no 
+                # other name should be added.
+                return first_first_name
+            else:
+                second_first_name = data.iat[random.randrange(0, data.shape[0]), 0]
+                while (-1 < second_first_name.find("-")):
+                    # The middle name should not contain a hyphen, as this could 
+                    # result in a name with three first names.
+                    second_first_name = data.iat[random.randrange(0, data.shape[0]), 0]
+                return f"{first_first_name}-{second_first_name}"
         elif(marker < 35):
             # In 23% of cases, two first names are used without a hyphen. 
             # The lower percentage was deliberately chosen, as often only one 
             # first name is used as a given name.
             first_first_name = data.iat[random.randrange(0, data.shape[0]), 0]
-            second_first_name = data.iat[random.randrange(0, data.shape[0]), 0]
-            return f"{first_first_name} {second_first_name}"
+            if(-1 < first_first_name.find("-")):
+                # The list of first names contains common combinations of first 
+                # names with hyphens. If one of these names is selected, no 
+                # other name should be added.
+                return first_first_name
+            else:
+                second_first_name = data.iat[random.randrange(0, data.shape[0]), 0]
+                while (-1 < second_first_name.find("-")):
+                    # The middle name should not contain a hyphen, as this could 
+                    # result in a name with three first names.
+                    second_first_name = data.iat[random.randrange(0, data.shape[0]), 0]
+                return f"{first_first_name} {second_first_name}"
         else: 
             return data.iat[random.randrange(0, data.shape[0]), 0]
     

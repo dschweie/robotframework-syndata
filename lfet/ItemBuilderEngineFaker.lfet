@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<LFET version="LF-ET 2.4.1 (260127a)" language="German" saveDate="2026.02.01 at 14:26:04 CET" saveUser="dschweie">
+<LFET version="LF-ET 2.4.1 (260127a)" language="German" saveDate="2026.02.09 at 13:39:04 CET" saveUser="dschweie">
   <Conditions>
     <Condition uId="17699466648051216">
       <Title language="German" value="Context is"/>
@@ -13,26 +13,96 @@
         <ConditionOccurrence uId="17695070862659774">
           <Symbol language="German" value="Set"/>
           <Title language="German" value="There is a defined context."/>
+          <TestValue group="robot" type="tsi" value="Set Context    TestCase${*LFET.Regel.Symbol}    ${*GTD.localization.code}    focus=test"/>
         </ConditionOccurrence>
       </ConditionOccurrences>
     </Condition>
     <Condition uId="17699465545650092">
       <Title language="German" value="Requestes item code"/>
       <ConditionOccurrences>
+        <ConditionOccurrence uId="17703752144862045">
+          <Symbol language="German" value="address.address"/>
+          <Title language="German" value="An address consisting of street, house number, postal code, and city should be returned in two lines."/>
+          <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;$$Symbol&quot; == item )"/>
+          <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;address.address&quot;"/>
+        </ConditionOccurrence>
+        <ConditionOccurrence uId="17703752144892048">
+          <Symbol language="German" value="address.address_country"/>
+          <Title language="German" value="An address consisting of street, house number, postal code, city, and state should be returned in three lines."/>
+          <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;$$Symbol&quot; == item )"/>
+          <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;address.address_country&quot;"/>
+        </ConditionOccurrence>
+        <ConditionOccurrence uId="17703752144922051">
+          <Symbol language="German" value="address.street_address"/>
+          <Title language="German" value="An address consisting of a street name and house number should be returned."/>
+          <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;$$Symbol&quot; == item )"/>
+          <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;address.street_address&quot;"/>
+        </ConditionOccurrence>
+        <ConditionOccurrence uId="17703752144952054">
+          <Symbol language="German" value="address.street"/>
+          <Title language="German" value="A street name shuold be returned."/>
+          <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;$$Symbol&quot; == item )"/>
+          <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;address.street&quot;"/>
+        </ConditionOccurrence>
+        <ConditionOccurrence uId="17703752144982057">
+          <Symbol language="German" value="address.house_number"/>
+          <Title language="German" value="A house number should be returned."/>
+          <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;$$Symbol&quot; == item )"/>
+          <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;address.house_number&quot;"/>
+        </ConditionOccurrence>
+        <ConditionOccurrence uId="17703752147162060">
+          <Symbol language="German" value="address.postcode_city"/>
+          <Title language="German" value="A city with its corresponding postal code should be returned."/>
+          <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;$$Symbol&quot; == item )"/>
+          <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;address.postcode_city&quot;"/>
+        </ConditionOccurrence>
+        <ConditionOccurrence uId="17703752147192063">
+          <Symbol language="German" value="address.postcode"/>
+          <Title language="German" value="A postal code should be returned."/>
+          <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;$$Symbol&quot; == item )"/>
+          <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;address.postcode&quot;"/>
+        </ConditionOccurrence>
+        <ConditionOccurrence uId="17703752147222066">
+          <Symbol language="German" value="address.city"/>
+          <Title language="German" value="A city should be returned."/>
+          <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;$$Symbol&quot; == item )"/>
+          <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;address.city&quot;"/>
+        </ConditionOccurrence>
+        <ConditionOccurrence uId="17703752147252069">
+          <Symbol language="German" value="address.state"/>
+          <Title language="German" value="A federal state should be returned."/>
+          <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;$$Symbol&quot; == item )"/>
+          <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;address.state&quot;"/>
+        </ConditionOccurrence>
+        <ConditionOccurrence uId="17703752147282072">
+          <Symbol language="German" value="address.country"/>
+          <Title language="German" value="The country based on localization should be returned"/>
+          <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;$$Symbol&quot; == item )"/>
+          <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;address.country&quot;"/>
+        </ConditionOccurrence>
+        <ConditionOccurrence uId="17703752147312075">
+          <Symbol language="German" value="address.country_code"/>
+          <Title language="German" value="The country code based on localization should be returned"/>
+          <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;$$Symbol&quot; == item )"/>
+          <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;address.country_code&quot;"/>
+        </ConditionOccurrence>
         <ConditionOccurrence uId="17695103847460300">
           <Symbol language="German" value="person.name"/>
           <Title language="German" value="A complete name consisting of first name and last name should be returned."/>
           <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;person.name&quot; == item )"/>
+          <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;person.name&quot;"/>
         </ConditionOccurrence>
         <ConditionOccurrence uId="17695107938060307">
           <Symbol language="German" value="person.first_name"/>
           <Title language="German" value="A first name should be returned."/>
           <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;person.first_name&quot; == item )"/>
+          <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;person.first_name&quot;"/>
         </ConditionOccurrence>
         <ConditionOccurrence uId="17695103847480302">
           <Symbol language="German" value="person.last_name"/>
           <Title language="German" value="A last name should be returned."/>
           <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;person.last_name&quot; == item )"/>
+          <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;person.last_name&quot;"/>
         </ConditionOccurrence>
       </ConditionOccurrences>
     </Condition>
@@ -43,10 +113,13 @@
           <Symbol language="German" value="unknown"/>
           <Title language="German" value="In this case the item is not known in a concrete context."/>
           <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( None == instance.get_item(&quot;person.first_name&quot;) )"/>
+          <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, fname_is = &quot;unknown&quot;"/>
         </ConditionOccurrence>
         <ConditionOccurrence uId="17695903929043219">
           <Symbol language="German" value="known"/>
           <Title language="German" value="In this case a value is known in a concrete context."/>
+          <TestValue group="robot" type="tsi" value="# First name should be known and is pre-assigned.&lt;br/&gt;${first_name}    Get First Name"/>
+          <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, fname_is = &quot;known&quot;"/>
         </ConditionOccurrence>
       </ConditionOccurrences>
     </Condition>
@@ -57,15 +130,78 @@
           <Symbol language="German" value="unknown"/>
           <Title language="German" value="In this case the item is not known in a concrete context."/>
           <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( None == instance.get_item(&quot;person.last_name&quot;) )"/>
+          <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, lname_is = &quot;unknown&quot;"/>
         </ConditionOccurrence>
         <ConditionOccurrence uId="17695905388243463">
           <Symbol language="German" value="known"/>
           <Title language="German" value="In this case a value is known in a concrete context."/>
+          <TestValue group="robot" type="tsi" value="# last name should be known and is pre-assigned.&lt;br/&gt;${last_name}    Get Last Name"/>
+          <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, lname_is = &quot;known&quot;"/>
         </ConditionOccurrence>
       </ConditionOccurrences>
     </Condition>
   </Conditions>
   <Actions>
+    <Action uId="17703803995534702">
+      <Title language="German" value="Create local data"/>
+      <ActionOccurrences>
+        <ActionOccurrence uId="17703803995654714">
+          <Symbol language="German" value="address.address"/>
+          <Title language="German" value="An address consisting of street, house number, postal code, and city should be returned in two lines."/>
+          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="local_data = fake.address()"/>
+        </ActionOccurrence>
+        <ActionOccurrence uId="17703803995694718">
+          <Symbol language="German" value="address.address_country"/>
+          <Title language="German" value="An address consisting of street, house number, postal code, city, and state should be returned in three lines."/>
+          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="local_data = f&quot;{fake.address()}\n{fake.current_country()}&quot;"/>
+        </ActionOccurrence>
+        <ActionOccurrence uId="17703803995734722">
+          <Symbol language="German" value="address.street_address"/>
+          <Title language="German" value="An address consisting of a street name and house number should be returned."/>
+          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="local_data = fake.street_address()"/>
+        </ActionOccurrence>
+        <ActionOccurrence uId="17703803995774726">
+          <Symbol language="German" value="address.street"/>
+          <Title language="German" value="A street name shuold be returned."/>
+          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="local_data = fake.street_name()"/>
+        </ActionOccurrence>
+        <ActionOccurrence uId="17703803995814730">
+          <Symbol language="German" value="address.house_number"/>
+          <Title language="German" value="A house number should be returned."/>
+          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="local_data = fake.street_address()"/>
+        </ActionOccurrence>
+        <ActionOccurrence uId="17703803995854734">
+          <Symbol language="German" value="address.postcode_city"/>
+          <Title language="German" value="A city with its corresponding postal code should be returned."/>
+          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="local_data = fake.address().splitlines()[1]"/>
+        </ActionOccurrence>
+        <ActionOccurrence uId="17703803995894738">
+          <Symbol language="German" value="address.postcode"/>
+          <Title language="German" value="A postal code should be returned."/>
+          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="local_data = fake.postcode()"/>
+        </ActionOccurrence>
+        <ActionOccurrence uId="17703803995934742">
+          <Symbol language="German" value="address.city"/>
+          <Title language="German" value="A city is to be returned."/>
+          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="local_data = fake.city()"/>
+        </ActionOccurrence>
+        <ActionOccurrence uId="17703803995974746">
+          <Symbol language="German" value="address.state"/>
+          <Title language="German" value="A federal state is to be returned."/>
+          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="local_data = &quot;&quot;"/>
+        </ActionOccurrence>
+        <ActionOccurrence uId="17703803996014750">
+          <Symbol language="German" value="address.country"/>
+          <Title language="German" value="The country name based on localization should be returned"/>
+          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="local_data = Country.get_country_name(item_data, localization.split(&quot;_&quot;)[0].lower())"/>
+        </ActionOccurrence>
+        <ActionOccurrence uId="17703803996054754">
+          <Symbol language="German" value="address.country_code"/>
+          <Title language="German" value="The country code based on localization should be returned"/>
+          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="local_data = Country.get_country_code(item_data, &quot;ALPHA-2&quot;)"/>
+        </ActionOccurrence>
+      </ActionOccurrences>
+    </Action>
     <Action uId="17699480756763025">
       <Title language="German" value="Create person.first_name and add to context"/>
       <ActionOccurrences>
@@ -96,6 +232,33 @@
         </ActionOccurrence>
       </ActionOccurrences>
     </Action>
+    <Action uId="17703806951367088">
+      <Title language="German" value="Add to context"/>
+      <ActionOccurrences>
+        <ActionOccurrence uId="17703807113007469">
+          <Symbol language="German" value="local"/>
+          <Title language="German" value="The local data will be stored into context"/>
+          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="instance.add_item(item, local_data)"/>
+        </ActionOccurrence>
+      </ActionOccurrences>
+    </Action>
+    <Action uId="17703799662634020">
+      <Title language="German" value="Print Log Message"/>
+      <ActionOccurrences>
+        <ActionOccurrence uId="17703800092614355">
+          <Symbol language="German" value="not_supported"/>
+          <Title language="German" value="Infomation that item is not supported."/>
+          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="instance.add_rbt_log_message(&quot;The keyword \&quot;{keyword}\&quot; is not supported for localization \&quot;{localization}\&quot;.&quot;, &quot;INFO&quot;)"/>
+          <TestValue group="robot" type="tse" value="# The test case is considered skipped at this point because the keyword is not supported in the environment.&lt;br/&gt;Skip"/>
+          <TestValue group="*ti.att.robot" type="tse" value="tags=robot:exclude"/>
+        </ActionOccurrence>
+        <ActionOccurrence uId="17703809349358249">
+          <Symbol language="German" value="not_consistent"/>
+          <Title language="German" value="The generated test data is not necessarily consistent with other dependent values!"/>
+          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="instance.add_rbt_log_message(&quot;The generated test data is not necessarily consistent with other dependent values!&quot;, &quot;INFO&quot;)"/>
+        </ActionOccurrence>
+      </ActionOccurrences>
+    </Action>
     <Action uId="17699480963103046">
       <Title language="German" value="Return Item from context"/>
       <ActionOccurrences>
@@ -103,6 +266,7 @@
           <Symbol language="German" value="item"/>
           <Title language="German" value="Aktion ausführen"/>
           <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="return instance.get_item(item)"/>
+          <TestValue group="robot" type="tse" value="# The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.&lt;br/&gt;Should Match Regexp    ${output}    pattern=${*GTD.keyword.global_pattern}&lt;br/&gt;# Repetition of the keyword checks whether the result has also been saved in context.&lt;br/&gt;${repetition}    ${*GTD.keyword.keyword}&lt;br/&gt;Should Be Equal As Strings    ${output}    ${repetition}"/>
         </ActionOccurrence>
       </ActionOccurrences>
     </Action>
@@ -112,19 +276,96 @@
         <ActionOccurrence uId="17695186572133104">
           <Symbol language="German" value="person.name"/>
           <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="match item_data.get(&quot;sex&quot;):&lt;br/&gt;    case &quot;f&quot;:&lt;br/&gt;        return fake.name_female()&lt;br/&gt;    case &quot;m&quot;:&lt;br/&gt;        return fake.name_male()&lt;br/&gt;    case &quot;d&quot;:&lt;br/&gt;        return fake.name_nonbinary()&lt;br/&gt;    case _:&lt;br/&gt;        return fake.name()"/>
+          <TestValue group="robot" type="tse" value="# The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.&lt;br/&gt;Should Match Regexp    ${output}    pattern=${*GTD.keyword.global_pattern}"/>
+          <TestValue group="*ti.gtd.robot" type="tse" value="tabelle, keyword, keyword, fname_is = &quot;unknown&quot;&lt;br/&gt;tabelle, keyword, keyword, lname_is = &quot;unknown&quot;"/>
         </ActionOccurrence>
         <ActionOccurrence uId="17695186572163107">
           <Symbol language="German" value="person.first_name"/>
           <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="match item_data.get(&quot;sex&quot;):&lt;br/&gt;    case &quot;f&quot;:&lt;br/&gt;        return fake.first_name_female()&lt;br/&gt;    case &quot;m&quot;:&lt;br/&gt;        return fake.first_name_male()&lt;br/&gt;    case &quot;d&quot;:&lt;br/&gt;        return fake.first_name_nonbinary()&lt;br/&gt;    case _:&lt;br/&gt;        return fake.first_name()"/>
+          <TestValue group="robot" type="tse" value="# The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.&lt;br/&gt;Should Match Regexp    ${output}    pattern=${*GTD.keyword.global_pattern}"/>
         </ActionOccurrence>
         <ActionOccurrence uId="17695186572183109">
           <Symbol language="German" value="person.last_name"/>
           <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="match item_data.get(&quot;sex&quot;):&lt;br/&gt;    case &quot;f&quot;:&lt;br/&gt;        return fake.last_name_female()&lt;br/&gt;    case &quot;m&quot;:&lt;br/&gt;        return fake.last_name_male()&lt;br/&gt;    case &quot;d&quot;:&lt;br/&gt;        return fake.last_name_nonbinary()&lt;br/&gt;    case _:&lt;br/&gt;        return fake.last_name()"/>
+          <TestValue group="robot" type="tse" value="# The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.&lt;br/&gt;Should Match Regexp    ${output}    pattern=${*GTD.keyword.global_pattern}"/>
+        </ActionOccurrence>
+        <ActionOccurrence uId="17703805164565990">
+          <Symbol language="German" value="local"/>
+          <Title language="German" value="The locally generated data will be returned"/>
+          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="return local_data"/>
+          <TestValue group="robot" type="tse" value="# The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.&lt;br/&gt;Should Match Regexp    ${output}    pattern=${*GTD.keyword.global_pattern}"/>
         </ActionOccurrence>
       </ActionOccurrences>
     </Action>
   </Actions>
-  <Rules lastId="15">
+  <Rules lastId="37">
+    <Rule id="16">
+      <ConditionOccurrenceLink link="17695070862679776"/>
+      <ConditionOccurrenceLink link="17703752144862045"/>
+      <ActionOccurrenceLink link="17703803995654714"/>
+      <ActionOccurrenceLink link="17703805164565990"/>
+    </Rule>
+    <Rule id="17">
+      <ConditionOccurrenceLink link="17695070862679776"/>
+      <ConditionOccurrenceLink link="17703752144892048"/>
+      <ActionOccurrenceLink link="17703803995694718"/>
+      <ActionOccurrenceLink link="17703805164565990"/>
+    </Rule>
+    <Rule id="18">
+      <ConditionOccurrenceLink link="17695070862679776"/>
+      <ConditionOccurrenceLink link="17703752144922051"/>
+      <ActionOccurrenceLink link="17703803995734722"/>
+      <ActionOccurrenceLink link="17703805164565990"/>
+    </Rule>
+    <Rule id="19">
+      <ConditionOccurrenceLink link="17695070862679776"/>
+      <ConditionOccurrenceLink link="17703752144952054"/>
+      <ActionOccurrenceLink link="17703803995774726"/>
+      <ActionOccurrenceLink link="17703805164565990"/>
+    </Rule>
+    <Rule id="20">
+      <ConditionOccurrenceLink link="17695070862679776"/>
+      <ConditionOccurrenceLink link="17703752144982057"/>
+      <ActionOccurrenceLink link="17703803995814730"/>
+      <ActionOccurrenceLink link="17703805164565990"/>
+    </Rule>
+    <Rule id="21">
+      <ConditionOccurrenceLink link="17695070862679776"/>
+      <ConditionOccurrenceLink link="17703752147162060"/>
+      <ActionOccurrenceLink link="17703803995854734"/>
+      <ActionOccurrenceLink link="17703805164565990"/>
+    </Rule>
+    <Rule id="22">
+      <ConditionOccurrenceLink link="17695070862679776"/>
+      <ConditionOccurrenceLink link="17703752147192063"/>
+      <ActionOccurrenceLink link="17703803995894738"/>
+      <ActionOccurrenceLink link="17703805164565990"/>
+    </Rule>
+    <Rule id="23">
+      <ConditionOccurrenceLink link="17695070862679776"/>
+      <ConditionOccurrenceLink link="17703752147222066"/>
+      <ActionOccurrenceLink link="17703803995934742"/>
+      <ActionOccurrenceLink link="17703805164565990"/>
+    </Rule>
+    <Rule id="24">
+      <ConditionOccurrenceLink link="17695070862679776"/>
+      <ConditionOccurrenceLink link="17703752147252069"/>
+      <ActionOccurrenceLink link="17703800092614355"/>
+      <ActionOccurrenceLink link="17703803995974746"/>
+      <ActionOccurrenceLink link="17703805164565990"/>
+    </Rule>
+    <Rule id="25">
+      <ConditionOccurrenceLink link="17695070862679776"/>
+      <ConditionOccurrenceLink link="17703752147282072"/>
+      <ActionOccurrenceLink link="17703803996014750"/>
+      <ActionOccurrenceLink link="17703805164565990"/>
+    </Rule>
+    <Rule id="26">
+      <ConditionOccurrenceLink link="17695070862679776"/>
+      <ConditionOccurrenceLink link="17703752147312075"/>
+      <ActionOccurrenceLink link="17703803996054754"/>
+      <ActionOccurrenceLink link="17703805164565990"/>
+    </Rule>
     <Rule id="5">
       <ConditionOccurrenceLink link="17695070862679776"/>
       <ConditionOccurrenceLink link="17695103847460300"/>
@@ -139,6 +380,93 @@
       <ConditionOccurrenceLink link="17695070862679776"/>
       <ConditionOccurrenceLink link="17695103847480302"/>
       <ActionOccurrenceLink link="17695186572183109"/>
+    </Rule>
+    <Rule id="27">
+      <ConditionOccurrenceLink link="17695070862659774"/>
+      <ConditionOccurrenceLink link="17703752144862045"/>
+      <ActionOccurrenceLink link="17699478486131905"/>
+      <ActionOccurrenceLink link="17703803995654714"/>
+      <ActionOccurrenceLink link="17703809349358249"/>
+      <ActionOccurrenceLink link="17703807113007469"/>
+    </Rule>
+    <Rule id="28">
+      <ConditionOccurrenceLink link="17695070862659774"/>
+      <ConditionOccurrenceLink link="17703752144892048"/>
+      <ActionOccurrenceLink link="17699478486131905"/>
+      <ActionOccurrenceLink link="17703803995694718"/>
+      <ActionOccurrenceLink link="17703809349358249"/>
+      <ActionOccurrenceLink link="17703807113007469"/>
+    </Rule>
+    <Rule id="29">
+      <ConditionOccurrenceLink link="17695070862659774"/>
+      <ConditionOccurrenceLink link="17703752144922051"/>
+      <ActionOccurrenceLink link="17699478486131905"/>
+      <ActionOccurrenceLink link="17703803995734722"/>
+      <ActionOccurrenceLink link="17703809349358249"/>
+      <ActionOccurrenceLink link="17703807113007469"/>
+    </Rule>
+    <Rule id="30">
+      <ConditionOccurrenceLink link="17695070862659774"/>
+      <ConditionOccurrenceLink link="17703752144952054"/>
+      <ActionOccurrenceLink link="17699478486131905"/>
+      <ActionOccurrenceLink link="17703803995774726"/>
+      <ActionOccurrenceLink link="17703809349358249"/>
+      <ActionOccurrenceLink link="17703807113007469"/>
+    </Rule>
+    <Rule id="31">
+      <ConditionOccurrenceLink link="17695070862659774"/>
+      <ConditionOccurrenceLink link="17703752144982057"/>
+      <ActionOccurrenceLink link="17699478486131905"/>
+      <ActionOccurrenceLink link="17703803995814730"/>
+      <ActionOccurrenceLink link="17703809349358249"/>
+      <ActionOccurrenceLink link="17703807113007469"/>
+    </Rule>
+    <Rule id="32">
+      <ConditionOccurrenceLink link="17695070862659774"/>
+      <ConditionOccurrenceLink link="17703752147162060"/>
+      <ActionOccurrenceLink link="17699478486131905"/>
+      <ActionOccurrenceLink link="17703803995854734"/>
+      <ActionOccurrenceLink link="17703809349358249"/>
+      <ActionOccurrenceLink link="17703807113007469"/>
+    </Rule>
+    <Rule id="33">
+      <ConditionOccurrenceLink link="17695070862659774"/>
+      <ConditionOccurrenceLink link="17703752147192063"/>
+      <ActionOccurrenceLink link="17699478486131905"/>
+      <ActionOccurrenceLink link="17703803995894738"/>
+      <ActionOccurrenceLink link="17703809349358249"/>
+      <ActionOccurrenceLink link="17703807113007469"/>
+    </Rule>
+    <Rule id="34">
+      <ConditionOccurrenceLink link="17695070862659774"/>
+      <ConditionOccurrenceLink link="17703752147222066"/>
+      <ActionOccurrenceLink link="17699478486131905"/>
+      <ActionOccurrenceLink link="17703803995934742"/>
+      <ActionOccurrenceLink link="17703809349358249"/>
+      <ActionOccurrenceLink link="17703807113007469"/>
+    </Rule>
+    <Rule id="35">
+      <ConditionOccurrenceLink link="17695070862659774"/>
+      <ConditionOccurrenceLink link="17703752147252069"/>
+      <ActionOccurrenceLink link="17699478486131905"/>
+      <ActionOccurrenceLink link="17703803995974746"/>
+      <ActionOccurrenceLink link="17703800092614355"/>
+    </Rule>
+    <Rule id="36">
+      <ConditionOccurrenceLink link="17695070862659774"/>
+      <ConditionOccurrenceLink link="17703752147282072"/>
+      <ActionOccurrenceLink link="17699478486131905"/>
+      <ActionOccurrenceLink link="17703803996014750"/>
+      <ActionOccurrenceLink link="17703809349358249"/>
+      <ActionOccurrenceLink link="17703807113007469"/>
+    </Rule>
+    <Rule id="37">
+      <ConditionOccurrenceLink link="17695070862659774"/>
+      <ConditionOccurrenceLink link="17703752147312075"/>
+      <ActionOccurrenceLink link="17699478486131905"/>
+      <ActionOccurrenceLink link="17703803996054754"/>
+      <ActionOccurrenceLink link="17703809349358249"/>
+      <ActionOccurrenceLink link="17703807113007469"/>
     </Rule>
     <Rule id="8">
       <ConditionOccurrenceLink link="17695070862659774"/>
@@ -193,5 +521,17 @@
   <UrlsOut>
     <Url title="Ordner" url="file:///./"/>
   </UrlsOut>
-  <SourceCode codeLanguage="Python" sourceCodeType="Prolog" value="# $$BasicIndentLevel=2&lt;br/&gt;from faker import Faker&lt;br/&gt;import SynData&lt;br/&gt;&lt;br/&gt;class ItemBuilderEngineFaker:&lt;br/&gt;&lt;br/&gt;    @staticmethod&lt;br/&gt;    def execute(instance: SynData, localization: str, item: str, item_data: dict):&lt;br/&gt;        fake = Faker(localization)"/>
+  <SourceCode codeLanguage="Python" sourceCodeType="Prolog" value="# $$BasicIndentLevel=2&lt;br/&gt;from robot.libraries.BuiltIn import BuiltIn&lt;br/&gt;&lt;br/&gt;from faker import Faker&lt;br/&gt;from .country import Country&lt;br/&gt;import SynData&lt;br/&gt;&lt;br/&gt;class ItemBuilderEngineFaker:&lt;br/&gt;&lt;br/&gt;    @staticmethod&lt;br/&gt;    def execute(instance: SynData, localization: str, keyword: str, item: str, item_data: dict):&lt;br/&gt;        fake = Faker(localization)"/>
+  <SourceCode codeLanguage="Python" sourceCodeType="Trace" value="instance.add_rbt_log_message(&quot;[SynData] Decision table $$EtName ($$Version), rule $$Rule of $$Rules has been executed&quot;, &quot;DEBUG&quot;)"/>
+  <TestValueGroups selectedGroup="robot">
+    <TestValueGroup name="*ti.check.robot"/>
+    <TestValueGroup name="*ti.gtd.robot"/>
+    <TestValueGroup name="*ti.att.robot"/>
+    <TestValueGroup name="robot" description="Acceptance tests from the decision table are to be generated automatically using this group." tvgTiAtt="*ti.att.robot" tvgTiCheck="*ti.check.robot" tvgTiGTD="*ti.gtd.robot">
+      <Config name="acceptance tests" parms="-Group 'robot' -GtdDirectory './testdata/' -GtdFileNamePattern '*.csv' -NonExecutableRules '50' -RecommendedTestCases -ExportRobotFramework '../test/acceptance_tests/lfet/ItemBuilderEngineFaker.testcases.robot'"/>
+    </TestValueGroup>
+  </TestValueGroups>
+  <TestValue group="robot" type="tcpre" value="*robot.Settings    Library    ../src/SynData/SynData.py&lt;br/&gt;*robot.Settings    Suite Setup    Set SynData Configuration   mode=default    localization=${*GTD.import.code}    logging=${True}&lt;br/&gt;*robot.Settings    Test Setup    Release Context"/>
+  <TestValue group="robot" type="isi" value="${output}    ${*GTD.keyword.keyword}"/>
+  <TestValue group="*ti.gtd.robot" type="tcpre" value="tabelle, keyword, keywords&lt;br/&gt;tabelle, localization, localizations&lt;br/&gt;zeile, import, localizations"/>
 </LFET>

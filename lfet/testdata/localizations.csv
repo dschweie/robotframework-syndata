@@ -1,0 +1,30 @@
+*GTD.localizations
+
+code  ; language ; region ; country
+===========================================
+de_AT ; de       ; AT     ; Österreich
+en_AU ; en       ; AU     ; Australia
+cs_CZ ; cs       ; CZ     ; Česko
+da_DK ; da       ; DK     ; Danmark
+de_AT ; de       ; AT     ; Österreich
+de_CH ; de       ; CH     ; Schweiz
+en_AU ; en       ; AU     ; Australia
+en_US ; en       ; US     ; United States
+en_NZ ; en       ; NZ     ; New Zealand
+en_IE ; en       ; IE     ; Ireland
+en_GB ; en       ; GB     ; United Kingdom
+en_CA ; en       ; CA     ; Canada
+es_ES ; es       ; ES     ; España
+es_AR ; es       ; AR     ; Argentina
+es_MX ; es       ; MX     ; México
+et_EE ; et       ; EE     ; Eesti
+fi_FI ; fi       ; FI     ; Suomi
+fr_FR ; fr       ; FR     ; France
+hr_HR ; hr       ; HR     ; Hrvatska
+it_IT ; it       ; IT     ; Italia
+lt_LT ; lt       ; LT     ; Lietuva
+nl_NL ; nl       ; NL     ; Nederland
+no_NO ; no       ; NO     ; Norge
+pl_PL ; pl       ; PL     ; Polska
+pt_PT ; pt       ; PT     ; Portugal
+sv_SE ; sv       ; SE     ; Sverige

@@ -2387,7 +2387,7 @@ osm_id,ags,city,postcode,county,state
 957117,09778127,Dirlewang,87782,Landkreis Unterallgäu,Bayern
 1249740,07332010,Dirmstein,67246,Landkreis Bad Dürkheim,Rheinland-Pfalz
 2826521,08135010,Dischingen,89561,Landkreis Heidenheim,Baden-Württemberg
-1086002,03459015,Dissen,49201,Landkreis Osnabrück,Niedersachsen
+1086002,03459015,Dissen am Teutoburger Wald,49201,Landkreis Osnabrück,Niedersachsen
 1322842,12071041,Dissen-Striesow,03096,Landkreis Spree-Neiße,Brandenburg
 1332186,15085090,Ditfurt,06484,Landkreis Harz,Sachsen-Anhalt
 548039,07137019,Ditscheid,56729,Landkreis Mayen-Koblenz,Rheinland-Pfalz
@@ -2719,7 +2719,7 @@ osm_id,ags,city,postcode,county,state
 929913,09175115,Ebersberg,85560,Landkreis Ebersberg,Bayern
 454870,06631004,Ebersburg,36157,Landkreis Fulda,Hessen
 1079024,03357012,Ebersdorf,27432,Landkreis Rotenburg (Wümme),Niedersachsen
-956869,09473121,Ebersdorf b.Coburg,96237,Landkreis Coburg,Bayern
+956869,09473121,Ebersdorf bei Coburg,96237,Landkreis Coburg,Bayern
 962702,09774129,Ebershausen,86491,Landkreis Günzburg,Bayern
 409712,08125021,Eberstadt,74246,Landkreis Heilbronn,Baden-Württemberg
 2856442,16071015,Eberstedt,99518,Landkreis Weimarer Land,Thüringen
@@ -2798,7 +2798,7 @@ osm_id,ags,city,postcode,county,state
 943678,09185127,Ehekirchen,86676,Landkreis Neuburg-Schrobenhausen,Bayern
 445851,09772134,Ehingen,86678,Landkreis Augsburg,Bayern
 534400,09571141,Ehingen,91725,Landkreis Ansbach,Bayern
-962607,09779138,Ehingen a.Ries,86741,Landkreis Donau-Ries,Bayern
+962607,09779138,Ehingen am Ries,86741,Landkreis Donau-Ries,Bayern
 2803461,08425033,Ehingen (Donau),89584,Alb-Donau-Kreis,Baden-Württemberg
 1152672,07232030,Ehlenz,54636,Eifelkreis Bitburg-Prüm,Rheinland-Pfalz
 444705,07138015,Ehlscheid,56581,Landkreis Neuwied,Rheinland-Pfalz
@@ -2831,7 +2831,7 @@ osm_id,ags,city,postcode,county,state
 943557,09176123,Eichstätt,85072,Landkreis Eichstätt,Bayern
 1284757,15090135,Eichstedt (Altmark),39596,Landkreis Stendal,Sachsen-Anhalt
 2808127,08436027,Eichstegen,88361,Landkreis Ravensburg,Baden-Württemberg
-70125,08315030,Eichstetten,79356,Landkreis Breisgau-Hochschwarzwald,Baden-Württemberg
+70125,08315030,Eichstetten am Kaiserstuhl,79356,Landkreis Breisgau-Hochschwarzwald,Baden-Württemberg
 2396095,16061028,Eichstruth,37318,Landkreis Eichsfeld,Thüringen
 55773,12061112,Eichwalde,15732,Landkreis Dahme-Spreewald,Brandenburg
 1808862,03358006,Eickeloh,29693,Landkreis Heidekreis,Niedersachsen
@@ -2985,7 +2985,7 @@ osm_id,ags,city,postcode,county,state
 1109687,03453005,Emstek,49685,Landkreis Cloppenburg,Niedersachsen
 1292743,03361004,Emtinghausen,27321,Landkreis Verden,Niedersachsen
 1070998,09472133,Emtmannsberg,95517,Landkreis Bayreuth,Bayern
-1124262,08316012,Endingen,79346,Landkreis Emmendingen,Baden-Württemberg
+1124262,08316012,Endingen am Kaiserstuhl,79346,Landkreis Emmendingen,Baden-Württemberg
 540450,07141037,Endlichhofen,56355,Rhein-Lahn-Kreis,Rheinland-Pfalz
 2506805,16076017,Endschütz,07570,Landkreis Greiz,Thüringen
 2012816,03456003,Engden,48465,Landkreis Grafschaft Bentheim,Niedersachsen
@@ -3083,7 +3083,7 @@ osm_id,ags,city,postcode,county,state
 394527,09676122,Erlenbach am Main,63906,Landkreis Miltenberg,Bayern
 1251122,07340010,Erlenbach bei Dahn,76891,Landkreis Südwestpfalz,Rheinland-Pfalz
 1252351,07334004,Erlenbach bei Kandel,76872,Landkreis Germersheim,Rheinland-Pfalz
-335466,09677125,Erlenbach b.Marktheidenfeld,97837,Landkreis Main-Spessart,Bayern
+335466,09677125,Erlenbach bei Marktheidenfeld,97837,Landkreis Main-Spessart,Bayern
 2801245,08426043,Erlenmoos,88416,Landkreis Biberach,Baden-Württemberg
 535896,06435007,Erlensee,63526,Main-Kinzig-Kreis,Hessen
 405784,08118015,Erligheim,74391,Landkreis Ludwigsburg,Baden-Württemberg
@@ -3171,7 +3171,7 @@ osm_id,ags,city,postcode,county,state
 62713,05113000,Essen,45359,,Nordrhein-Westfalen
 179470,09274128,Essenbach,84051,Landkreis Landshut,Bayern
 1245314,07339017,Essenheim,55270,Landkreis Mainz-Bingen,Rheinland-Pfalz
-1101377,03453006,Essen/Oldenburg,49632,Landkreis Cloppenburg,Niedersachsen
+1101377,03453006,Essen (Oldenburg),49632,Landkreis Cloppenburg,Niedersachsen
 956662,09273121,Essing,93343,Landkreis Kelheim,Bayern
 1252804,07337023,Essingen,76879,Landkreis Südliche Weinstraße,Rheinland-Pfalz
 2792055,08136021,Essingen,73457,Ostalbkreis,Baden-Württemberg
@@ -3531,7 +3531,7 @@ osm_id,ags,city,postcode,county,state
 1028819,09373126,Freystadt,92342,Landkreis Neumarkt in der Oberpfalz,Bayern
 958977,09272118,Freyung,94078,Landkreis Freyung-Grafenau,Bayern
 2795772,08116020,Frickenhausen,72636,Landkreis Esslingen,Baden-Württemberg
-163053,09679131,Frickenhausen a.Main,97252,Landkreis Würzburg,Bayern
+163053,09679131,Frickenhausen am Main,97252,Landkreis Würzburg,Bayern
 2806598,08435015,Frickingen,88699,Bodenseekreis,Baden-Württemberg
 1231980,08327016,Fridingen an der Donau,78567,Landkreis Tuttlingen,Baden-Württemberg
 941659,09189118,Fridolfing,83413,Landkreis Traunstein,Bayern
@@ -4308,7 +4308,7 @@ osm_id,ags,city,postcode,county,state
 1467347,01053045,Grove,21493,Kreis Herzogtum Lauenburg,Schleswig-Holstein
 949290,01051038,Groven,25774,Kreis Dithmarschen,Schleswig-Holstein
 1273260,16069017,Grub,98530,Landkreis Hildburghausen,Thüringen
-956863,09473134,Grub a.Forst,96271,Landkreis Coburg,Bayern
+956863,09473134,Grub am Forst,96271,Landkreis Coburg,Bayern
 382424,01055018,Grube,23749,Kreis Ostholstein,Schleswig-Holstein
 2793120,08117028,Gruibingen,73344,Landkreis Göppingen,Baden-Württemberg
 1246770,07336033,Grumbach,67745,Landkreis Kusel,Rheinland-Pfalz
@@ -4776,7 +4776,7 @@ osm_id,ags,city,postcode,county,state
 1185613,03458009,Hatten,26209,Landkreis Oldenburg,Niedersachsen
 933534,09179128,Hattenhofen,82285,Landkreis Fürstenfeldbruck,Bayern
 2792703,08117029,Hattenhofen,73110,Landkreis Göppingen,Baden-Württemberg
-414749,06436005,Hattersheim,65795,Main-Taunus-Kreis,Hessen
+414749,06436005,Hattersheim am Main,65795,Main-Taunus-Kreis,Hessen
 453158,07143235,Hattert,57644,Westerwaldkreis,Rheinland-Pfalz
 1244326,07134034,Hattgenstein,55767,Landkreis Birkenfeld,Rheinland-Pfalz
 162828,05954016,Hattingen,45525,Ennepe-Ruhr-Kreis,Nordrhein-Westfalen
@@ -5143,7 +5143,7 @@ osm_id,ags,city,postcode,county,state
 1258427,07231054,Hilscheid,54426,Landkreis Bernkastel-Wittlich,Rheinland-Pfalz
 1251156,07340019,Hilst,66957,Landkreis Südwestpfalz,Rheinland-Pfalz
 955903,09772157,Hiltenfingen,86856,Landkreis Augsburg,Bayern
-1086004,03459022,Hilter,49176,Landkreis Osnabrück,Niedersachsen
+1086004,03459022,Hilter am Teutoburger Wald,49176,Landkreis Osnabrück,Niedersachsen
 1080460,09474138,Hiltpoltstein,91355,Landkreis Forchheim,Bayern
 2785127,08335035,Hilzingen,78247,Landkreis Konstanz,Baden-Württemberg
 1460224,03360011,Himbergen,29584,Landkreis Uelzen,Niedersachsen
@@ -5196,14 +5196,14 @@ osm_id,ags,city,postcode,county,state
 2801320,08426058,Hochdorf,88454,Landkreis Biberach,Baden-Württemberg
 422701,07338014,Hochdorf-Assenheim,67126,Rhein-Pfalz-Kreis,Rheinland-Pfalz
 1240390,08337051,Höchenschwand,79862,Landkreis Waldshut,Baden-Württemberg
-414755,06436006,Hochheim,65239,Main-Taunus-Kreis,Hessen
+414755,06436006,Hochheim am Main,65239,Main-Taunus-Kreis,Hessen
 387525,09673134,Höchheim,97633,Landkreis Rhön-Grabfeld,Bayern
 1309660,14625230,Hochkirch - Bukecy,02627,Landkreis Bautzen,Sachsen
 1258364,07231056,Hochscheid,54472,Landkreis Bernkastel-Wittlich,Rheinland-Pfalz
 1186710,07335015,Hochspeyer,67691,Landkreis Kaiserslautern,Rheinland-Pfalz
 1016532,09572135,Höchstadt a.d.Aisch,91315,Landkreis Erlangen-Höchstadt,Bayern
 957012,09773139,Höchstädt a.d.Donau,89420,Landkreis Dillingen an der Donau,Bayern
-1026851,09478127,Hochstadt a.Main,96272,Landkreis Lichtenfels,Bayern
+1026851,09478127,Hochstadt am Main,96272,Landkreis Lichtenfels,Bayern
 1022882,09479126,Höchstädt im Fichtelgebirge,95186,Landkreis Wunsiedel im Fichtelgebirge,Bayern
 1252805,07337041,Hochstadt (Pfalz),76879,Landkreis Südliche Weinstraße,Rheinland-Pfalz
 1244039,07133045,Hochstätten,55585,Landkreis Bad Kreuznach,Rheinland-Pfalz
@@ -5359,7 +5359,7 @@ osm_id,ags,city,postcode,county,state
 941090,09775126,Holzheim,89291,Landkreis Neu-Ulm,Bayern
 956796,09773140,Holzheim,89438,Landkreis Dillingen an der Donau,Bayern
 962254,09779163,Holzheim,86684,Landkreis Donau-Ries,Bayern
-965021,09375153,Holzheim a.Forst,93183,Landkreis Regensburg,Bayern
+965021,09375153,Holzheim am Forst,93183,Landkreis Regensburg,Bayern
 2789618,08425062,Holzkirch,89183,Alb-Donau-Kreis,Baden-Württemberg
 180670,09679149,Holzkirchen,97292,Landkreis Würzburg,Bayern
 935961,09182120,Holzkirchen,83607,Landkreis Miesbach,Bayern
@@ -5993,7 +5993,7 @@ osm_id,ags,city,postcode,county,state
 2801100,08426065,Kirchberg an der Iller,88486,Landkreis Biberach,Baden-Württemberg
 388817,08127046,Kirchberg an der Jagst,74592,Landkreis Schwäbisch Hall,Baden-Württemberg
 400933,08119038,Kirchberg an der Murr,71737,Rems-Murr-Kreis,Baden-Württemberg
-959157,09276126,Kirchberg i.Wald,94259,Landkreis Regen,Bayern
+959157,09276126,Kirchberg im Wald,94259,Landkreis Regen,Bayern
 2014378,03255025,Kirchbrak,37619,Landkreis Holzminden,Niedersachsen
 940709,09183123,Kirchdorf,83527,Landkreis Mühldorf am Inn,Bayern
 956658,09273139,Kirchdorf,93348,Landkreis Kelheim,Bayern
@@ -6001,7 +6001,7 @@ osm_id,ags,city,postcode,county,state
 957067,09277128,Kirchdorf am Inn,84375,Landkreis Rottal-Inn,Bayern
 30016,09178136,Kirchdorf an der Amper,85414,Landkreis Freising,Bayern
 2801148,08426066,Kirchdorf an der Iller,88457,Landkreis Biberach,Baden-Württemberg
-959167,09276127,Kirchdorf i.Wald,94261,Landkreis Regen,Bayern
+959167,09276127,Kirchdorf im Wald,94261,Landkreis Regen,Bayern
 1080457,09474143,Kirchehrenbach,91356,Landkreis Forchheim,Bayern
 418139,07132062,Kircheib,57635,Landkreis Altenkirchen,Rheinland-Pfalz
 1059430,09374128,Kirchendemenreuth,92665,Landkreis Neustadt an der Waldnaab,Bayern
@@ -6408,7 +6408,7 @@ osm_id,ags,city,postcode,county,state
 2813121,16061062,Krombach,37308,Landkreis Eichsfeld,Thüringen
 1021756,09476145,Kronach,96317,Landkreis Kronach,Bayern
 659805,08215039,Kronau,76709,Landkreis Karlsruhe,Baden-Württemberg
-418112,06434006,Kronberg,61476,Hochtaunuskreis,Hessen
+418112,06434006,Kronberg im Taunus,61476,Hochtaunuskreis,Hessen
 958689,09778161,Kronburg,87758,Landkreis Unterallgäu,Bayern
 191351,09274145,Kröning,84178,Landkreis Landshut,Bayern
 935302,01051062,Kronprinzenkoog,25709,Kreis Dithmarschen,Schleswig-Holstein
@@ -6886,7 +6886,7 @@ osm_id,ags,city,postcode,county,state
 535250,14730170,Liebschützberg,04758,Landkreis Nordsachsen,Sachsen
 1241483,07140085,Liebshausen,55494,Rhein-Hunsrück-Kreis,Rheinland-Pfalz
 455487,14628230,Liebstadt,01825,Landkreis Sächsische Schweiz-Osterzgebirge,Sachsen
-414800,06436010,Liederbach,65835,Main-Taunus-Kreis,Hessen
+414800,06436010,Liederbach am Taunus,65835,Main-Taunus-Kreis,Hessen
 1266514,07135053,Lieg,56290,Landkreis Cochem-Zell,Rheinland-Pfalz
 155440,05566044,Lienen,49536,Kreis Steinfurt,Nordrhein-Westfalen
 1318363,12060128,Liepe,16248,Landkreis Barnim,Brandenburg
@@ -7536,7 +7536,7 @@ osm_id,ags,city,postcode,county,state
 1289815,12070280,Meyenburg,16945,Landkreis Prignitz,Brandenburg
 1156029,01059144,Meyn,24980,Kreis Schleswig-Flensburg,Schleswig-Holstein
 1026862,09478145,Michelau in Oberfranken,96247,Landkreis Lichtenfels,Bayern
-318258,09678157,Michelau i.Steigerwald,97513,Landkreis Schweinfurt,Bayern
+318258,09678157,Michelau im Steigerwald,97513,Landkreis Schweinfurt,Bayern
 418871,07132070,Michelbach,57610,Landkreis Altenkirchen,Rheinland-Pfalz
 1204714,07140095,Michelbach,56288,Rhein-Hunsrück-Kreis,Rheinland-Pfalz
 391363,08127056,Michelbach an der Bilz,74544,Landkreis Schwäbisch Hall,Baden-Württemberg
@@ -8037,7 +8037,7 @@ osm_id,ags,city,postcode,county,state
 88686,05166016,Nettetal,41334,Kreis Viersen,Nordrhein-Westfalen
 538927,07141093,Netzbach,65623,Rhein-Lahn-Kreis,Rheinland-Pfalz
 446592,14523260,Netzschkau,08491,Vogtlandkreis,Sachsen
-968897,09377142,Neualbenreuth,95698,Landkreis Tirschenreuth,Bayern
+968897,09377142,Bad Neualbenreuth,95698,Landkreis Tirschenreuth,Bayern
 418434,06434007,Neu-Anspach,61267,Hochtaunuskreis,Hessen
 1246416,07133069,Neu-Bamberg,55546,Landkreis Bad Kreuznach,Rheinland-Pfalz
 1149458,01059062,Neuberend,24879,Kreis Schleswig-Flensburg,Schleswig-Holstein
@@ -8179,9 +8179,9 @@ osm_id,ags,city,postcode,county,state
 1187145,10043114,Neunkirchen,66539,Landkreis Neunkirchen,Saarland
 1187145,10043114,Neunkirchen,66540,Landkreis Neunkirchen,Saarland
 1258417,07231093,Neunkirchen,54426,Landkreis Bernkastel-Wittlich,Rheinland-Pfalz
-1080490,09474154,Neunkirchen a.Brand,91077,Landkreis Forchheim,Bayern
+1080490,09474154,Neunkirchen am Brand,91077,Landkreis Forchheim,Bayern
 1246625,07336066,Neunkirchen am Potzberg,66887,Landkreis Kusel,Rheinland-Pfalz
-1017484,09574141,Neunkirchen a. Sand,91233,Landkreis Nürnberger Land,Bayern
+1017484,09574141,Neunkirchen am Sand,91233,Landkreis Nürnberger Land,Bayern
 173122,05382040,Neunkirchen-Seelscheid,53819,Rhein-Sieg-Kreis,Nordrhein-Westfalen
 942028,09171125,Neuötting,84524,Landkreis Altötting,Bayern
 1314218,12066228,Neupetershain,03103,Landkreis Oberspreewald-Lausitz,Brandenburg
@@ -8212,7 +8212,7 @@ osm_id,ags,city,postcode,county,state
 163307,05162024,Neuss,41470,Rhein-Kreis Neuss,Nordrhein-Westfalen
 163307,05162024,Neuss,41472,Rhein-Kreis Neuss,Nordrhein-Westfalen
 225497,06534016,Neustadt,35279,Landkreis Marburg-Biedenkopf,Hessen
-335458,09677166,Neustadt a.Main,97845,Landkreis Main-Spessart,Bayern
+335458,09677166,Neustadt am Main,97845,Landkreis Main-Spessart,Bayern
 1059431,09374140,Neustadt am Kulm,95514,Landkreis Neustadt an der Waldnaab,Bayern
 1162990,03241012,Neustadt am Rübenberge,31535,Region Hannover,Niedersachsen
 357040,09575153,Neustadt an der Aisch,91413,Landkreis Neustadt an der Aisch-Bad Windsheim,Bayern
@@ -8361,7 +8361,7 @@ osm_id,ags,city,postcode,county,state
 1399095,03159024,Niemetal,37127,Landkreis Göttingen,Niedersachsen
 548596,01058113,Nienborstel,24819,Kreis Rendsburg-Eckernförde,Schleswig-Holstein
 390042,15089235,Nienburg (Saale),06429,Salzlandkreis,Sachsen-Anhalt
-1183257,03256022,Nienburg/Weser,31582,Landkreis Nienburg/Weser,Niedersachsen
+1183257,03256022,Nienburg (Weser),31582,Landkreis Nienburg/Weser,Niedersachsen
 448769,01061076,Nienbüttel,25596,Kreis Steinburg,Schleswig-Holstein
 1464849,01053094,Niendorf bei Berkenthin,23919,Kreis Herzogtum Lauenburg,Schleswig-Holstein
 1465973,01053095,Niendorf/Stecknitz,23881,Kreis Herzogtum Lauenburg,Schleswig-Holstein
@@ -8425,7 +8425,7 @@ osm_id,ags,city,postcode,county,state
 412881,01051082,Nordhastedt,25785,Kreis Dithmarschen,Schleswig-Holstein
 2400430,16062041,Nordhausen,99734,Landkreis Nordhausen,Thüringen
 410500,08125074,Nordheim,74226,Landkreis Heilbronn,Baden-Württemberg
-283687,09675155,Nordheim a.Main,97334,Landkreis Kitzingen,Bayern
+283687,09675155,Nordheim am Main,97334,Landkreis Kitzingen,Bayern
 386920,09673147,Nordheim v.d.Rhön,97647,Landkreis Rhön-Grabfeld,Bayern
 533590,07143056,Nordhofen,56242,Westerwaldkreis,Rheinland-Pfalz
 1853267,03456015,Nordhorn,48527,Landkreis Grafschaft Bentheim,Niedersachsen
@@ -8612,7 +8612,7 @@ osm_id,ags,city,postcode,county,state
 395322,09676145,Obernburg am Main,63785,Landkreis Miltenberg,Bayern
 1180888,03352042,Oberndorf,21787,Landkreis Cuxhaven,Niedersachsen
 1253874,07333055,Oberndorf,67821,Donnersbergkreis,Rheinland-Pfalz
-962253,09779196,Oberndorf a.Lech,86698,Landkreis Donau-Ries,Bayern
+962253,09779196,Oberndorf am Lech,86698,Landkreis Donau-Ries,Bayern
 943741,08325045,Oberndorf am Neckar,78727,Landkreis Rottweil,Baden-Württemberg
 538924,07141102,Oberneisen,65558,Rhein-Lahn-Kreis,Rheinland-Pfalz
 941041,09183134,Oberneukirchen,84565,Landkreis Mühldorf am Inn,Bayern
@@ -8889,7 +8889,7 @@ osm_id,ags,city,postcode,county,state
 188238,03356007,Osterholz-Scharmbeck,27711,Landkreis Osterholz,Niedersachsen
 444183,01056038,Osterhorn,25364,Kreis Pinneberg,Schleswig-Holstein
 1329406,15082256,Osternienburger Land,06386,Landkreis Anhalt-Bitterfeld,Sachsen-Anhalt
-1416133,03159026,Osterode,37520,Landkreis Göttingen,Niedersachsen
+1416133,03159026,Osterode am Harz,37520,Landkreis Göttingen,Niedersachsen
 1406825,01054101,Oster-Ohrstedt,25885,Kreis Nordfriesland,Schleswig-Holstein
 443086,01051086,Osterrade,25767,Kreis Dithmarschen,Schleswig-Holstein
 548569,01058124,Osterrönfeld,24783,Kreis Rendsburg-Eckernförde,Schleswig-Holstein
@@ -8906,6 +8906,7 @@ osm_id,ags,city,postcode,county,state
 2805481,08437086,Ostrach,88356,Landkreis Sigmaringen,Baden-Württemberg
 2410099,16068041,Ostramondra,99636,Landkreis Sömmerda,Thüringen
 415411,14522450,Ostrau,04749,Landkreis Mittelsachsen,Sachsen
+415411,14522275,Jahnatal,04749,Landkreis Mittelsachsen,Sachsen
 1470258,03457017,Ostrhauderfehn,26842,Landkreis Leer,Niedersachsen
 659807,08215064,Östringen,76684,Landkreis Karlsruhe,Baden-Württemberg
 418648,14626420,Ostritz,02899,Landkreis Görlitz,Sachsen
@@ -9504,9 +9505,9 @@ osm_id,ags,city,postcode,county,state
 1021745,09476166,Reichenbach,96358,Landkreis Kronach,Bayern
 1245056,07134068,Reichenbach,55776,Landkreis Birkenfeld,Rheinland-Pfalz
 2778403,16074075,Reichenbach,07629,Saale-Holzland-Kreis,Thüringen
-5818742,14523340,Reichenbach,08468,Vogtlandkreis,Sachsen
-5818742,14523340,Reichenbach,08491,Vogtlandkreis,Sachsen
-5818742,14523340,Reichenbach,08499,Vogtlandkreis,Sachsen
+5818742,14523340,Reichenbach im Vogtland,08468,Vogtlandkreis,Sachsen
+5818742,14523340,Reichenbach im Vogtland,08491,Vogtlandkreis,Sachsen
+5818742,14523340,Reichenbach im Vogtland,08499,Vogtlandkreis,Sachsen
 1231964,08327040,Reichenbach am Heuberg,78564,Landkreis Tuttlingen,Baden-Württemberg
 2792737,08116058,Reichenbach an der Fils,73262,Landkreis Esslingen,Baden-Württemberg
 1311106,14626450,Reichenbach/Oberlausitz,02894,Landkreis Görlitz,Sachsen
@@ -9612,7 +9613,7 @@ osm_id,ags,city,postcode,county,state
 957050,09277140,Reut,84367,Landkreis Rottal-Inn,Bayern
 1970197,08316036,Reute,79276,Landkreis Emmendingen,Baden-Württemberg
 1075991,07233235,Reuth,54597,Landkreis Vulkaneifel,Rheinland-Pfalz
-62392,09377149,Reuth b.Erbendorf,92717,Landkreis Tirschenreuth,Bayern
+62392,09377149,Reuth bei Erbendorf,92717,Landkreis Tirschenreuth,Bayern
 2772661,08415061,Reutlingen,72760,Landkreis Reutlingen,Baden-Württemberg
 2772661,08415061,Reutlingen,72762,Landkreis Reutlingen,Baden-Württemberg
 2772661,08415061,Reutlingen,72764,Landkreis Reutlingen,Baden-Württemberg
@@ -9786,7 +9787,7 @@ osm_id,ags,city,postcode,county,state
 2186937,09187169,Rohrdorf,83101,Landkreis Rosenheim,Bayern
 943677,09185157,Rohrenfels,86701,Landkreis Neuburg-Schrobenhausen,Bayern
 2396156,16061077,Röhrig,37318,Landkreis Eichsfeld,Thüringen
-956646,09273165,Rohr i.NB,93352,Landkreis Kelheim,Bayern
+956646,09273165,Rohr in NB,93352,Landkreis Kelheim,Bayern
 934471,09174141,Röhrmoos,85244,Landkreis Dachau,Bayern
 958953,09272141,Röhrnbach,94133,Landkreis Freyung-Grafenau,Bayern
 1183263,03256027,Rohrsen,31627,Landkreis Nienburg/Weser,Niedersachsen
@@ -9905,7 +9906,7 @@ osm_id,ags,city,postcode,county,state
 158433,09576141,Röttenbach,91187,Landkreis Roth,Bayern
 1016512,09572149,Röttenbach,91341,Landkreis Erlangen-Höchstadt,Bayern
 936785,09190145,Rottenbuch,82401,Landkreis Weilheim-Schongau,Bayern
-179380,09274176,Rottenburg a. d. Laaber,84056,Landkreis Landshut,Bayern
+179380,09274176,Rottenburg an der Laaber,84056,Landkreis Landshut,Bayern
 2778912,08416036,Rottenburg am Neckar,72108,Landkreis Tübingen,Baden-Württemberg
 182349,09679185,Rottendorf,97228,Landkreis Würzburg,Bayern
 958110,09275143,Rotthalmünster,94094,Landkreis Passau,Bayern
@@ -10045,7 +10046,7 @@ osm_id,ags,city,postcode,county,state
 2186939,09187172,Samerberg,83122,Landkreis Rosenheim,Bayern
 2012780,03456020,Samern,48465,Landkreis Grafschaft Bentheim,Niedersachsen
 1438068,13073079,Samtens,18573,Landkreis Vorpommern-Rügen,Mecklenburg-Vorpommern
-387771,09674195,Sand a.Main,97522,Landkreis Haßberge,Bayern
+387771,09674195,Sand am Main,97522,Landkreis Haßberge,Bayern
 1284759,15090445,Sandau (Elbe),39524,Landkreis Stendal,Sachsen-Anhalt
 387470,09673162,Sandberg,97657,Landkreis Rhön-Grabfeld,Bayern
 1023212,03357040,Sandbostel,27446,Landkreis Rotenburg (Wümme),Niedersachsen
@@ -10283,7 +10284,7 @@ osm_id,ags,city,postcode,county,state
 1250992,07340224,Schmitshausen,66484,Landkreis Südwestpfalz,Rheinland-Pfalz
 1250992,07340224,Schmitshausen,66917,Landkreis Südwestpfalz,Rheinland-Pfalz
 1269812,07135078,Schmitt,56825,Landkreis Cochem-Zell,Rheinland-Pfalz
-418358,06434009,Schmitten,61389,Hochtaunuskreis,Hessen
+418358,06434009,Schmitten im Taunus,61389,Hochtaunuskreis,Hessen
 1244064,07133090,Schmittweiler,67829,Landkreis Bad Kreuznach,Rheinland-Pfalz
 1328962,12071341,Schmogrow-Fehrow,03096,Landkreis Spree-Neiße,Brandenburg
 2527958,16077043,Schmölln,04626,Landkreis Altenburger Land,Thüringen
@@ -10345,7 +10346,7 @@ osm_id,ags,city,postcode,county,state
 1253978,07333068,Schönborn,67808,Donnersbergkreis,Rheinland-Pfalz
 1322953,12062453,Schönborn,03253,Landkreis Elbe-Elster,Brandenburg
 453364,08226081,Schönbrunn,69436,Rhein-Neckar-Kreis,Baden-Württemberg
-1077553,09471186,Schönbrunn i.Steigerwald,96185,Landkreis Bamberg,Bayern
+1077553,09471186,Schönbrunn im Steigerwald,96185,Landkreis Bamberg,Bayern
 2403987,15084445,Schönburg,06618,Burgenlandkreis,Sachsen-Anhalt
 1256957,07235124,Schöndorf,54316,Landkreis Trier-Saarburg,Rheinland-Pfalz
 2179218,16075102,Schöndorf,07924,Saale-Orla-Kreis,Thüringen
@@ -10458,7 +10459,7 @@ osm_id,ags,city,postcode,county,state
 939356,09180131,Schwaigen,82445,Landkreis Garmisch-Partenkirchen,Bayern
 410521,08125086,Schwaigern,74193,Landkreis Heilbronn,Baden-Württemberg
 401696,08119068,Schwaikheim,71409,Rems-Murr-Kreis,Baden-Württemberg
-414833,06436011,Schwalbach,65824,Main-Taunus-Kreis,Hessen
+414833,06436011,Schwalbach am Taunus,65824,Main-Taunus-Kreis,Hessen
 1184565,10044118,Schwalbach,66773,Landkreis Saarlouis,Saarland
 1182303,07140140,Schwall,56281,Rhein-Hunsrück-Kreis,Rheinland-Pfalz
 2831169,16066064,Schwallungen,98590,Landkreis Schmalkalden-Meiningen,Thüringen
@@ -10482,7 +10483,7 @@ osm_id,ags,city,postcode,county,state
 403752,08225116,Schwarzach,74869,Neckar-Odenwald-Kreis,Baden-Württemberg
 959645,09278187,Schwarzach,94374,Landkreis Straubing-Bogen,Bayern
 283685,09675165,Schwarzach am Main,97359,Landkreis Kitzingen,Bayern
-962187,09376162,Schwarzach b.Nabburg,92548,Landkreis Schwandorf,Bayern
+962187,09376162,Schwarzach bei Nabburg,92548,Landkreis Schwandorf,Bayern
 9246636,16073113,Schwarzatal,98744,Landkreis Saalfeld-Rudolstadt,Thüringen
 1314280,12066292,Schwarzbach,01945,Landkreis Oberspreewald-Lausitz,Brandenburg
 2804632,16076068,Schwarzbach,07589,Landkreis Greiz,Thüringen
@@ -10716,7 +10717,7 @@ osm_id,ags,city,postcode,county,state
 1252775,07337074,Silz,76857,Landkreis Südliche Weinstraße,Rheinland-Pfalz
 1424140,13071138,Silz,17214,Landkreis Mecklenburgische Seenplatte,Mecklenburg-Vorpommern
 450062,01061100,Silzen,25551,Kreis Steinburg,Schleswig-Holstein
-957049,09277145,Simbach,84359,Landkreis Rottal-Inn,Bayern
+957049,09277145,Simbach am Inn,84359,Landkreis Rottal-Inn,Bayern
 959909,09279135,Simbach,94436,Landkreis Dingolfing-Landau,Bayern
 35117,09574158,Simmelsdorf,91245,Landkreis Nürnberger Land,Bayern
 158021,05334028,Simmerath,52152,Städteregion Aachen,Nordrhein-Westfalen
@@ -11036,7 +11037,7 @@ osm_id,ags,city,postcode,county,state
 1021761,09476178,Stockheim,96342,Landkreis Kronach,Bayern
 1183245,03256031,Stöckse,31638,Landkreis Nienburg/Weser,Niedersachsen
 405626,01060080,Stocksee,24326,Kreis Segeberg,Schleswig-Holstein
-443926,06433013,Stockstadt,64589,Kreis Groß-Gerau,Hessen
+443926,06433013,Stockstadt am Rhein,64589,Kreis Groß-Gerau,Hessen
 534354,09671155,Stockstadt am Main,63811,Landkreis Aschaffenburg,Bayern
 535020,07143298,Stockum-Püschen,56459,Westerwaldkreis,Rheinland-Pfalz
 915560,08136068,Stödtlen,73495,Ostalbkreis,Baden-Württemberg
@@ -11060,7 +11061,7 @@ osm_id,ags,city,postcode,county,state
 1384845,12067481,Storkow (Mark),15859,Landkreis Oder-Spree,Brandenburg
 1059458,09374158,Störnstein,92721,Landkreis Neustadt an der Waldnaab,Bayern
 2404087,15084470,Stößen,06667,Burgenlandkreis,Sachsen-Anhalt
-448120,09777171,Stötten a.Auerberg,87675,Landkreis Ostallgäu,Bayern
+448120,09777171,Stötten am Auerberg,87675,Landkreis Ostallgäu,Bayern
 447639,09777172,Stöttwang,87677,Landkreis Ostallgäu,Bayern
 168000,05154052,Straelen,47638,Kreis Kleve,Nordrhein-Westfalen
 387467,09673171,Strahlungen,97618,Landkreis Rhön-Grabfeld,Bayern
@@ -11408,7 +11409,7 @@ osm_id,ags,city,postcode,county,state
 162454,09771169,Todtenweis,86447,Landkreis Aichach-Friedberg,Bayern
 1240395,08337108,Todtmoos,79682,Landkreis Waldshut,Baden-Württemberg
 1130286,08336087,Todtnau,79674,Landkreis Lörrach,Baden-Württemberg
-941948,09171132,Töging a.Inn,84513,Landkreis Altötting,Bayern
+941948,09171132,Töging am Inn,84513,Landkreis Altötting,Bayern
 1149344,01059090,Tolk,24894,Kreis Schleswig-Flensburg,Schleswig-Holstein
 2179225,16075114,Tömmelsdorf,07819,Saale-Orla-Kreis,Thüringen
 88735,05166028,Tönisvorst,47918,Kreis Viersen,Nordrhein-Westfalen
@@ -11470,7 +11471,7 @@ osm_id,ags,city,postcode,county,state
 369857,12069632,Treuenbrietzen,14929,Landkreis Potsdam-Mittelmark,Brandenburg
 1242237,08326060,Triberg im Schwarzwald,78098,Schwarzwald-Baar-Kreis,Baden-Württemberg
 372880,13073093,Tribsees,18465,Landkreis Vorpommern-Rügen,Mecklenburg-Vorpommern
-444884,14523440,Triebel,08606,Vogtlandkreis,Sachsen
+444884,14523440,Triebel/Vogtland,08606,Vogtlandkreis,Sachsen
 335469,09677154,Triefenstein,97855,Landkreis Main-Spessart,Bayern
 172679,07211000,Trier,54290,,Rheinland-Pfalz
 172679,07211000,Trier,54292,,Rheinland-Pfalz
@@ -12091,7 +12092,7 @@ osm_id,ags,city,postcode,county,state
 62554,09363000,Weiden in der Oberpfalz,92637,,Bayern
 2789609,08425130,Weidenstetten,89197,Alb-Donau-Kreis,Baden-Württemberg
 1249987,07332048,Weidenthal,67475,Landkreis Bad Dürkheim,Rheinland-Pfalz
-956870,09473174,Weidhausen b.Coburg,96279,Landkreis Coburg,Bayern
+956870,09473174,Weidhausen bei Coburg,96279,Landkreis Coburg,Bayern
 960530,09372174,Weiding,93495,Landkreis Cham,Bayern
 961859,09376176,Weiding,92557,Landkreis Schwandorf,Bayern
 1171888,07232132,Weidingen,54636,Eifelkreis Bitburg-Prüm,Rheinland-Pfalz
@@ -12161,7 +12162,7 @@ osm_id,ags,city,postcode,county,state
 2778453,16074109,Weißenborn,07639,Saale-Holzland-Kreis,Thüringen
 416500,14522590,Weißenborn/Erzgebirge,09600,Landkreis Mittelsachsen,Sachsen
 1021744,09476185,Weißenbrunn,96369,Landkreis Kronach,Bayern
-1015141,09577177,Weißenburg i. Bay.,91781,Landkreis Weißenburg-Gunzenhausen,Bayern
+1015141,09577177,Weißenburg in Bayern,91781,Landkreis Weißenburg-Gunzenhausen,Bayern
 2779191,16076081,Weißendorf,07950,Landkreis Greiz,Thüringen
 2405268,15084550,Weißenfels,06667,Burgenlandkreis,Sachsen-Anhalt
 2405268,15084550,Weißenfels,06688,Burgenlandkreis,Sachsen-Anhalt
@@ -12351,7 +12352,7 @@ osm_id,ags,city,postcode,county,state
 1245112,07134093,Wickenrodt,55758,Landkreis Birkenfeld,Rheinland-Pfalz
 409706,08125103,Widdern,74259,Landkreis Heilbronn,Baden-Württemberg
 1190010,07140161,Wiebelsheim,56291,Rhein-Hunsrück-Kreis,Rheinland-Pfalz
-374259,13073100,Wieck a. Darß,18375,Landkreis Vorpommern-Rügen,Mecklenburg-Vorpommern
+374259,13073100,Wieck am Darß,18375,Landkreis Vorpommern-Rügen,Mecklenburg-Vorpommern
 453181,07143310,Wied,57629,Westerwaldkreis,Rheinland-Pfalz
 444739,14730340,Wiedemar,04509,Landkreis Nordsachsen,Sachsen
 1130290,08336096,Wieden,79695,Landkreis Lörrach,Baden-Württemberg
@@ -12665,7 +12666,7 @@ osm_id,ags,city,postcode,county,state
 915550,08136084,Wört,73499,Ostalbkreis,Baden-Württemberg
 158726,01053135,Worth,21502,Kreis Herzogtum Lauenburg,Schleswig-Holstein
 934776,09177144,Wörth,85457,Landkreis Erding,Bayern
-179302,09274191,Wörth a.d. Isar,84109,Landkreis Landshut,Bayern
+179302,09274191,Wörth an der Isar,84109,Landkreis Landshut,Bayern
 394447,09676169,Wörth am Main,63939,Landkreis Miltenberg,Bayern
 904764,07334501,Wörth am Rhein,76744,Landkreis Germersheim,Rheinland-Pfalz
 966622,09375210,Wörth an der Donau,93086,Landkreis Regensburg,Bayern
@@ -12745,7 +12746,7 @@ osm_id,ags,city,postcode,county,state
 2785261,08337127,Wutach,79879,Landkreis Waldshut,Baden-Württemberg
 1268933,16063092,Wutha-Farnroda,99848,Wartburgkreis,Thüringen
 2785701,08337123,Wutöschingen,79793,Landkreis Waldshut,Baden-Württemberg
-1124274,08316051,Wyhl,79369,Landkreis Emmendingen,Baden-Württemberg
+1124274,08316051,Wyhl am Kaiserstuhl,79369,Landkreis Emmendingen,Baden-Württemberg
 1428590,01054164,Wyk auf Föhr,25938,Kreis Nordfriesland,Schleswig-Holstein
 58591,05170052,Xanten,46509,Kreis Wesel,Nordrhein-Westfalen
 410519,08125108,Zaberfeld,74374,Landkreis Heilbronn,Baden-Württemberg

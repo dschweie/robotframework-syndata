@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<LFET version="LF-ET 2.4.1 (260127a)" language="German" saveDate="2026.02.05 at 14:17:11 CET" saveUser="dschweie">
+<LFET version="LF-ET 2.4.1 (260127a)" language="German" saveDate="2026.02.06 at 13:50:52 CET" saveUser="dschweie">
   <Conditions>
     <Condition uId="17695068074589721">
       <Title language="German" value="Current Mode"/>
@@ -97,7 +97,7 @@
           <UrlsOut>
             <Url title="ItemBuilderEngineFaker" url="file:///./ItemBuilderEngineFaker.lfet"/>
           </UrlsOut>
-          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="retval = ItemBuilderEngineFaker.execute(instance, localization, item, item_data)"/>
+          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="retval = ItemBuilderEngineFaker.execute(instance, localization, keyword, item, item_data)"/>
         </ActionOccurrence>
         <ActionOccurrence uId="17699448491944839">
           <Symbol language="German" value="Germany"/>
@@ -105,7 +105,7 @@
           <UrlsOut>
             <Url title="ItemBuilderEngineGermany" url="file:///./ItemBuilderEngineGermany.lfet"/>
           </UrlsOut>
-          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="retval = ItemBuilderEngineGermany.execute(instance, localization, item, item_data)"/>
+          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="retval = ItemBuilderEngineGermany.execute(instance, localization, keyword, item, item_data)"/>
         </ActionOccurrence>
       </ActionOccurrences>
       <Text language="German" value="The creation of the item should be delegated to a specialized engine.&lt;br/&gt;&lt;br/&gt;This specialized engine has access to the ItemBuilderEngine and the database and can query and store data.&lt;br/&gt;&lt;br/&gt;The return value of the specialized engine must correspond to the value that corresponds to the specifically requested item."/>
@@ -248,4 +248,5 @@
     <Url title="Ordner" url="file:///./"/>
   </UrlsOut>
   <SourceCode codeLanguage="Python" sourceCodeType="Prolog" value="# $$BasicIndentLevel=2&lt;br/&gt;import pandas as pd&lt;br/&gt;from faker import Faker&lt;br/&gt;&lt;br/&gt;from robot.libraries.BuiltIn import BuiltIn&lt;br/&gt;from de_DE.item_builder_engine_germany import ItemBuilderEngineGermany&lt;br/&gt;from common.item_builder_engine_faker import ItemBuilderEngineFaker&lt;br/&gt;import SynData&lt;br/&gt;&lt;br/&gt;class ItemBuilderEngine:&lt;br/&gt;&lt;br/&gt;    def __init__(self):&lt;br/&gt;        self.recorded_row = pd.Series([])&lt;br/&gt;        self.recorded_data = None&lt;br/&gt;&lt;br/&gt;    def get_recorded_testcase(self) -&gt; str:&lt;br/&gt;        if(self.recorded_row.empty):&lt;br/&gt;            return None&lt;br/&gt;        else:&lt;br/&gt;            print(f&quot;get_recorded_testcase(self): {self.recorded_row[&quot;test_case&quot;]}&quot;)&lt;br/&gt;            return self.recorded_row[&quot;test_case&quot;]&lt;br/&gt;&lt;br/&gt;    def iterate_to_next_row(self):&lt;br/&gt;        if(0 &lt; len(self.recorded_data)):&lt;br/&gt;            self.recorded_data = self.recorded_data.iloc[1:]&lt;br/&gt;            if(0 &lt; len(self.recorded_data)):&lt;br/&gt;                self.recorded_row = next(self.recorded_data.iterrows())[1]&lt;br/&gt;            else:&lt;br/&gt;                self.recorded_row[&quot;item&quot;] = &quot;unknown&quot;&lt;br/&gt;                self.recorded_row[&quot;value&quot;] = &quot;&quot;&lt;br/&gt;                self.recorded_row[&quot;keyword&quot;] = &quot;Unknown Keyword&quot;&lt;br/&gt;&lt;br/&gt;    def init_first_row(self, file):&lt;br/&gt;        self.recorded_data = pd.read_csv(file, index_col=&quot;index&quot;)&lt;br/&gt;        self.recorded_data = self.recorded_data.query(f&quot;test_case == \&quot;{BuiltIn().get_variable_value(&quot;${TEST NAME}&quot;)}\&quot;&quot;)&lt;br/&gt;        if(0 &lt; len(self.recorded_data)):&lt;br/&gt;            self.recorded_row = next(self.recorded_data.iterrows())[1]&lt;br/&gt;        else:&lt;br/&gt;            self.recorded_row = pd.Series(data={ &quot;timestamp&quot;:&quot;&quot;, &quot;item&quot;:&quot;unknown&quot;, &quot;value&quot;: &quot;&quot;, &quot;test_suite&quot;: f&quot;{BuiltIn().get_variable_value(&quot;${SUITE NAME}&quot;)}&quot;, &quot;test_case&quot;: f&quot;{BuiltIn().get_variable_value(&quot;${TEST NAME}&quot;)}&quot;, &quot;keyword&quot;: &quot;&quot;}, index=[&quot;timestamp&quot;, &quot;item&quot;, &quot;value&quot;, &quot;test_suite&quot;, &quot;test_case&quot;, &quot;keyword&quot;])&lt;br/&gt;&lt;br/&gt;    def execute(self, instance: SynData, localization: str, keyword: str, item: str, item_data: dict):"/>
+  <SourceCode codeLanguage="Python" sourceCodeType="Trace" value="instance.add_rbt_log_message(&quot;[SynData] Decision table $$EtName ($$Version), rule $$Rule of $$Rules has been executed&quot;, &quot;DEBUG&quot;)"/>
 </LFET>

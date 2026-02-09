@@ -83,3 +83,15 @@ Consistent Data Within The Context When A Name Is Set
     ${first_name}    Get First Name
     ${last_name}     Get Last Name
     Should Be Equal As Strings    ${name}    ${first_name} ${last_name}
+
+Consistent Data Within The Context Regarding Address Data
+    [Setup]    Set Context    CDWTCRAD21    de_DE
+    ${postcode}    Get Postcode
+    ${city}        Get City
+    ${composite}   Get Postcode And City
+    Should Be Equal As Strings    ${composite}    ${postcode} ${city}
+    ${street}      Get Street
+    ${house_nr}    Get House Number
+    ${composite}   Get Street And House Number
+    Should Be Equal As Strings    ${composite}    ${street} ${house_nr}
+    ${full}        Get Address
