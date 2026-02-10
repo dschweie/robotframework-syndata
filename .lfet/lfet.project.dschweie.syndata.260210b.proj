@@ -14,7 +14,7 @@
 LFET:
     Project:
         Url:
-        - https://github.com/dschweie/robotframework-syndata.git
+        - https://github.com/dschweie/robotframework-syndata
 
         FileNamePattern:
         - ^(?i)item(_)?builder(_)?engine(((_)?faker)|((_)?germany))?[.].*$
