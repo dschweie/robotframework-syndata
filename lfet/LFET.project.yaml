@@ -4,7 +4,7 @@ lfet.project.ini:
     Enabled: true
     EmptyLines: false
     Source:
-      Path: ${project.root}/../src/SynData
+      Path: ${project.root}/../SynData
       Encoding: UTF-8
       CreateMissingFolders: true
     Interface.Enabled: false

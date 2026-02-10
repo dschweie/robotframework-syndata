@@ -1,6 +1,6 @@
 lfet.project.ini:
   ide.Python:
     Source:
-      Path: ${project.root}/../src/SynData/de_DE
+      Path: ${project.root}/../SynData/de_DE
       Encoding: UTF-8
       CreateMissingFolders: true
