@@ -13,7 +13,7 @@ In addition, there are two functions that characterize this library:
     execution. To do this, only the import statement of the library needs to be 
     changed, and the test case can remain unchanged.
 
-See [keyword documentation](https://dschweie.github.io/robot-framework/SynData.html) for more details.
+See [keyword documentation](https://dschweie.github.io/robotframework-syndata/SynData.html) for more details.
 
 # Installation instructions
 
