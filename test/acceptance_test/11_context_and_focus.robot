@@ -10,7 +10,9 @@ Documentation    A context can be set with a focus that limits the scope of a
 ...    partially dependent on each other. The reason for this is that, for 
 ...    example, a context with a global focus cannot be meaningfully tested 
 ...    with a single test case.
-Library    ../src/SynData/SynData.py    localization=de_DE    logging=${True}
+Library    SynData    localization=de_DE    logging=${True}
+# Library    SynData
+# Library    ../../SynData/syndata.py
 Suite Setup    Create Contexts With Global And Suite Focus
 
 

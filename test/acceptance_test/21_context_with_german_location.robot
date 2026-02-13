@@ -1,5 +1,7 @@
 *** Settings ***
-Library    ../src/SynData/SynData.py    localization=de_DE    logging=${True}
+Library    SynData    localization=de_DE    logging=${True}
+# Library    SynData
+# Library    ../../SynData/syndata.py
 
 Test Teardown    Release Context
 

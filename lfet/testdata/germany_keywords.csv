@@ -9,7 +9,7 @@
  Get First Name              ; person.first_name       ; person        ; ^\\S[^\\d]+$                                                                   ;          ;          ; ^\\S[^\\d]+$
  Get Last Name               ; person.last_name        ; person        ; ^\\S[^\\d]+$                                                                   ;          ;          ; ^\\S[^\\d]+$
  Get Address                 ; address.address         ; address       ; ^\\S.+\\s\\d\\d?\\d?[A-Ha-h]?(\\r\\n?|\\n)\\d{5}\\s.+$                         ;          ;          ; ^\\S.+((\\r\\n?|\\n)\\S)?.+$
- Get Address And Country     ; address.address_country ; address       ; ^\\S.+\\s\\d\\d?\\d?[A-Ha-h]?(\\r\\n?|\\n)\\d{5}\\s.+(\\r\\n?|\\n)Deutschland$ ;          ;          ; ^\\S.+((\\r\\n?|\\n)\\S)?.+((\\r\\n?|\\n)\\S)?.+$
+ Get Address And Country     ; address.address_country ; address       ; ^\\S.+\\s\\d\\d?\\d?[A-Ha-h]?(\\r\\n?|\\n)\\d{5}\\s.+(\\r\\n?|\\n)Deutschland$ ;          ;          ; ^\\S.+(((\\r\\n?|\\n)\\S).+)*$
  Get Street And House Number ; address.street_address  ; address       ; ^\\S.+\\s\\d\\d?\\d?[A-Ha-h]?$                                                 ;          ;          ; ^\\S.+$
  Get Street                  ; address.street          ; address       ; ^\\S.+$                                                                        ;          ;          ; ^\\S.+$
  Get House Number            ; address.house_number    ; address       ; ^\\d\\d?\\d?[A-Ha-h]?$                                                         ;          ;          ; ^\\S.+$

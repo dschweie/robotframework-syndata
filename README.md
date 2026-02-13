@@ -17,8 +17,10 @@ See [keyword documentation](https://dschweie.github.io/robotframework-syndata/Sy
 
 # Installation instructions
 
-At this time, there is no way to install the library automatically. It is 
-planned that it will be possible to install it as usual via pip.
+The library can be installed as usual using pip:
+````Batch
+pip install robotframework-syndata
+````
 
 # Examples
 

@@ -1,0 +1,27 @@
+[project]
+name = "robotframework-syndata"
+version = "0.1.0"
+description = "Generation of synthetic test data that is consistent."
+authors = [
+    {name = "Dirk O. Schweier",email = "dschweie@gmail.com"}
+]
+license = "GPL-3.0-only"
+repository = "https://github.com/dschweie/robotframework-syndata"
+readme = "README.md"
+requires-python = ">=3.14,<4"
+dependencies = [
+    "robotframework (>=7.2.0)",
+    "pandas (>=3.0.0,<4.0.0)",
+    "faker (>=40.0.0)",
+    "pandas-stubs (>=3.0.0,<3.1.0)",
+    "robotframework-pythonlibcore (>=4.4.1)"
+]
+
+[tool.poetry]
+packages = [
+    {include = "SynData"},
+]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

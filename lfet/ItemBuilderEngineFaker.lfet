@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<LFET version="LF-ET 2.4.1 (260127a)" language="German" saveDate="2026.02.09 at 13:39:04 CET" saveUser="dschweie">
+<LFET version="LF-ET 2.4.1 (260127a)" language="German" saveDate="2026.02.13 at 13:19:33 CET" saveUser="dschweie">
   <Conditions>
     <Condition uId="17699466648051216">
       <Title language="German" value="Context is"/>
@@ -173,7 +173,7 @@
         <ActionOccurrence uId="17703803995854734">
           <Symbol language="German" value="address.postcode_city"/>
           <Title language="German" value="A city with its corresponding postal code should be returned."/>
-          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="local_data = fake.address().splitlines()[1]"/>
+          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="lines = fake.address().splitlines()&lt;br/&gt;if(1 &lt; len(lines)):&lt;br/&gt;    local_data = lines[-1]&lt;br/&gt;else:&lt;br/&gt;    local_data = f&quot;{fake.postcode()} {fake.city()}&quot;"/>
         </ActionOccurrence>
         <ActionOccurrence uId="17703803995894738">
           <Symbol language="German" value="address.postcode"/>
@@ -521,17 +521,17 @@
   <UrlsOut>
     <Url title="Ordner" url="file:///./"/>
   </UrlsOut>
-  <SourceCode codeLanguage="Python" sourceCodeType="Prolog" value="# $$BasicIndentLevel=2&lt;br/&gt;from robot.libraries.BuiltIn import BuiltIn&lt;br/&gt;&lt;br/&gt;from faker import Faker&lt;br/&gt;from .country import Country&lt;br/&gt;import SynData&lt;br/&gt;&lt;br/&gt;class ItemBuilderEngineFaker:&lt;br/&gt;&lt;br/&gt;    @staticmethod&lt;br/&gt;    def execute(instance: SynData, localization: str, keyword: str, item: str, item_data: dict):&lt;br/&gt;        fake = Faker(localization)"/>
+  <SourceCode codeLanguage="Python" sourceCodeType="Prolog" value="# $$BasicIndentLevel=2&lt;br/&gt;from robot.libraries.BuiltIn import BuiltIn&lt;br/&gt;&lt;br/&gt;from faker import Faker&lt;br/&gt;from .country import Country&lt;br/&gt;&lt;br/&gt;class ItemBuilderEngineFaker:&lt;br/&gt;&lt;br/&gt;    @staticmethod&lt;br/&gt;    def execute(instance, localization: str, keyword: str, item: str, item_data: dict):&lt;br/&gt;        fake = Faker(localization)"/>
   <SourceCode codeLanguage="Python" sourceCodeType="Trace" value="instance.add_rbt_log_message(&quot;[SynData] Decision table $$EtName ($$Version), rule $$Rule of $$Rules has been executed&quot;, &quot;DEBUG&quot;)"/>
   <TestValueGroups selectedGroup="robot">
     <TestValueGroup name="*ti.check.robot"/>
     <TestValueGroup name="*ti.gtd.robot"/>
     <TestValueGroup name="*ti.att.robot"/>
     <TestValueGroup name="robot" description="Acceptance tests from the decision table are to be generated automatically using this group." tvgTiAtt="*ti.att.robot" tvgTiCheck="*ti.check.robot" tvgTiGTD="*ti.gtd.robot">
-      <Config name="acceptance tests" parms="-Group 'robot' -GtdDirectory './testdata/' -GtdFileNamePattern '*.csv' -NonExecutableRules '50' -RecommendedTestCases -ExportRobotFramework '../test/acceptance_tests/lfet/ItemBuilderEngineFaker.testcases.robot'"/>
+      <Config name="acceptance tests" parms="-Group 'robot' -GtdDirectory './testdata/' -GtdFileNamePattern '*.csv' -NonExecutableRules '50' -RecommendedTestCases -ExportRobotFramework '../test/acceptance_test/lfet/ItemBuilderEngineFaker.testcases.robot'"/>
     </TestValueGroup>
   </TestValueGroups>
-  <TestValue group="robot" type="tcpre" value="*robot.Settings    Library    ../src/SynData/SynData.py&lt;br/&gt;*robot.Settings    Suite Setup    Set SynData Configuration   mode=default    localization=${*GTD.import.code}    logging=${True}&lt;br/&gt;*robot.Settings    Test Setup    Release Context"/>
+  <TestValue group="robot" type="tcpre" value="*robot.Settings    Library    SynData&lt;br/&gt;*robot.Settings    Suite Setup    Set SynData Configuration   mode=default    localization=${*GTD.import.code}    logging=${True}&lt;br/&gt;*robot.Settings    Test Setup    Release Context"/>
   <TestValue group="robot" type="isi" value="${output}    ${*GTD.keyword.keyword}"/>
   <TestValue group="*ti.gtd.robot" type="tcpre" value="tabelle, keyword, keywords&lt;br/&gt;tabelle, localization, localizations&lt;br/&gt;zeile, import, localizations"/>
 </LFET>

@@ -2,18 +2,18 @@
 
 Documentation     Diese Datei wurde erzeugt durch LF-ET 2.4.1 (260127a) und Kommandozeile:
 ...     | 
-...     | -GenTest "E:/data/schweier/rbtfrmwrk/SynData/lfet/ItemBuilderEngineGermany.lfet" -Group "robot" -GtdDirectory "testdata" -GtdFileNamePattern "*.csv" -NonExecutableRules "50" -RecommendedTestCases -ExportRobotFramework "../test/acceptance_tests/lfet/ItemBuilderEngineGermany.testcases.robot"
+...     | -GenTest "./lfet/ItemBuilderEngineGermany.lfet" -Group "robot" -Config "acceptance tests" -GtdDirectory "testdata" -GtdFileNamePattern "*.csv" -NonExecutableRules "50" -RecommendedTestCases -ExportRobotFramework "../test/acceptance_test/lfet/ItemBuilderEngineGermany.testcases.robot"
 ...     | 
 ...     | Aktueller Benutzer: dschweie
-...     | Aktuelles Verzeichnis (user.dir): "E:\tools\testing\LF-ET"
-...     | Benötigte Zeit: 00:00:00.042 (09.02.2026 13:39:27.382 - 09.02.2026 13:39:27.424)
+...     | Aktuelles Verzeichnis (user.dir): "E:\data\schweier\rbtfrmwrk\robotframework-syndata"
+...     | Benötigte Zeit: 00:00:00.452 (13.02.2026 15:13:07.755 - 13.02.2026 15:13:08.207)
 ...     | 
-...     | Entscheidungstabelle: E:\data\schweier\rbtfrmwrk\SynData\lfet\ItemBuilderEngineGermany.lfet
+...     | Entscheidungstabelle: E:\data\schweier\rbtfrmwrk\robotframework-syndata\.\lfet\ItemBuilderEngineGermany.lfet
 ...     | 
 ...     | Regelauswahl und Regelsortierung: Alle Regeln, Standardsortierung
 ...     | 
 ...     | TestValueGroups: robot, *ti.att.robot, *ti.gtd.robot, *ti.check.robot
-...     | Config: 
+...     | Config: acceptance tests
 ...     | 
 ...     | Testfälle mit Fehlern: 0
 ...     | 
@@ -21,13 +21,13 @@ Documentation     Diese Datei wurde erzeugt durch LF-ET 2.4.1 (260127a) und Komm
 ...     | 
 ...     | Informationen: 1
 ...     | 
-...     | \ \ \ \ 1. E:\data\schweier\rbtfrmwrk\SynData\lfet\testdata\germany_keywords.csv
+...     | \ \ \ \ 1. E:\data\schweier\rbtfrmwrk\robotframework-syndata\lfet\testdata\germany_keywords.csv
 ...     | \ \ \ \ \ \ \ \ \ \ \ Erfolgreich eingelesen: Keywords, 17 Sätze
-...     | \ \ \ \ \ \ \ \ E:\data\schweier\rbtfrmwrk\SynData\lfet\testdata\localizations.csv
+...     | \ \ \ \ \ \ \ \ E:\data\schweier\rbtfrmwrk\robotframework-syndata\lfet\testdata\localizations.csv
 ...     | \ \ \ \ \ \ \ \ \ \ \ Erfolgreich eingelesen: localizations, 26 Sätze
 ...     | 
 
-Library    ../src/SynData/SynData.py
+Library    SynData
 Suite Setup    Set SynData Configuration   mode=default    localization=de_DE    logging=${True}
 Test Setup    Release Context
 

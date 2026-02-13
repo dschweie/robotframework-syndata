@@ -1,5 +1,5 @@
 *** Settings ***
-Library    ../src/SynData/SynData.py
+Library    SynData
 Suite Setup    Set SynData Configuration    mode=replay    replay_file=${CURDIR}/../data/acceptance_tests/replay_file_test_suite_61.csv    logging=${True}
 
 *** Test Cases ***
