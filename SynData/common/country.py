@@ -28,6 +28,15 @@ class Country(object):
         else:
             codes = data["alpha3"].array
         return str(codes[random.randrange(0, len(codes))]).upper()
+    
+    @staticmethod
+    def translate_to_state_code(value:str) -> str:
+        retval = value
+        data = pd.read_csv(f"{Country.CLASS_PATH}/data/subdivisions.csv", sep=',', low_memory=False)
+        result = data.query(f"name == '{value}' | name_en == '{value}'")["code"].array
+        if (1 == len(result)) :
+            retval = str(result[0])
+        return retval
 
 
 

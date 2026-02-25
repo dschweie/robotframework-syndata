@@ -11,8 +11,9 @@ from robot.libraries.BuiltIn import BuiltIn
 
 from .item_builder_engine import ItemBuilderEngine
 from .common.country import Country
+from .common.finance import Finance
 
-@library(scope='GLOBAL', version='0.1.0', auto_keywords=False)
+@library(scope='GLOBAL', version='0.1.1', auto_keywords=False)
 class SynData:
     """ 
     Test data is required in many projects. In some cases, the test data is 
@@ -455,6 +456,33 @@ class SynData:
         return str(self.ibe.execute(self, self.get_current_localization(), "Get Country Code", "address.country_code", {}))
 
     #   ========================================================================
+    #       Keywords for Test Data Domain: Finance Data
+    #   ========================================================================
+
+    @keyword(tags=["Finance"])
+    def Get_Iban(self) -> str:
+        """
+        The keyword provides an International Bank Account Number (IBAN).
+        """
+        return str(self.ibe.execute(self, self.get_current_localization(), "Get Iban", "finance.bank_iban", {}))
+
+    @keyword(tags=["Finance"])
+    def Get_Bic(self) -> str:
+        """
+        The keyword provides a Business Identifier Code (BIC).
+
+        If a bank wishes to participate in the international SWIFT procedure, 
+        it is assigned a unique BIC.
+        
+        A BIC can consist of 8 or 11 characters.
+        """
+        return str(self.ibe.execute(self, self.get_current_localization(), "Get Bic", "finance.bank_bic", {}))
+
+    @keyword(tags=["Finance"])
+    def Get_Bank(self) -> str:
+        return str(self.ibe.execute(self, self.get_current_localization(), "Get Bank", "finance.bank_name", {}))
+
+    #   ========================================================================
     #       Keywords for Test Data Domain: Personal Data
     #   ========================================================================
 
@@ -484,6 +512,34 @@ class SynData:
         The keyword provides a last name.
         """
         return str(self.ibe.execute(self, self.get_current_localization(), "Get Last Name", "person.last_name", {}))
+
+    #   ========================================================================
+    #       Keywords for Test Data Domain: Traffic
+    #   ========================================================================
+
+    @keyword(tags=["Traffic"])
+    def Get_License_Plate(self, city: str | None = None, state: str | None = None) -> str:
+        """
+        The keyword returns a string representing a license plate number 
+        for motor vehicles.
+
+        The parameters defined for this keyword are ignored if they are not 
+        supported by the localization. The values can also be ignored if 
+        competing conditions lead to a conflict.
+        
+        | =Arguments= | =Descripion= |
+        | ``city``    | The name of a city can be entered as a filter criterion in the parameter. |
+        | ``state``   | In this parameter, the name or code for a state can be passed as a filter criterion. |
+        """
+        item_data = {}
+        if ( None != city ) :
+            if ( 0 < len(str(city)) ):
+                item_data["filter.city"] = city
+        if ( None != state ) :
+            if ( 0 < len(str(state)) ):
+                item_data["filter.state_code"] = Country.translate_to_state_code(str(state))
+        return str(self.ibe.execute(self, self.get_current_localization(), "Get License Plate", "traffic.license_plate", item_data))
+
 
     #   ========================================================================
     #       Methods for internal management                 @not_keyword
@@ -522,11 +578,17 @@ class SynData:
         return self.mode
     
     @not_keyword
-    def get_item(self, item) -> str:
+    def get_item(self, item) -> str | None:
         if ( None == self.context ):
             return None
         else: 
             return self.data[self.context].get(item)
+        
+    def is_item_stored(self, item) -> bool:
+        if ( None == self.context ):
+            return False
+        else:
+            return item in self.data[self.context].keys()
 
     @not_keyword
     def add_item(self, item, value):
@@ -585,6 +647,10 @@ class SynData:
     @not_keyword
     def get_common_country_code(self, item_data:dict, code: Literal["ALPHA-2", "ALPHA-3"] ="ALPHA-2") -> str:
         return Country.get_country_code(item_data, code)
+    
+    @not_keyword
+    def get_common_iban(self, country: str, sequence: str) -> str:
+        return Finance.create_iban(country, sequence)
         
     # @not_keyword
     # def Hello_World(self):
