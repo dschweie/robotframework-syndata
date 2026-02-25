@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<LFET version="LF-ET 2.4.1 (260127a)" language="German" saveDate="2026.02.13 at 13:19:33 CET" saveUser="dschweie">
+<LFET version="LF-ET 2.4.1 (260224a)" language="German" saveDate="2026.02.25 at 09:00:29 CET" saveUser="dschweie">
   <Conditions>
     <Condition uId="17699466648051216">
       <Title language="German" value="Context is"/>
@@ -104,6 +104,30 @@
           <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;person.last_name&quot; == item )"/>
           <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;person.last_name&quot;"/>
         </ConditionOccurrence>
+        <ConditionOccurrence uId="17714897552972343">
+          <Symbol language="German" value="traffic.license_plate"/>
+          <Title language="German" value="A licence plate for a motor vehicle should be returned."/>
+          <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;traffic.license_plate&quot; == item )"/>
+          <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;traffic.license_plate&quot;"/>
+        </ConditionOccurrence>
+        <ConditionOccurrence uId="17714897565742344">
+          <Symbol language="German" value="finance.bank_name"/>
+          <Title language="German" value="A bank name should be returned."/>
+          <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;finance.bank_name&quot; == item )"/>
+          <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;finance.bank_name&quot;"/>
+        </ConditionOccurrence>
+        <ConditionOccurrence uId="17714897571242345">
+          <Symbol language="German" value="finance.bank_bic"/>
+          <Title language="German" value="An international SWIFT code should be returned."/>
+          <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;finance.bank_bic&quot; == item )"/>
+          <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;finance.bank_bic&quot;"/>
+        </ConditionOccurrence>
+        <ConditionOccurrence uId="17714897575112346">
+          <Symbol language="German" value="finance.bank_iban"/>
+          <Title language="German" value="An International Bank Account Number (IBAN) be returned."/>
+          <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;finance.bank_iban&quot; == item )"/>
+          <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;finance.bank_iban&quot;"/>
+        </ConditionOccurrence>
       </ConditionOccurrences>
     </Condition>
     <Condition uId="17699465592110112">
@@ -200,6 +224,21 @@
           <Title language="German" value="The country code based on localization should be returned"/>
           <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="local_data = Country.get_country_code(item_data, &quot;ALPHA-2&quot;)"/>
         </ActionOccurrence>
+        <ActionOccurrence uId="17714901019522844">
+          <Symbol language="German" value="traffic.license_plate"/>
+          <Title language="German" value="A licence plate for a motor vehicle should be returned."/>
+          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="local_data = fake.license_plate()"/>
+        </ActionOccurrence>
+        <ActionOccurrence uId="17714901561423751">
+          <Symbol language="German" value="finance.bank_iban"/>
+          <Title language="German" value="An International Bank Account Number (IBAN) be returned."/>
+          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="local_data = fake.iban()"/>
+        </ActionOccurrence>
+        <ActionOccurrence uId="17719145677923543">
+          <Symbol language="German" value="finance.bic_name"/>
+          <Title language="German" value="A BIC and bank name should be returnes as dictionary."/>
+          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="data_dict = Finance.get_bank_and_bic(localization[-2:])&lt;br/&gt;instance.add_rbt_log_message(f&quot;[SynData] Finance.get_bank_and_bic({localization[-2:]}) = {data_dict}&quot;, &quot;DEBUG&quot;)"/>
+        </ActionOccurrence>
       </ActionOccurrences>
     </Action>
     <Action uId="17699480756763025">
@@ -235,6 +274,11 @@
     <Action uId="17703806951367088">
       <Title language="German" value="Add to context"/>
       <ActionOccurrences>
+        <ActionOccurrence uId="17719144844392467">
+          <Symbol language="German" value="dict"/>
+          <Title language="German" value="The individual items are added to the context from the generated dictionary."/>
+          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="for key, value in data_dict.items():&lt;br/&gt;    instance.add_item(key, value)"/>
+        </ActionOccurrence>
         <ActionOccurrence uId="17703807113007469">
           <Symbol language="German" value="local"/>
           <Title language="German" value="The local data will be stored into context"/>
@@ -266,7 +310,7 @@
           <Symbol language="German" value="item"/>
           <Title language="German" value="Aktion ausführen"/>
           <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="return instance.get_item(item)"/>
-          <TestValue group="robot" type="tse" value="# The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.&lt;br/&gt;Should Match Regexp    ${output}    pattern=${*GTD.keyword.global_pattern}&lt;br/&gt;# Repetition of the keyword checks whether the result has also been saved in context.&lt;br/&gt;${repetition}    ${*GTD.keyword.keyword}&lt;br/&gt;Should Be Equal As Strings    ${output}    ${repetition}"/>
+          <TestValue group="robot" type="tse" value="# The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.&lt;br/&gt;Should Match Regexp    ${output}    pattern=${*GTD.keyword.pattern}&lt;br/&gt;# Repetition of the keyword checks whether the result has also been saved in context.&lt;br/&gt;${repetition}    ${*GTD.keyword.keyword}&lt;br/&gt;Should Be Equal As Strings    ${output}    ${repetition}"/>
         </ActionOccurrence>
       </ActionOccurrences>
     </Action>
@@ -276,29 +320,34 @@
         <ActionOccurrence uId="17695186572133104">
           <Symbol language="German" value="person.name"/>
           <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="match item_data.get(&quot;sex&quot;):&lt;br/&gt;    case &quot;f&quot;:&lt;br/&gt;        return fake.name_female()&lt;br/&gt;    case &quot;m&quot;:&lt;br/&gt;        return fake.name_male()&lt;br/&gt;    case &quot;d&quot;:&lt;br/&gt;        return fake.name_nonbinary()&lt;br/&gt;    case _:&lt;br/&gt;        return fake.name()"/>
-          <TestValue group="robot" type="tse" value="# The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.&lt;br/&gt;Should Match Regexp    ${output}    pattern=${*GTD.keyword.global_pattern}"/>
+          <TestValue group="robot" type="tse" value="# The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.&lt;br/&gt;Should Match Regexp    ${output}    pattern=${*GTD.keyword.pattern}"/>
           <TestValue group="*ti.gtd.robot" type="tse" value="tabelle, keyword, keyword, fname_is = &quot;unknown&quot;&lt;br/&gt;tabelle, keyword, keyword, lname_is = &quot;unknown&quot;"/>
         </ActionOccurrence>
         <ActionOccurrence uId="17695186572163107">
           <Symbol language="German" value="person.first_name"/>
           <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="match item_data.get(&quot;sex&quot;):&lt;br/&gt;    case &quot;f&quot;:&lt;br/&gt;        return fake.first_name_female()&lt;br/&gt;    case &quot;m&quot;:&lt;br/&gt;        return fake.first_name_male()&lt;br/&gt;    case &quot;d&quot;:&lt;br/&gt;        return fake.first_name_nonbinary()&lt;br/&gt;    case _:&lt;br/&gt;        return fake.first_name()"/>
-          <TestValue group="robot" type="tse" value="# The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.&lt;br/&gt;Should Match Regexp    ${output}    pattern=${*GTD.keyword.global_pattern}"/>
+          <TestValue group="robot" type="tse" value="# The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.&lt;br/&gt;Should Match Regexp    ${output}    pattern=${*GTD.keyword.pattern}"/>
         </ActionOccurrence>
         <ActionOccurrence uId="17695186572183109">
           <Symbol language="German" value="person.last_name"/>
           <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="match item_data.get(&quot;sex&quot;):&lt;br/&gt;    case &quot;f&quot;:&lt;br/&gt;        return fake.last_name_female()&lt;br/&gt;    case &quot;m&quot;:&lt;br/&gt;        return fake.last_name_male()&lt;br/&gt;    case &quot;d&quot;:&lt;br/&gt;        return fake.last_name_nonbinary()&lt;br/&gt;    case _:&lt;br/&gt;        return fake.last_name()"/>
-          <TestValue group="robot" type="tse" value="# The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.&lt;br/&gt;Should Match Regexp    ${output}    pattern=${*GTD.keyword.global_pattern}"/>
+          <TestValue group="robot" type="tse" value="# The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.&lt;br/&gt;Should Match Regexp    ${output}    pattern=${*GTD.keyword.pattern}"/>
         </ActionOccurrence>
         <ActionOccurrence uId="17703805164565990">
           <Symbol language="German" value="local"/>
           <Title language="German" value="The locally generated data will be returned"/>
           <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="return local_data"/>
-          <TestValue group="robot" type="tse" value="# The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.&lt;br/&gt;Should Match Regexp    ${output}    pattern=${*GTD.keyword.global_pattern}"/>
+          <TestValue group="robot" type="tse" value="# The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.&lt;br/&gt;Should Match Regexp    ${output}    pattern=${*GTD.keyword.pattern}"/>
+        </ActionOccurrence>
+        <ActionOccurrence uId="17719149835255708">
+          <Symbol language="German" value="dict"/>
+          <Title language="German" value="Depending on the type of test data, the dependent data for an item is also created in a dictionary. In this case, the item can be returned from the dictionary."/>
+          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="return data_dict.get(item, &quot;&quot;)"/>
         </ActionOccurrence>
       </ActionOccurrences>
     </Action>
   </Actions>
-  <Rules lastId="37">
+  <Rules lastId="51">
     <Rule id="16">
       <ConditionOccurrenceLink link="17695070862679776"/>
       <ConditionOccurrenceLink link="17703752144862045"/>
@@ -380,6 +429,30 @@
       <ConditionOccurrenceLink link="17695070862679776"/>
       <ConditionOccurrenceLink link="17695103847480302"/>
       <ActionOccurrenceLink link="17695186572183109"/>
+    </Rule>
+    <Rule id="45">
+      <ConditionOccurrenceLink link="17695070862679776"/>
+      <ConditionOccurrenceLink link="17714897552972343"/>
+      <ActionOccurrenceLink link="17714901019522844"/>
+      <ActionOccurrenceLink link="17703805164565990"/>
+    </Rule>
+    <Rule id="50">
+      <ConditionOccurrenceLink link="17695070862679776"/>
+      <ConditionOccurrenceLink link="17714897565742344"/>
+      <ActionOccurrenceLink link="17719145677923543"/>
+      <ActionOccurrenceLink link="17719149835255708"/>
+    </Rule>
+    <Rule id="47">
+      <ConditionOccurrenceLink link="17695070862679776"/>
+      <ConditionOccurrenceLink link="17714897571242345"/>
+      <ActionOccurrenceLink link="17719145677923543"/>
+      <ActionOccurrenceLink link="17719149835255708"/>
+    </Rule>
+    <Rule id="42">
+      <ConditionOccurrenceLink link="17695070862679776"/>
+      <ConditionOccurrenceLink link="17714897575112346"/>
+      <ActionOccurrenceLink link="17714901561423751"/>
+      <ActionOccurrenceLink link="17703805164565990"/>
     </Rule>
     <Rule id="27">
       <ConditionOccurrenceLink link="17695070862659774"/>
@@ -516,19 +589,49 @@
       <ActionOccurrenceLink link="17699479045322532"/>
       <ActionOccurrenceLink link="17699478486131905"/>
     </Rule>
+    <Rule id="41">
+      <ConditionOccurrenceLink link="17695070862659774"/>
+      <ConditionOccurrenceLink link="17714897552972343"/>
+      <ActionOccurrenceLink link="17714901019522844"/>
+      <ActionOccurrenceLink link="17703807113007469"/>
+      <ActionOccurrenceLink link="17703809349358249"/>
+      <ActionOccurrenceLink link="17699478486131905"/>
+    </Rule>
+    <Rule id="51">
+      <ConditionOccurrenceLink link="17695070862659774"/>
+      <ConditionOccurrenceLink link="17714897565742344"/>
+      <ActionOccurrenceLink link="17719145677923543"/>
+      <ActionOccurrenceLink link="17719144844392467"/>
+      <ActionOccurrenceLink link="17699478486131905"/>
+    </Rule>
+    <Rule id="49">
+      <ConditionOccurrenceLink link="17695070862659774"/>
+      <ConditionOccurrenceLink link="17714897571242345"/>
+      <ActionOccurrenceLink link="17719145677923543"/>
+      <ActionOccurrenceLink link="17719144844392467"/>
+      <ActionOccurrenceLink link="17699478486131905"/>
+    </Rule>
+    <Rule id="38">
+      <ConditionOccurrenceLink link="17695070862659774"/>
+      <ConditionOccurrenceLink link="17714897575112346"/>
+      <ActionOccurrenceLink link="17714901561423751"/>
+      <ActionOccurrenceLink link="17703807113007469"/>
+      <ActionOccurrenceLink link="17703809349358249"/>
+      <ActionOccurrenceLink link="17699478486131905"/>
+    </Rule>
   </Rules>
   <Title language="German" value="Hier doppel-klicken um den Titel für die Entscheidungstabelle einzugeben"/>
   <UrlsOut>
     <Url title="Ordner" url="file:///./"/>
   </UrlsOut>
-  <SourceCode codeLanguage="Python" sourceCodeType="Prolog" value="# $$BasicIndentLevel=2&lt;br/&gt;from robot.libraries.BuiltIn import BuiltIn&lt;br/&gt;&lt;br/&gt;from faker import Faker&lt;br/&gt;from .country import Country&lt;br/&gt;&lt;br/&gt;class ItemBuilderEngineFaker:&lt;br/&gt;&lt;br/&gt;    @staticmethod&lt;br/&gt;    def execute(instance, localization: str, keyword: str, item: str, item_data: dict):&lt;br/&gt;        fake = Faker(localization)"/>
+  <SourceCode codeLanguage="Python" sourceCodeType="Prolog" value="# $$BasicIndentLevel=2&lt;br/&gt;from robot.libraries.BuiltIn import BuiltIn&lt;br/&gt;&lt;br/&gt;from faker import Faker&lt;br/&gt;from .country import Country&lt;br/&gt;from .finance import Finance&lt;br/&gt;&lt;br/&gt;class ItemBuilderEngineFaker:&lt;br/&gt;&lt;br/&gt;    @staticmethod&lt;br/&gt;    def execute(instance, localization: str, keyword: str, item: str, item_data: dict):&lt;br/&gt;        fake = Faker(localization)"/>
   <SourceCode codeLanguage="Python" sourceCodeType="Trace" value="instance.add_rbt_log_message(&quot;[SynData] Decision table $$EtName ($$Version), rule $$Rule of $$Rules has been executed&quot;, &quot;DEBUG&quot;)"/>
   <TestValueGroups selectedGroup="robot">
     <TestValueGroup name="*ti.check.robot"/>
     <TestValueGroup name="*ti.gtd.robot"/>
     <TestValueGroup name="*ti.att.robot"/>
     <TestValueGroup name="robot" description="Acceptance tests from the decision table are to be generated automatically using this group." tvgTiAtt="*ti.att.robot" tvgTiCheck="*ti.check.robot" tvgTiGTD="*ti.gtd.robot">
-      <Config name="acceptance tests" parms="-Group 'robot' -GtdDirectory './testdata/' -GtdFileNamePattern '*.csv' -NonExecutableRules '50' -RecommendedTestCases -ExportRobotFramework '../test/acceptance_test/lfet/ItemBuilderEngineFaker.testcases.robot'"/>
+      <Config name="acceptance tests" tags="default" description="This test configuration forms the basis for the library's automatically generated acceptance tests.&lt;br/&gt;This decision table covers cases  in which localization is used that does not provide specialized generators." parms="-Group 'robot' -GtdDirectory './testdata/common' -GtdFileNamePattern '*.csv' -NonExecutableRules '50' -RecommendedTestCases -ExportRobotFramework '../test/acceptance_test/lfet/ItemBuilderEngineFaker.testcases.robot'"/>
     </TestValueGroup>
   </TestValueGroups>
   <TestValue group="robot" type="tcpre" value="*robot.Settings    Library    SynData&lt;br/&gt;*robot.Settings    Suite Setup    Set SynData Configuration   mode=default    localization=${*GTD.import.code}    logging=${True}&lt;br/&gt;*robot.Settings    Test Setup    Release Context"/>

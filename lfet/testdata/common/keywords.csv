@@ -1,0 +1,27 @@
+Encoding = UTF-8
+*GTD.Keywords
+
+ keyword                     ; item                    ; domain        ; fname_is ; lname_is ; pattern
+============================================================================================================================================================================================================================================================================================================================================================================================================================================
+ Get Address                 ; address.address         ; address       ;          ;          ; ^(.+((\\r\\n?|\\n))?)+$
+ Get Address And Country     ; address.address_country ; address       ;          ;          ; ^(.+((\\r\\n?|\\n))?)+$
+ Get Street And House Number ; address.street_address  ; address       ;          ;          ; ^(.+((\\r\\n?|\\n))?)+$
+ Get Street                  ; address.street          ; address       ;          ;          ; ^(.+((\\r\\n?|\\n))?)+$
+ Get House Number            ; address.house_number    ; address       ;          ;          ; ^(.+((\\r\\n?|\\n))?)+$
+ Get Postcode And City       ; address.postcode_city   ; address       ;          ;          ; ^(.+((\\r\\n?|\\n))?)+$
+ Get Postcode                ; address.postcode        ; address       ;          ;          ; ^(.+((\\r\\n?|\\n))?)+$
+ Get City                    ; address.city            ; address       ;          ;          ; ^(.+((\\r\\n?|\\n))?)+$
+ Get State                   ; address.state           ; address       ;          ;          ; ^(.+((\\r\\n?|\\n))?)+$
+ Get Country                 ; address.country         ; address       ;          ;          ; ^\\S.+$ 
+ Get Country Code            ; address.country_code    ; address       ;          ;          ; ^(A[DEFGLMORTUZ])|(B[ABDEFGHIJNORSTWYZ])|(C[ADFGHILMNORUVYZ])|(D[EJKMOZ])|(E[CEGRST])|(F[IJMR])|(G[ABDEHMNQRTWY])|(H[NRTU])|(I[DELNQRST])|(J[MOP])|(K[EGHIMNPRWZ])|(L[ABCIKRSTUVY])|(M[ACDEGHKLMNRTUVWXYZ])|(N[AEGILOPRZ])|(OM)|(P[AEGHKLTWY])|(QA)|(R[OSUW])|(S[ABCDEGIKLMNORSTVYZ])|(T[DGHJLMNORTVZ])|(U[AGSYZ])|(V[CENU])|(WS)|(YE)|(Z[AMW])$
+ Get Name                    ; person.name             ; person        ; unknown  ; unknown  ; ^\\S[^\\d]+\\s[^\\d]+$
+ Get Name                    ; person.name             ; person        ; known    ; unknown  ; ^${first_name}\\s[^\\d]+$
+ Get Name                    ; person.name             ; person        ; unknown  ; known    ; ^\\S[^\\d]+\\s${last_name}$
+ Get Name                    ; person.name             ; person        ; known    ; known    ; ^${first_name}\\s${last_name}$
+ Get First Name              ; person.first_name       ; person        ;          ;          ; ^\\S[^\\d]+$
+ Get Last Name               ; person.last_name        ; person        ;          ;          ; ^\\S[^\\d]+$
+ Get License Plate           ; traffic.license_plate   ; traffic       ;          ;          ; ^.+$
+ Get License Plate           ; traffic.license_plate   ; unused        ;          ;          ; ^.+$
+ Get Bank                    ; finance.bank_name       ; finance       ;          ;          ; ^.*$
+ Get Bic                     ; finance.bank_bic        ; finance       ;          ;          ; ^[A-Z0-9]{8,11}$
+ Get Iban                    ; finance.bank_iban       ; finance       ;          ;          ; ^[A-Z]{2}[0-9]{2}[A-Z0-9]{1,30}$
