@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<LFET version="LF-ET 2.4.1 (260224a)" language="German" saveDate="2026.02.25 at 10:05:32 CET" saveUser="dschweie">
+<LFET version="LF-ET 2.4.1 (260224a)" language="German" saveDate="2026.02.25 at 14:10:51 CET" saveUser="dschweie">
   <Conditions>
     <Condition uId="17699446339764473">
       <Title language="German" value="Context is"/>
@@ -340,8 +340,9 @@
           <Symbol language="German" value="not_supported"/>
           <Title language="German" value="Infomation that item is not supported."/>
           <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="instance.add_rbt_log_message(&quot;The keyword \&quot;{keyword}\&quot; is not supported for localization \&quot;{localization}\&quot;.&quot;, &quot;INFO&quot;)"/>
-          <TestValue group="robot" type="tse" value="# The test case is considered skipped at this point because the keyword is not supported in the environment.&lt;br/&gt;Skip"/>
+          <TestValue group="robot" type="tse" value="# This test case is not intended to be executed.&lt;br/&gt;# For this reason, the robot:exclude tag has also been set."/>
           <TestValue group="*ti.att.robot" type="tse" value="tags=robot:exclude"/>
+          <TestValue group="*ti.gtd.robot" type="tsi" value="zeile, keyword, keywords, domain=&quot;dummy&quot;"/>
         </ActionOccurrence>
         <ActionOccurrence uId="17703809349358249">
           <Symbol language="German" value="not_consistent"/>

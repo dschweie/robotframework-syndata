@@ -1,6 +1,6 @@
 [project]
 name = "robotframework-syndata"
-version = "0.1.0"
+version = "0.1.1"
 description = "Generation of synthetic test data that is consistent."
 authors = [
     {name = "Dirk O. Schweier",email = "dschweie@gmail.com"}

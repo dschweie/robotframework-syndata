@@ -1,6 +1,10 @@
 import re
 import os
+import pandas as pd
+import requests
+
 from invoke import task, Collection
+
 
 @task
 def gentest(c):
@@ -9,23 +13,23 @@ def gentest(c):
 
 @task
 def gensrc(c):
-    c.run(f"{os.getenv("LFET_HOME")}/lfetconsole.bat -gs \"./lfet\" -src python -crmf")    
+    c.run(f"{os.getenv("LFET_HOME")}/lfetconsole.bat -gs \"./lfet\" -src python -crmf -SkipUnchanged")    
 
-@task(pre=[gensrc])
+@task
+def libdoc(c):
+    c.run("libdoc --name SynData ./SynData ./doc/SynData.html")
+
+@task(pre=[gensrc, libdoc])
 def p_install(c):
     c.run("poetry build")
     c.run("poetry install")
 
 @task(pre=[p_install])
-def p_test(c, gentest=False):
-    if gentest:
-        c.run(f"{os.getenv("LFET_HOME")}/lfetconsole.bat -GenTest \"./lfet/ItemBuilderEngineFaker.lfet\" -Group \"robot\" -Config \"acceptance tests\"")
-        c.run(f"{os.getenv("LFET_HOME")}/lfetconsole.bat -GenTest \"./lfet/ItemBuilderEngineGermany.lfet\" -Group \"robot\" -Config \"acceptance tests\"")
-    c.run("poetry run robot -d ./results/ -L DEBUG ./test/acceptance_test/")
-
-@task
-def libdoc(c):
-    c.run("libdoc --name SynData ./SynData ./doc/SynData.html")
+def p_test(c, test=False):
+    if test:
+        gentest(c)
+    c.run("del .\\results\\SynData*.csv")
+    c.run("poetry run robot -d ./results/ -L DEBUG --tagstatexclude rid* --tagstatexclude ddb* --tagstatexclude ddc* ./test/acceptance_test/")
 
 @task
 def setversion(c, version:str =""):

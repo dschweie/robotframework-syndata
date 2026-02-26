@@ -1,7 +1,6 @@
 *** Settings ***
+Library    Collections
 Library    SynData    localization=de_DE    logging=${True}
-# Library    SynData
-# Library    ../../SynData/syndata.py
 
 Test Teardown    Release Context
 
@@ -97,3 +96,93 @@ Consistent Data Within The Context Regarding Address Data
     ${composite}   Get Street And House Number
     Should Be Equal As Strings    ${composite}    ${street} ${house_nr}
     ${full}        Get Address
+
+License Plate With Filter By State And Consistent Address Data
+    [Documentation]    This test case generates first a licence plate with 
+    ...    the filter ``state=Nordrhein-Westfalen``. The result will be verfied 
+    ...    in a first step by regular expression. 
+    ...    
+    ...    This assertion is not precise enough because in 
+    ...    North Rhine-Westphalia there is a big number ob labels for the 
+    ...    license plate valid. 
+    ...
+    ...    The postal code, which must correspond to the license plate number 
+    ...    because a context has been set, allows for a more rigorous check of 
+    ...    whether the result is accurate.
+    ...
+    ...    Since the boundaries of the postal code areas do not correspond to 
+    ...    the boundaries of the federal states, there is a very small degree 
+    ...    of inaccuracy in the check.
+    [Setup]    Set Context    LPWFACAD21    de_DE
+    ${license_plate}    Get License Plate    state=Nordrhein-Westfalen
+    Should Match Regexp    string=${license_plate}    pattern=(?=.{5,10}$)^[A-ZÄÖÜ]{1,3}\\s[A-Z]{1,2}\\s[1-9]\\d{0,3}[EH]?$
+    # In North Rhine-Westphalia there are may labels for license plate possible.
+    # The postal code, which must correspond to the license plate number because a context has been set, allows for a more rigorous check of whether the result is accurate.
+    # Since the boundaries of the postal code areas do not correspond to the boundaries of the federal states, there is a very small degree of inaccuracy in the check.
+    ${postcode}         Get Postcode
+    Should Match Regexp    string=${postcode}    pattern=((3[2347])|(4[0-9])|(5[0123789]))\\d{3}$
+    ${location}         Get Postcode And City
+
+License Plate With Filter By State For A Small State And Consistent Address Data
+    [Documentation]    In this test case, a license plate for Saarland, a small 
+    ...    state, is generated first.
+    ...    
+    ...    Since there are only nine distinguishing characters in this state 
+    ...    that the license plate must begin with, the regular expression was 
+    ...    made more restrictive.
+    ...    
+    ...    In addition, a corresponding postal code is also checked, since 
+    ...    all postal codes in Saarland must begin with ``66``.
+    [Setup]    Set Context    LPWFBSFASSACAD21    de_DE
+    ${license_plate}    Get License Plate    state=DE-SL
+    Should Match Regexp    string=${license_plate}    pattern=(?=.{5,10}$)^(HOM|IGB|MZG|NK|OTW|SB|SLS|VK|WND)\\s[A-Z]{1,2}\\s[1-9]\\d{0,3}[EH]?$
+    ${postcode}         Get Postcode
+    Should Match Regexp    string=${postcode}    pattern=66\\d{3}$
+    ${location}         Get Postcode And City
+
+License Plate With Filter By Big City And Unique Name
+    [Setup]    Set Context    LPWFBBCAUN21    de_DE
+    ${license_plate}    Get License Plate    city=Berlin
+    Should Match Regexp    string=${license_plate}    pattern=(?=.{5,10}$)^B\\s[A-Z]{1,2}\\s[1-9]\\d{0,3}[EH]?$
+
+License Plate With Filter By City And Non Unique Name
+    [Documentation]    The name of a city in Germany does not have to be unique.
+    ...    This test case uses the city "Woltersdorf" as a filter criterion, 
+    ...    which yields three hits.
+    ...
+    ...    The generated license plate must begin with one of these letter 
+    ...    combinations:
+    ...    - ``LOS``, ``BSK``, ``EH`` oder ``FW`` für 15569 Woltersdorf
+    ...    - ``RZ`` für 21516 Woltersdorf
+    ...    - ``DAN`` für 29497 Woltersdorf
+    ...
+    ...    The choice of regular expression for verification is set depending 
+    ...    on the postal code.
+    [Setup]    Set Context    LPWFBCANUN21    de_DE
+    ${license_plate}    Get License Plate    city=Woltersdorf
+    ${postcode}         Get Postcode
+    IF    "15569" == "${postcode}" 
+        VAR    ${ver_pattern}    (?=.{5,10}$)^(LOS|BSK|EH|FW)\\s[A-Z]{1,2}\\s[1-9]\\d{0,3}[EH]?$    
+        VAR    ${ver_text}       LOS, BSK, EH or FW
+    ELSE IF    "21516" == "${postcode}" 
+        VAR    ${ver_pattern}    (?=.{5,10}$)^RZ\\s[A-Z]{1,2}\\s[1-9]\\d{0,3}[EH]?$    
+        VAR    ${ver_text}       LOS, BSK, EH or FW
+    ELSE IF    "29497" == "${postcode}" 
+        VAR    ${ver_pattern}    (?=.{5,10}$)^DAN\\s[A-Z]{1,2}\\s[1-9]\\d{0,3}[EH]?$    
+        VAR    ${ver_text}       DAN
+    ELSE
+        Fail    Unexpected postcode was given.
+    END
+    Should Match Regexp    string=${license_plate}    pattern=${ver_pattern}
+    ...    msg=The license plate shoud start with ${ver_text}
+
+Repeated Calls For A License Plate Must Ignore Filter Conditions
+    [Documentation]
+    [Setup]    Set Context    RCFALPMIFC21    de_DE
+    ${license_plate}    Get License Plate    state=Lower Saxony
+    Should Match Regexp    string=${license_plate}    pattern=(?=.{5,10}$)^[A-ZÄÖÜ]{1,3}\\s[A-Z]{1,2}\\s[1-9]\\d{0,3}[EH]?$
+    ${rep_state}        Get License Plate    state=DE-BW
+    Should Be Equal As Strings    ${license_plate}    ${rep_state}
+    ${rep_city}         Get License Plate    city=Hemer
+    Should Be Equal As Strings    ${license_plate}    ${rep_city}
+
