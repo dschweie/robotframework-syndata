@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<LFET version="LF-ET 2.4.1 (260127a)" language="German" saveDate="2026.02.18 at 11:20:17 CET" saveUser="dschweie">
+<LFET version="LF-ET 2.4.1 (260304a)" language="German" saveDate="2026.03.10 at 15:03:59 CET" saveUser="dschweie">
   <Conditions>
     <Condition uId="17695068074589721">
       <Title language="German" value="Current Mode"/>
@@ -9,10 +9,14 @@
           <Symbol language="German" value="DEF"/>
           <Title language="German" value="The default mode, in which random data is to be generated."/>
           <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( instance.MODE_DEF == instance.get_mode() )"/>
+          <TestValue group="gherkin" type="tcpre" value="SynData is in &quot;default&quot; mode and the localization is &quot;${*GTD.item.localization}&quot;&lt;br/&gt;that logging for SynData should be done in &quot;SynData-unit_test&quot;"/>
         </ConditionOccurrence>
         <ConditionOccurrence uId="17695051882009531">
           <Symbol language="German" value="REP"/>
           <Title language="German" value="In this mode, the data should be “played back” based on a recording."/>
+          <TestValue group="gherkin" type="tcpre" value="SynData is configured with:&lt;br/&gt;${*GTD.replay.configuration}"/>
+          <TestValue group="*ti.gtd.gherkin" type="tcpre" value="table, item, item, context == false&lt;br/&gt;table, item, item, expected_term contains not &quot;Deutschland&quot;&lt;br/&gt;table, item, item, expected_term contains not &quot;DE&quot;"/>
+          <TestValue group="gherkin" type="tsi" value="Given the replay file contains the following data:&lt;br/&gt;${*GTD.replay.replay_data}"/>
         </ConditionOccurrence>
       </ConditionOccurrences>
     </Condition>
@@ -23,10 +27,14 @@
           <Symbol language="German" value="None"/>
           <Title language="German" value="There is no set context."/>
           <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( None == instance.Get_Context() )"/>
+          <TestValue group="gherkin" type="tcpre" value="no context is set"/>
+          <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, item, item, context == false"/>
         </ConditionOccurrence>
         <ConditionOccurrence uId="17695070862659774">
           <Symbol language="German" value="Set"/>
           <Title language="German" value="There is a defined context."/>
+          <TestValue group="gherkin" type="tcpre" value="in SynData the context &quot;${*LFET.DT.Name}${*LFET.Rule.Symbol}&quot; with focus &quot;test&quot; and localization &quot;${*GTD.item.localization}&quot; is set&lt;br/&gt;in SynData items are stored&lt;br/&gt;| data_json |&lt;br/&gt;| ${*GTD.item.preset_json} |"/>
+          <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, item, item, context == true"/>
         </ConditionOccurrence>
       </ConditionOccurrences>
     </Condition>
@@ -41,6 +49,7 @@
         <ConditionOccurrence uId="17695092231160021">
           <Symbol language="German" value="known"/>
           <Title language="German" value="The requested item is already part of the data in the context."/>
+          <TestValue group="gherkin" type="tcpre" value="the builder engine is called:&lt;br/&gt;| item | item_data | keyword |&lt;br/&gt;| ${*GTD.item.item} | ${*GTD.item.item_data} | ${*GTD.item.keyword} |"/>
         </ConditionOccurrence>
       </ConditionOccurrences>
     </Condition>
@@ -50,11 +59,14 @@
         <ConditionOccurrence uId="17702797677963286">
           <Symbol language="German" value="equal"/>
           <Title language="German" value="In this case, it can be assumed that the iterator for the replay is initialized correctly."/>
-          <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( BuiltIn().get_variable_value(&quot;${TEST NAME}&quot;) == self.get_recorded_testcase())"/>
+          <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( instance.get_current_test_case() == self.get_recorded_testcase())"/>
+          <TestValue group="gherkin" type="tsi" value="Given data for given test case is read"/>
+          <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, replay, replay, test_case = &quot;#current&quot;"/>
         </ConditionOccurrence>
         <ConditionOccurrence uId="17702797677983288">
           <Symbol language="German" value="unequal"/>
           <Title language="German" value="In this case, the data has not yet been initialized or the data does not match the current test case."/>
+          <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, replay, replay, test_case != &quot;#current&quot;"/>
         </ConditionOccurrence>
       </ConditionOccurrences>
     </Condition>
@@ -65,10 +77,12 @@
           <Symbol language="German" value="equal"/>
           <Title language="German" value="In this case, the requested item corresponds to the one that was logged next in the recorded data."/>
           <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="(item == f&quot;{self.recorded_row[&quot;item&quot;]}&quot;)"/>
+          <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, replay, replay, item = item.item"/>
         </ConditionOccurrence>
         <ConditionOccurrence uId="17702819237153981">
           <Symbol language="German" value="unequal"/>
           <Title language="German" value="In this case, another item is requested by the test case. This case is unexpected, but processing should not be interrupted."/>
+          <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, replay, replay, item != item.item"/>
         </ConditionOccurrence>
       </ConditionOccurrences>
     </Condition>
@@ -79,10 +93,12 @@
           <Symbol language="German" value="de_DE"/>
           <Title language="German" value="Germany"/>
           <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;de_DE&quot; == localization )"/>
+          <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, item, item, localization contains de_DE&lt;br/&gt;table, replay, replay, localization contains de_DE"/>
         </ConditionOccurrence>
         <ConditionOccurrence uId="17695099984260148">
           <Symbol language="German" value="*"/>
           <Title language="German" value="Nein"/>
+          <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, item, item, localization contains not de_DE&lt;br/&gt;table, replay, replay, localization contains not de_DE"/>
         </ConditionOccurrence>
       </ConditionOccurrences>
     </Condition>
@@ -98,6 +114,7 @@
             <Url title="ItemBuilderEngineFaker" url="file:///./ItemBuilderEngineFaker.lfet"/>
           </UrlsOut>
           <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="retval = ItemBuilderEngineFaker.execute(instance, localization, keyword, item, item_data)"/>
+          <TestValue group="gherkin" type="tcpost" value="rule from decision table &quot;ItemBuilderEngineFaker&quot; has been executed"/>
         </ActionOccurrence>
         <ActionOccurrence uId="17699448491944839">
           <Symbol language="German" value="Germany"/>
@@ -106,13 +123,20 @@
             <Url title="ItemBuilderEngineGermany" url="file:///./ItemBuilderEngineGermany.lfet"/>
           </UrlsOut>
           <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="retval = ItemBuilderEngineGermany.execute(instance, localization, keyword, item, item_data)"/>
+          <TestValue group="gherkin" type="tcpost" value="rule from decision table &quot;ItemBuilderEngineGermany&quot; has been executed"/>
         </ActionOccurrence>
       </ActionOccurrences>
       <Text language="German" value="The creation of the item should be delegated to a specialized engine.&lt;br/&gt;&lt;br/&gt;This specialized engine has access to the ItemBuilderEngine and the database and can query and store data.&lt;br/&gt;&lt;br/&gt;The return value of the specialized engine must correspond to the value that corresponds to the specifically requested item."/>
     </Action>
     <Action uId="17702800763333443">
       <Title language="German" value="Initialization of recorded data for the current test case"/>
-      <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="self.init_first_row(instance.get_replay_file())"/>
+      <ActionOccurrences>
+        <ActionOccurrence uId="17726036998126143">
+          <Symbol language="German" value="X"/>
+          <Title language="German" value="Aktion ausführen"/>
+          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="self.init_first_row(instance)"/>
+        </ActionOccurrence>
+      </ActionOccurrences>
     </Action>
     <Action uId="17699604541870235">
       <Title language="German" value="Call for logging"/>
@@ -126,6 +150,7 @@
           <Symbol language="German" value="stored"/>
           <Title language="German" value="The value should be read from the data structure for logging."/>
           <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="value = instance.get_item(item)&lt;br/&gt;instance.add_log_entry(keyword, item, value)"/>
+          <TestValue group="gherkin" type="tcpost" value="the internal storage for the following items should be checked:&lt;br/&gt;| data_json |&lt;br/&gt;| ${*GTD.item.expected_stored_items} |"/>
         </ActionOccurrence>
         <ActionOccurrence uId="17702973507117910">
           <Symbol language="German" value="replay"/>
@@ -139,17 +164,32 @@
         <ActionOccurrence uId="17702826371494399">
           <Symbol language="German" value="NOREP"/>
           <Title language="German" value="This warning is issued if the requested item was not found in the recorded data. In this case, the return value is generated by a generator that is identified by the localization."/>
-          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="BuiltIn().log(f&quot;SynData(NOREP): According to the data record, the keyword {self.recorded_row[&quot;keyword&quot;]} was expected to be called. The return value therefore does not correspond to the recorded value, but to a generated value.&quot;, level=&quot;WARN&quot;)"/>
+          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="instance.add_rbt_log_message(f&quot;[SynData.NOREP] According to the data record, the keyword {self.recorded_row[&quot;keyword&quot;]} was expected to be called. The return value therefore does not correspond to the recorded value, but to a generated value.&quot;, &quot;WARN&quot;)"/>
+          <TestValue group="gherkin" type="tcpost" value="the &quot;warning&quot; with id &quot;SynData.NOREP&quot; must be in the internal log"/>
         </ActionOccurrence>
       </ActionOccurrences>
     </Action>
     <Action uId="11446800828767967">
       <Title language="German" value="Return data stored in the current context"/>
-      <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="return instance.get_item(item)"/>
+      <ActionOccurrences>
+        <ActionOccurrence uId="17726036999956149">
+          <Symbol language="German" value="X"/>
+          <Title language="German" value="Aktion ausführen"/>
+          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="return instance.get_item(item)"/>
+          <TestValue group="gherkin" type="tse" value="the result for &quot;${*GTD.item.item}&quot; should match &quot;${*GTD.item.expected_term}&quot;"/>
+        </ActionOccurrence>
+      </ActionOccurrences>
     </Action>
     <Action uId="17699498305565730">
       <Title language="German" value="Return data from ItemBuilderEngine..."/>
-      <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="return retval"/>
+      <ActionOccurrences>
+        <ActionOccurrence uId="17726037000016155">
+          <Symbol language="German" value="X"/>
+          <Title language="German" value="Aktion ausführen"/>
+          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="return retval"/>
+          <TestValue group="gherkin" type="tse" value="the result for &quot;${*GTD.item.item}&quot; should match &quot;${*GTD.item.expected_term}&quot;"/>
+        </ActionOccurrence>
+      </ActionOccurrences>
     </Action>
     <Action uId="17702804066323445">
       <Title language="German" value="Return recorded data"/>
@@ -158,56 +198,58 @@
           <Symbol language="German" value="direct"/>
           <Title language="German" value="In this case, the return value is obtained directly from the recorded data."/>
           <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="retval = self.recorded_row[&quot;value&quot;]&lt;br/&gt;self.iterate_to_next_row()&lt;br/&gt;return retval"/>
+          <TestValue group="gherkin" type="tse" value="the result for &quot;${*GTD.item.item}&quot; should be equal to &quot;${*GTD.replay.expected_value}&quot;"/>
         </ActionOccurrence>
         <ActionOccurrence uId="17702807160183622">
           <Symbol language="German" value="recursion"/>
           <Title language="German" value="If the engine is not yet ready to provide recorded data, the engine is called again."/>
           <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="return self.execute(instance, localization, keyword, item, item_data)"/>
+          <TestValue group="gherkin" type="tse" value="the result for &quot;${*GTD.item.item}&quot; should match &quot;${*GTD.item.expected_term}&quot;"/>
         </ActionOccurrence>
       </ActionOccurrences>
     </Action>
   </Actions>
-  <Rules lastId="47">
-    <Rule id="35">
+  <Rules lastId="55">
+    <Rule id="48">
       <ConditionOccurrenceLink link="17695051881989529"/>
       <ConditionOccurrenceLink link="17695070862679776"/>
       <ConditionOccurrenceLink link="17695099984240146"/>
       <ActionOccurrenceLink link="17699448491944839"/>
-      <ActionLink link="17699498305565730"/>
       <ActionOccurrenceLink link="17699605425360375"/>
+      <ActionOccurrenceLink link="17726037000016155"/>
     </Rule>
-    <Rule id="36">
+    <Rule id="49">
       <ConditionOccurrenceLink link="17695051881989529"/>
       <ConditionOccurrenceLink link="17695070862679776"/>
       <ConditionOccurrenceLink link="17695099984260148"/>
       <ActionOccurrenceLink link="17699461250189637"/>
-      <ActionLink link="17699498305565730"/>
       <ActionOccurrenceLink link="17699605425360375"/>
+      <ActionOccurrenceLink link="17726037000016155"/>
     </Rule>
-    <Rule id="37">
+    <Rule id="50">
       <ConditionOccurrenceLink link="17695051881989529"/>
       <ConditionOccurrenceLink link="17695070862659774"/>
       <ConditionOccurrenceLink link="17695092231180023"/>
       <ConditionOccurrenceLink link="17695099984240146"/>
       <ActionOccurrenceLink link="17699448491944839"/>
-      <ActionLink link="17699498305565730"/>
       <ActionOccurrenceLink link="17699606739880379"/>
+      <ActionOccurrenceLink link="17726037000016155"/>
     </Rule>
-    <Rule id="38">
+    <Rule id="51">
       <ConditionOccurrenceLink link="17695051881989529"/>
       <ConditionOccurrenceLink link="17695070862659774"/>
       <ConditionOccurrenceLink link="17695092231180023"/>
       <ConditionOccurrenceLink link="17695099984260148"/>
       <ActionOccurrenceLink link="17699461250189637"/>
-      <ActionLink link="17699498305565730"/>
       <ActionOccurrenceLink link="17699606739880379"/>
+      <ActionOccurrenceLink link="17726037000016155"/>
     </Rule>
-    <Rule id="39">
+    <Rule id="52">
       <ConditionOccurrenceLink link="17695051881989529"/>
       <ConditionOccurrenceLink link="17695070862659774"/>
       <ConditionOccurrenceLink link="17695092231160021"/>
-      <ActionLink link="11446800828767967"/>
       <ActionOccurrenceLink link="17699606739880379"/>
+      <ActionOccurrenceLink link="17726036999956149"/>
     </Rule>
     <Rule id="47">
       <ConditionOccurrenceLink link="17695051882009531"/>
@@ -216,37 +258,47 @@
       <ActionOccurrenceLink link="17702806193193618"/>
       <ActionOccurrenceLink link="17702973507117910"/>
     </Rule>
-    <Rule id="45">
+    <Rule id="53">
       <ConditionOccurrenceLink link="17695051882009531"/>
       <ConditionOccurrenceLink link="17702797677963286"/>
       <ConditionOccurrenceLink link="17702819237153981"/>
       <ConditionOccurrenceLink link="17695099984240146"/>
       <ActionOccurrenceLink link="17699448491944839"/>
-      <ActionLink link="17699498305565730"/>
       <ActionOccurrenceLink link="17699605425360375"/>
       <ActionOccurrenceLink link="17702826371494399"/>
+      <ActionOccurrenceLink link="17726037000016155"/>
     </Rule>
-    <Rule id="46">
+    <Rule id="54">
       <ConditionOccurrenceLink link="17695051882009531"/>
       <ConditionOccurrenceLink link="17702797677963286"/>
       <ConditionOccurrenceLink link="17702819237153981"/>
       <ConditionOccurrenceLink link="17695099984260148"/>
       <ActionOccurrenceLink link="17699461250189637"/>
       <ActionOccurrenceLink link="17699605425360375"/>
-      <ActionLink link="17699498305565730"/>
       <ActionOccurrenceLink link="17702826371494399"/>
+      <ActionOccurrenceLink link="17726037000016155"/>
     </Rule>
-    <Rule id="43">
+    <Rule id="55">
       <ConditionOccurrenceLink link="17695051882009531"/>
       <ConditionOccurrenceLink link="17702797677983288"/>
       <ActionOccurrenceLink link="17702807160183622"/>
-      <ActionLink link="17702800763333443"/>
+      <ActionOccurrenceLink link="17726036998126143"/>
     </Rule>
   </Rules>
-  <Title language="German" value="Hier doppel-klicken um den Titel für die Entscheidungstabelle einzugeben"/>
+  <Title language="German" value="Choice of method for generating the test data"/>
   <UrlsOut>
     <Url title="Ordner" url="file:///./"/>
   </UrlsOut>
-  <SourceCode codeLanguage="Python" sourceCodeType="Prolog" value="# $$BasicIndentLevel=2&lt;br/&gt;import pandas as pd&lt;br/&gt;from faker import Faker&lt;br/&gt;&lt;br/&gt;from robot.libraries.BuiltIn import BuiltIn&lt;br/&gt;from .de_DE.item_builder_engine_germany import ItemBuilderEngineGermany&lt;br/&gt;from .common.item_builder_engine_faker import ItemBuilderEngineFaker&lt;br/&gt;&lt;br/&gt;class ItemBuilderEngine:&lt;br/&gt;&lt;br/&gt;    def __init__(self):&lt;br/&gt;        self.recorded_row = pd.Series([])&lt;br/&gt;        self.recorded_data = None&lt;br/&gt;&lt;br/&gt;    def get_recorded_testcase(self) -&gt; str:&lt;br/&gt;        if(self.recorded_row.empty):&lt;br/&gt;            return None&lt;br/&gt;        else:&lt;br/&gt;            print(f&quot;get_recorded_testcase(self): {self.recorded_row[&quot;test_case&quot;]}&quot;)&lt;br/&gt;            return self.recorded_row[&quot;test_case&quot;]&lt;br/&gt;&lt;br/&gt;    def iterate_to_next_row(self):&lt;br/&gt;        if(0 &lt; len(self.recorded_data)):&lt;br/&gt;            self.recorded_data = self.recorded_data.iloc[1:]&lt;br/&gt;            if(0 &lt; len(self.recorded_data)):&lt;br/&gt;                self.recorded_row = next(self.recorded_data.iterrows())[1]&lt;br/&gt;            else:&lt;br/&gt;                self.recorded_row[&quot;item&quot;] = &quot;unknown&quot;&lt;br/&gt;                self.recorded_row[&quot;value&quot;] = &quot;&quot;&lt;br/&gt;                self.recorded_row[&quot;keyword&quot;] = &quot;Unknown Keyword&quot;&lt;br/&gt;&lt;br/&gt;    def init_first_row(self, file):&lt;br/&gt;        self.recorded_data = pd.read_csv(file, index_col=&quot;index&quot;)&lt;br/&gt;        self.recorded_data = self.recorded_data.query(f&quot;test_case == \&quot;{BuiltIn().get_variable_value(&quot;${TEST NAME}&quot;)}\&quot;&quot;)&lt;br/&gt;        if(0 &lt; len(self.recorded_data)):&lt;br/&gt;            self.recorded_row = next(self.recorded_data.iterrows())[1]&lt;br/&gt;        else:&lt;br/&gt;            self.recorded_row = pd.Series(data={ &quot;timestamp&quot;:&quot;&quot;, &quot;item&quot;:&quot;unknown&quot;, &quot;value&quot;: &quot;&quot;, &quot;test_suite&quot;: f&quot;{BuiltIn().get_variable_value(&quot;${SUITE NAME}&quot;)}&quot;, &quot;test_case&quot;: f&quot;{BuiltIn().get_variable_value(&quot;${TEST NAME}&quot;)}&quot;, &quot;keyword&quot;: &quot;&quot;}, index=[&quot;timestamp&quot;, &quot;item&quot;, &quot;value&quot;, &quot;test_suite&quot;, &quot;test_case&quot;, &quot;keyword&quot;])&lt;br/&gt;&lt;br/&gt;    def execute(self, instance, localization: str, keyword: str, item: str, item_data: dict):"/>
+  <SourceCode codeLanguage="Python" sourceCodeType="Prolog" value="# $$BasicIndentLevel=2&lt;br/&gt;import pandas as pd&lt;br/&gt;from faker import Faker&lt;br/&gt;&lt;br/&gt;from .de_DE.item_builder_engine_germany import ItemBuilderEngineGermany&lt;br/&gt;from .common.item_builder_engine_faker import ItemBuilderEngineFaker&lt;br/&gt;&lt;br/&gt;class ItemBuilderEngine:&lt;br/&gt;&lt;br/&gt;    def __init__(self):&lt;br/&gt;        self.recorded_row = pd.Series([])&lt;br/&gt;        self.recorded_data = None&lt;br/&gt;&lt;br/&gt;    def get_recorded_testcase(self) -&gt; str | None:&lt;br/&gt;        if(self.recorded_row.empty):&lt;br/&gt;            return None&lt;br/&gt;        else:&lt;br/&gt;            print(f&quot;get_recorded_testcase(self): {self.recorded_row[&quot;test_case&quot;]}&quot;)&lt;br/&gt;            return self.recorded_row[&quot;test_case&quot;]&lt;br/&gt;&lt;br/&gt;    def iterate_to_next_row(self):&lt;br/&gt;        if(0 &lt; len(self.recorded_data)):&lt;br/&gt;            self.recorded_data = self.recorded_data.iloc[1:]&lt;br/&gt;            if(0 &lt; len(self.recorded_data)):&lt;br/&gt;                self.recorded_row = next(self.recorded_data.iterrows())[1]&lt;br/&gt;            else:&lt;br/&gt;                self.recorded_row[&quot;item&quot;] = &quot;unknown&quot;&lt;br/&gt;                self.recorded_row[&quot;value&quot;] = &quot;&quot;&lt;br/&gt;                self.recorded_row[&quot;keyword&quot;] = &quot;Unknown Keyword&quot;&lt;br/&gt;&lt;br/&gt;    def init_first_row(self, instance):&lt;br/&gt;        self.recorded_data = pd.read_csv(instance.get_replay_file(), index_col=&quot;index&quot;)&lt;br/&gt;        self.recorded_data = self.recorded_data.query(f&quot;test_case == \&quot;{instance.get_current_test_case()}\&quot;&quot;)&lt;br/&gt;        if(0 &lt; len(self.recorded_data)):&lt;br/&gt;            self.recorded_row = next(self.recorded_data.iterrows())[1]&lt;br/&gt;        else:&lt;br/&gt;            self.recorded_row = pd.Series(data={ &quot;timestamp&quot;:&quot;&quot;, &quot;item&quot;:&quot;unknown&quot;, &quot;value&quot;: &quot;&quot;, &quot;test_suite&quot;: f&quot;{instance.get_current_test_suite()}&quot;, &quot;test_case&quot;: f&quot;{instance.get_current_test_case()}&quot;, &quot;keyword&quot;: &quot;&quot;}, index=[&quot;timestamp&quot;, &quot;item&quot;, &quot;value&quot;, &quot;test_suite&quot;, &quot;test_case&quot;, &quot;keyword&quot;])&lt;br/&gt;&lt;br/&gt;    def execute(self, instance, localization: str, keyword: str, item: str, item_data: dict):"/>
   <SourceCode codeLanguage="Python" sourceCodeType="Trace" value="instance.add_rbt_log_message(&quot;[SynData] Decision table $$EtName ($$Version), rule $$Rule of $$Rules has been executed&quot;, &quot;DEBUG&quot;)"/>
+  <TestValueGroups selectedGroup="gherkin">
+    <TestValueGroup name="gherkin" description="Test instructions for unit tests." tvgTiAtt="*ti.att.gherkin" tvgTiGTD="*ti.gtd.gherkin">
+      <Config name="unit tests" tags="unit_test" parms="-Group 'gherkin' -GtdDirectory './testdata/gherkin' -GtdFileNamePattern '*.csv' -NonExecutableRules '50' -RecommendedTestCases -OutGherkin 'ItemBuilderEngine.testcases.feature'"/>
+    </TestValueGroup>
+    <TestValueGroup name="*ti.att.gherkin"/>
+    <TestValueGroup name="*ti.gtd.gherkin"/>
+  </TestValueGroups>
+  <TestValue group="gherkin" type="tcpost" value="rule &quot;${*LFET.Rule}&quot; of &quot;${*LFET.Rules}&quot; from decision table &quot;${*LFET.DT.Name}&quot; has been executed"/>
+  <TestValue group="gherkin" type="isi" value="the builder engine is called:&lt;br/&gt;| item | item_data | keyword |&lt;br/&gt;| ${*GTD.item.item} | ${*GTD.item.item_data} | ${*GTD.item.keyword} |"/>
+  <TestValue group="*ti.gtd.gherkin" type="tcpre" value="table, item, GherkinItems_com&lt;br/&gt;merge, item, GherkinItems_de&lt;br/&gt;table, replay, GherkinReplayData"/>
 </LFET>

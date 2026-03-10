@@ -23,29 +23,38 @@ class Traffic(object):
     @staticmethod
     def compile_license_plate_standard(item_data: dict) -> str:
         dm = Traffic.get_random_distinguishing_mark(item_data)
-        le = Traffic.get_random_letters(item_data)
-        while(not (Traffic.is_combination_of_letters_socially_acceptable(f"{dm} {le}"))):
+        if("" != dm):
             le = Traffic.get_random_letters(item_data)
-        nu = Traffic.get_random_numbers(min=1, max=min(4,(8 - len(dm) - len(le))))
-        return f"{dm} {le} {nu}"
+            while(not (Traffic.is_combination_of_letters_socially_acceptable(f"{dm} {le}"))):
+                le = Traffic.get_random_letters(item_data)
+            nu = Traffic.get_random_numbers(min=1, max=min(4,(8 - len(dm) - len(le))))
+            return f"{dm} {le} {nu}"
+        else:
+            return ""
     
     @staticmethod
     def compile_license_plate_historic_vehicle(item_data: dict) -> str:
         dm = Traffic.get_random_distinguishing_mark(item_data)
-        le = Traffic.get_random_letters(item_data)
-        while(not (Traffic.is_combination_of_letters_socially_acceptable(f"{dm} {le}"))):
+        if("" != dm):
             le = Traffic.get_random_letters(item_data)
-        nu = Traffic.get_random_numbers(min=1, max=min(4,(7 - len(dm) - len(le))))
-        return f"{dm} {le} {nu}H"
+            while(not (Traffic.is_combination_of_letters_socially_acceptable(f"{dm} {le}"))):
+                le = Traffic.get_random_letters(item_data)
+            nu = Traffic.get_random_numbers(min=1, max=min(4,(7 - len(dm) - len(le))))
+            return f"{dm} {le} {nu}H"
+        else:
+            return ""
     
     @staticmethod
     def compile_license_plate_electric_vehicle(item_data: dict) -> str:
         dm = Traffic.get_random_distinguishing_mark(item_data)
-        le = Traffic.get_random_letters(item_data)
-        while(not (Traffic.is_combination_of_letters_socially_acceptable(f"{dm} {le}"))):
+        if("" != dm):
             le = Traffic.get_random_letters(item_data)
-        nu = Traffic.get_random_numbers(min=1, max=min(4,(7 - len(dm) - len(le))))
-        return f"{dm} {le} {nu}E"
+            while(not (Traffic.is_combination_of_letters_socially_acceptable(f"{dm} {le}"))):
+                le = Traffic.get_random_letters(item_data)
+            nu = Traffic.get_random_numbers(min=1, max=min(4,(7 - len(dm) - len(le))))
+            return f"{dm} {le} {nu}E"
+        else:
+            return ""
     
     @staticmethod
     def get_random_distinguishing_mark(item_data: dict) -> str:
@@ -55,8 +64,11 @@ class Traffic(object):
             match key:
                 case "location.ags":
                     labels = labels.query(f"ags == '{item_data.get(key)}'")
-        row = random.randrange(0, labels.shape[0])
-        return str(labels["label"].iloc[row])
+        if(0 < labels.shape[0]):
+            row = random.randrange(0, labels.shape[0])
+            return str(labels["label"].iloc[row])
+        else:
+            return ""
     
     @staticmethod
     def get_random_letters(item_data: dict) -> str:
@@ -65,10 +77,13 @@ class Traffic(object):
     
     @staticmethod
     def get_random_numbers(min:int=1, max:int=4) -> str:
-        retval = ''.join(secrets.choice(string.digits) for i in range(random.randint(min,max)))
-        while (re.match(r"((8)*[18]8(8)*)|(0\d*)",retval)):
+        if(min <= max):
             retval = ''.join(secrets.choice(string.digits) for i in range(random.randint(min,max)))
-        return retval
+            while (re.match(r"((8)*[18]8(8)*)|(0\d*)",retval)):
+                retval = ''.join(secrets.choice(string.digits) for i in range(random.randint(min,max)))
+            return retval
+        else:
+            return ""
     
     @staticmethod
     def is_combination_of_letters_socially_acceptable(combination: str) -> bool:

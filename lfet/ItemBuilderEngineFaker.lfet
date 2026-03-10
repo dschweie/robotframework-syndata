@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<LFET version="LF-ET 2.4.1 (260224a)" language="German" saveDate="2026.02.25 at 09:00:29 CET" saveUser="dschweie">
+<LFET version="LF-ET 2.4.1 (260304a)" language="German" saveDate="2026.03.08 at 14:00:14 CET" saveUser="dschweie">
   <Conditions>
     <Condition uId="17699466648051216">
       <Title language="German" value="Context is"/>
@@ -9,11 +9,15 @@
           <Symbol language="German" value="None"/>
           <Title language="German" value="There is no set context."/>
           <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( None == instance.Get_Context() )"/>
+          <TestValue group="gherkin" type="tcpre" value="in SynData no context is set"/>
+          <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, item, item, context == false"/>
         </ConditionOccurrence>
         <ConditionOccurrence uId="17695070862659774">
           <Symbol language="German" value="Set"/>
           <Title language="German" value="There is a defined context."/>
           <TestValue group="robot" type="tsi" value="Set Context    TestCase${*LFET.Regel.Symbol}    ${*GTD.localization.code}    focus=test"/>
+          <TestValue group="gherkin" type="tcpre" value="in SynData the context &quot;${*LFET.DT.Name}${*LFET.Rule.Symbol}&quot; with focus &quot;test&quot; and localization &quot;${*GTD.item.localization}&quot; is set&lt;br/&gt;in SynData items are stored&lt;br/&gt;| data_json |&lt;br/&gt;| ${*GTD.item.preset_json} |"/>
+          <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, item, item, context == true"/>
         </ConditionOccurrence>
       </ConditionOccurrences>
     </Condition>
@@ -25,108 +29,126 @@
           <Title language="German" value="An address consisting of street, house number, postal code, and city should be returned in two lines."/>
           <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;$$Symbol&quot; == item )"/>
           <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;address.address&quot;"/>
+          <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, item, item, item == &quot;${*LFET.Wert.Symbol}&quot;"/>
         </ConditionOccurrence>
         <ConditionOccurrence uId="17703752144892048">
           <Symbol language="German" value="address.address_country"/>
           <Title language="German" value="An address consisting of street, house number, postal code, city, and state should be returned in three lines."/>
           <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;$$Symbol&quot; == item )"/>
           <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;address.address_country&quot;"/>
+          <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, item, item, item == &quot;${*LFET.Wert.Symbol}&quot;"/>
         </ConditionOccurrence>
         <ConditionOccurrence uId="17703752144922051">
           <Symbol language="German" value="address.street_address"/>
           <Title language="German" value="An address consisting of a street name and house number should be returned."/>
           <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;$$Symbol&quot; == item )"/>
           <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;address.street_address&quot;"/>
+          <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, item, item, item == &quot;${*LFET.Wert.Symbol}&quot;"/>
         </ConditionOccurrence>
         <ConditionOccurrence uId="17703752144952054">
           <Symbol language="German" value="address.street"/>
           <Title language="German" value="A street name shuold be returned."/>
           <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;$$Symbol&quot; == item )"/>
           <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;address.street&quot;"/>
+          <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, item, item, item == &quot;${*LFET.Wert.Symbol}&quot;"/>
         </ConditionOccurrence>
         <ConditionOccurrence uId="17703752144982057">
           <Symbol language="German" value="address.house_number"/>
           <Title language="German" value="A house number should be returned."/>
           <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;$$Symbol&quot; == item )"/>
           <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;address.house_number&quot;"/>
+          <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, item, item, item == &quot;${*LFET.Wert.Symbol}&quot;"/>
         </ConditionOccurrence>
         <ConditionOccurrence uId="17703752147162060">
           <Symbol language="German" value="address.postcode_city"/>
           <Title language="German" value="A city with its corresponding postal code should be returned."/>
           <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;$$Symbol&quot; == item )"/>
           <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;address.postcode_city&quot;"/>
+          <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, item, item, item == &quot;${*LFET.Wert.Symbol}&quot;"/>
         </ConditionOccurrence>
         <ConditionOccurrence uId="17703752147192063">
           <Symbol language="German" value="address.postcode"/>
           <Title language="German" value="A postal code should be returned."/>
           <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;$$Symbol&quot; == item )"/>
           <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;address.postcode&quot;"/>
+          <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, item, item, item == &quot;${*LFET.Wert.Symbol}&quot;"/>
         </ConditionOccurrence>
         <ConditionOccurrence uId="17703752147222066">
           <Symbol language="German" value="address.city"/>
           <Title language="German" value="A city should be returned."/>
           <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;$$Symbol&quot; == item )"/>
           <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;address.city&quot;"/>
+          <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, item, item, item == &quot;${*LFET.Wert.Symbol}&quot;"/>
         </ConditionOccurrence>
         <ConditionOccurrence uId="17703752147252069">
           <Symbol language="German" value="address.state"/>
           <Title language="German" value="A federal state should be returned."/>
           <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;$$Symbol&quot; == item )"/>
           <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;address.state&quot;"/>
+          <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, item, item, item == &quot;${*LFET.Wert.Symbol}&quot;"/>
         </ConditionOccurrence>
         <ConditionOccurrence uId="17703752147282072">
           <Symbol language="German" value="address.country"/>
           <Title language="German" value="The country based on localization should be returned"/>
           <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;$$Symbol&quot; == item )"/>
           <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;address.country&quot;"/>
+          <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, item, item, item == &quot;${*LFET.Wert.Symbol}&quot;"/>
         </ConditionOccurrence>
         <ConditionOccurrence uId="17703752147312075">
           <Symbol language="German" value="address.country_code"/>
           <Title language="German" value="The country code based on localization should be returned"/>
           <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;$$Symbol&quot; == item )"/>
           <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;address.country_code&quot;"/>
+          <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, item, item, item == &quot;${*LFET.Wert.Symbol}&quot;"/>
         </ConditionOccurrence>
         <ConditionOccurrence uId="17695103847460300">
           <Symbol language="German" value="person.name"/>
           <Title language="German" value="A complete name consisting of first name and last name should be returned."/>
           <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;person.name&quot; == item )"/>
           <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;person.name&quot;"/>
+          <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, item, item, item == &quot;${*LFET.Wert.Symbol}&quot;"/>
         </ConditionOccurrence>
         <ConditionOccurrence uId="17695107938060307">
           <Symbol language="German" value="person.first_name"/>
           <Title language="German" value="A first name should be returned."/>
           <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;person.first_name&quot; == item )"/>
           <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;person.first_name&quot;"/>
+          <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, item, item, item == &quot;${*LFET.Wert.Symbol}&quot;"/>
         </ConditionOccurrence>
         <ConditionOccurrence uId="17695103847480302">
           <Symbol language="German" value="person.last_name"/>
           <Title language="German" value="A last name should be returned."/>
           <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;person.last_name&quot; == item )"/>
           <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;person.last_name&quot;"/>
+          <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, item, item, item == &quot;${*LFET.Wert.Symbol}&quot;"/>
         </ConditionOccurrence>
         <ConditionOccurrence uId="17714897552972343">
           <Symbol language="German" value="traffic.license_plate"/>
           <Title language="German" value="A licence plate for a motor vehicle should be returned."/>
           <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;traffic.license_plate&quot; == item )"/>
           <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;traffic.license_plate&quot;"/>
+          <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, item, item, item == &quot;${*LFET.Wert.Symbol}&quot;"/>
         </ConditionOccurrence>
         <ConditionOccurrence uId="17714897565742344">
           <Symbol language="German" value="finance.bank_name"/>
           <Title language="German" value="A bank name should be returned."/>
           <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;finance.bank_name&quot; == item )"/>
           <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;finance.bank_name&quot;"/>
+          <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, item, item, item == &quot;${*LFET.Wert.Symbol}&quot;"/>
         </ConditionOccurrence>
         <ConditionOccurrence uId="17714897571242345">
           <Symbol language="German" value="finance.bank_bic"/>
           <Title language="German" value="An international SWIFT code should be returned."/>
           <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;finance.bank_bic&quot; == item )"/>
           <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;finance.bank_bic&quot;"/>
+          <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, item, item, item == &quot;${*LFET.Wert.Symbol}&quot;"/>
         </ConditionOccurrence>
         <ConditionOccurrence uId="17714897575112346">
           <Symbol language="German" value="finance.bank_iban"/>
           <Title language="German" value="An International Bank Account Number (IBAN) be returned."/>
           <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;finance.bank_iban&quot; == item )"/>
           <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;finance.bank_iban&quot;"/>
+          <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, item, item, item == &quot;${*LFET.Wert.Symbol}&quot;"/>
         </ConditionOccurrence>
       </ConditionOccurrences>
     </Condition>
@@ -138,12 +160,14 @@
           <Title language="German" value="In this case the item is not known in a concrete context."/>
           <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( None == instance.get_item(&quot;person.first_name&quot;) )"/>
           <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, fname_is = &quot;unknown&quot;"/>
+          <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, item, item, preset_keys contains not &quot;person.first_name&quot;"/>
         </ConditionOccurrence>
         <ConditionOccurrence uId="17695903929043219">
           <Symbol language="German" value="known"/>
           <Title language="German" value="In this case a value is known in a concrete context."/>
           <TestValue group="robot" type="tsi" value="# First name should be known and is pre-assigned.&lt;br/&gt;${first_name}    Get First Name"/>
           <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, fname_is = &quot;known&quot;"/>
+          <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, item, item, preset_keys contains &quot;person.first_name&quot;"/>
         </ConditionOccurrence>
       </ConditionOccurrences>
     </Condition>
@@ -155,12 +179,14 @@
           <Title language="German" value="In this case the item is not known in a concrete context."/>
           <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( None == instance.get_item(&quot;person.last_name&quot;) )"/>
           <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, lname_is = &quot;unknown&quot;"/>
+          <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, item, item, preset_keys contains not &quot;person.last_name&quot;"/>
         </ConditionOccurrence>
         <ConditionOccurrence uId="17695905388243463">
           <Symbol language="German" value="known"/>
           <Title language="German" value="In this case a value is known in a concrete context."/>
           <TestValue group="robot" type="tsi" value="# last name should be known and is pre-assigned.&lt;br/&gt;${last_name}    Get Last Name"/>
           <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, lname_is = &quot;known&quot;"/>
+          <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, item, item, preset_keys contains &quot;person.last_name&quot;"/>
         </ConditionOccurrence>
       </ConditionOccurrences>
     </Condition>
@@ -292,15 +318,18 @@
         <ActionOccurrence uId="17703800092614355">
           <Symbol language="German" value="not_supported"/>
           <Title language="German" value="Infomation that item is not supported."/>
-          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="instance.add_rbt_log_message(&quot;The keyword \&quot;{keyword}\&quot; is not supported for localization \&quot;{localization}\&quot;.&quot;, &quot;INFO&quot;)"/>
+          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="instance.add_rbt_log_message(f&quot;The keyword \&quot;{keyword}\&quot; is not supported for localization \&quot;{localization}\&quot;.&quot;, &quot;INFO&quot;)"/>
           <TestValue group="robot" type="tse" value="# The test case is considered skipped at this point because the keyword is not supported in the environment.&lt;br/&gt;Skip"/>
           <TestValue group="*ti.att.robot" type="tse" value="tags=robot:exclude"/>
+          <TestValue group="gherkin" type="tse" value="the internal log should contain &quot;info&quot; message &quot;not_supported&quot;"/>
         </ActionOccurrence>
         <ActionOccurrence uId="17703809349358249">
           <Symbol language="German" value="not_consistent"/>
           <Title language="German" value="The generated test data is not necessarily consistent with other dependent values!"/>
           <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="instance.add_rbt_log_message(&quot;The generated test data is not necessarily consistent with other dependent values!&quot;, &quot;INFO&quot;)"/>
+          <TestValue group="gherkin" type="tse" value="the internal log should contain &quot;info&quot; message &quot;not_consistent&quot;"/>
         </ActionOccurrence>
+        <TestValue group="gherkin" type="tcpost" value="there must be no entry in the internal log"/>
       </ActionOccurrences>
     </Action>
     <Action uId="17699480963103046">
@@ -311,6 +340,7 @@
           <Title language="German" value="Aktion ausführen"/>
           <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="return instance.get_item(item)"/>
           <TestValue group="robot" type="tse" value="# The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.&lt;br/&gt;Should Match Regexp    ${output}    pattern=${*GTD.keyword.pattern}&lt;br/&gt;# Repetition of the keyword checks whether the result has also been saved in context.&lt;br/&gt;${repetition}    ${*GTD.keyword.keyword}&lt;br/&gt;Should Be Equal As Strings    ${output}    ${repetition}"/>
+          <TestValue group="gherkin" type="tse" value="the result for &quot;${*GTD.item.item}&quot; should match &quot;${*GTD.item.expected_term}&quot;&lt;br/&gt;the internal storage for the following items should be checked:&lt;br/&gt;| data_json |&lt;br/&gt;| ${*GTD.item.expected_stored_items} |"/>
         </ActionOccurrence>
       </ActionOccurrences>
     </Action>
@@ -322,32 +352,37 @@
           <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="match item_data.get(&quot;sex&quot;):&lt;br/&gt;    case &quot;f&quot;:&lt;br/&gt;        return fake.name_female()&lt;br/&gt;    case &quot;m&quot;:&lt;br/&gt;        return fake.name_male()&lt;br/&gt;    case &quot;d&quot;:&lt;br/&gt;        return fake.name_nonbinary()&lt;br/&gt;    case _:&lt;br/&gt;        return fake.name()"/>
           <TestValue group="robot" type="tse" value="# The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.&lt;br/&gt;Should Match Regexp    ${output}    pattern=${*GTD.keyword.pattern}"/>
           <TestValue group="*ti.gtd.robot" type="tse" value="tabelle, keyword, keyword, fname_is = &quot;unknown&quot;&lt;br/&gt;tabelle, keyword, keyword, lname_is = &quot;unknown&quot;"/>
+          <TestValue group="gherkin" type="tse" value="the result for &quot;${*GTD.item.item}&quot; should match &quot;${*GTD.item.expected_term}&quot;"/>
         </ActionOccurrence>
         <ActionOccurrence uId="17695186572163107">
           <Symbol language="German" value="person.first_name"/>
           <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="match item_data.get(&quot;sex&quot;):&lt;br/&gt;    case &quot;f&quot;:&lt;br/&gt;        return fake.first_name_female()&lt;br/&gt;    case &quot;m&quot;:&lt;br/&gt;        return fake.first_name_male()&lt;br/&gt;    case &quot;d&quot;:&lt;br/&gt;        return fake.first_name_nonbinary()&lt;br/&gt;    case _:&lt;br/&gt;        return fake.first_name()"/>
           <TestValue group="robot" type="tse" value="# The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.&lt;br/&gt;Should Match Regexp    ${output}    pattern=${*GTD.keyword.pattern}"/>
+          <TestValue group="gherkin" type="tse" value="the result for &quot;${*GTD.item.item}&quot; should match &quot;${*GTD.item.expected_term}&quot;"/>
         </ActionOccurrence>
         <ActionOccurrence uId="17695186572183109">
           <Symbol language="German" value="person.last_name"/>
           <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="match item_data.get(&quot;sex&quot;):&lt;br/&gt;    case &quot;f&quot;:&lt;br/&gt;        return fake.last_name_female()&lt;br/&gt;    case &quot;m&quot;:&lt;br/&gt;        return fake.last_name_male()&lt;br/&gt;    case &quot;d&quot;:&lt;br/&gt;        return fake.last_name_nonbinary()&lt;br/&gt;    case _:&lt;br/&gt;        return fake.last_name()"/>
           <TestValue group="robot" type="tse" value="# The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.&lt;br/&gt;Should Match Regexp    ${output}    pattern=${*GTD.keyword.pattern}"/>
+          <TestValue group="gherkin" type="tse" value="the result for &quot;${*GTD.item.item}&quot; should match &quot;${*GTD.item.expected_term}&quot;"/>
         </ActionOccurrence>
         <ActionOccurrence uId="17703805164565990">
           <Symbol language="German" value="local"/>
           <Title language="German" value="The locally generated data will be returned"/>
           <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="return local_data"/>
           <TestValue group="robot" type="tse" value="# The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.&lt;br/&gt;Should Match Regexp    ${output}    pattern=${*GTD.keyword.pattern}"/>
+          <TestValue group="gherkin" type="tse" value="the result for &quot;${*GTD.item.item}&quot; should match &quot;${*GTD.item.expected_term}&quot;"/>
         </ActionOccurrence>
         <ActionOccurrence uId="17719149835255708">
           <Symbol language="German" value="dict"/>
           <Title language="German" value="Depending on the type of test data, the dependent data for an item is also created in a dictionary. In this case, the item can be returned from the dictionary."/>
           <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="return data_dict.get(item, &quot;&quot;)"/>
+          <TestValue group="gherkin" type="tse" value="the result for &quot;${*GTD.item.item}&quot; should match &quot;${*GTD.item.expected_term}&quot;"/>
         </ActionOccurrence>
       </ActionOccurrences>
     </Action>
   </Actions>
-  <Rules lastId="51">
+  <Rules lastId="52">
     <Rule id="16">
       <ConditionOccurrenceLink link="17695070862679776"/>
       <ConditionOccurrenceLink link="17703752144862045"/>
@@ -518,12 +553,13 @@
       <ActionOccurrenceLink link="17703809349358249"/>
       <ActionOccurrenceLink link="17703807113007469"/>
     </Rule>
-    <Rule id="35">
+    <Rule id="52">
       <ConditionOccurrenceLink link="17695070862659774"/>
       <ConditionOccurrenceLink link="17703752147252069"/>
       <ActionOccurrenceLink link="17699478486131905"/>
       <ActionOccurrenceLink link="17703803995974746"/>
       <ActionOccurrenceLink link="17703800092614355"/>
+      <ActionOccurrenceLink link="17703807113007469"/>
     </Rule>
     <Rule id="36">
       <ConditionOccurrenceLink link="17695070862659774"/>
@@ -620,21 +656,30 @@
       <ActionOccurrenceLink link="17699478486131905"/>
     </Rule>
   </Rules>
-  <Title language="German" value="Hier doppel-klicken um den Titel für die Entscheidungstabelle einzugeben"/>
+  <Title language="German" value="Generating test data for other localizations"/>
   <UrlsOut>
     <Url title="Ordner" url="file:///./"/>
   </UrlsOut>
   <SourceCode codeLanguage="Python" sourceCodeType="Prolog" value="# $$BasicIndentLevel=2&lt;br/&gt;from robot.libraries.BuiltIn import BuiltIn&lt;br/&gt;&lt;br/&gt;from faker import Faker&lt;br/&gt;from .country import Country&lt;br/&gt;from .finance import Finance&lt;br/&gt;&lt;br/&gt;class ItemBuilderEngineFaker:&lt;br/&gt;&lt;br/&gt;    @staticmethod&lt;br/&gt;    def execute(instance, localization: str, keyword: str, item: str, item_data: dict):&lt;br/&gt;        fake = Faker(localization)"/>
   <SourceCode codeLanguage="Python" sourceCodeType="Trace" value="instance.add_rbt_log_message(&quot;[SynData] Decision table $$EtName ($$Version), rule $$Rule of $$Rules has been executed&quot;, &quot;DEBUG&quot;)"/>
-  <TestValueGroups selectedGroup="robot">
+  <TestValueGroups selectedGroup="gherkin">
+    <TestValueGroup name="*ti.gtd.gherkin"/>
+    <TestValueGroup name="*ti.att.gherkin"/>
     <TestValueGroup name="*ti.check.robot"/>
     <TestValueGroup name="*ti.gtd.robot"/>
     <TestValueGroup name="*ti.att.robot"/>
     <TestValueGroup name="robot" description="Acceptance tests from the decision table are to be generated automatically using this group." tvgTiAtt="*ti.att.robot" tvgTiCheck="*ti.check.robot" tvgTiGTD="*ti.gtd.robot">
       <Config name="acceptance tests" tags="default" description="This test configuration forms the basis for the library's automatically generated acceptance tests.&lt;br/&gt;This decision table covers cases  in which localization is used that does not provide specialized generators." parms="-Group 'robot' -GtdDirectory './testdata/common' -GtdFileNamePattern '*.csv' -NonExecutableRules '50' -RecommendedTestCases -ExportRobotFramework '../test/acceptance_test/lfet/ItemBuilderEngineFaker.testcases.robot'"/>
     </TestValueGroup>
+    <TestValueGroup name="gherkin" description="The test instructions from this group are used to generate unit tests, which are then executed using pytest-bdd." tvgTiAtt="*ti.att.gherkin" tvgTiGTD="*ti.gtd.gherkin">
+      <Config name="unit tests" tags="unit_test" parms="-Group 'gherkin' -GtdDirectory './testdata/gherkin' -GtdFileNamePattern '*_common.csv' -NonExecutableRules '50' -RecommendedTestCases -OutGherkin 'ItemBuilderEngineFaker.testcases.feature'"/>
+    </TestValueGroup>
   </TestValueGroups>
   <TestValue group="robot" type="tcpre" value="*robot.Settings    Library    SynData&lt;br/&gt;*robot.Settings    Suite Setup    Set SynData Configuration   mode=default    localization=${*GTD.import.code}    logging=${True}&lt;br/&gt;*robot.Settings    Test Setup    Release Context"/>
   <TestValue group="robot" type="isi" value="${output}    ${*GTD.keyword.keyword}"/>
   <TestValue group="*ti.gtd.robot" type="tcpre" value="tabelle, keyword, keywords&lt;br/&gt;tabelle, localization, localizations&lt;br/&gt;zeile, import, localizations"/>
+  <TestValue group="gherkin" type="tcpre" value="SynData is in &quot;default&quot; mode and the localization is &quot;${*GTD.item.localization}&quot;&lt;br/&gt;that no logging for SynData should be done"/>
+  <TestValue group="*ti.gtd.gherkin" type="tcpre" value="table, item, GherkinItems_com"/>
+  <TestValue group="gherkin" type="tcpost" value="rule &quot;${*LFET.Regel}&quot; of &quot;${*LFET.Regeln}&quot; from decision table &quot;${*LFET.DT.Name}&quot; has been executed"/>
+  <TestValue group="gherkin" type="isi" value="the builder engine is called:&lt;br/&gt;| item | item_data | keyword |&lt;br/&gt;| ${*GTD.item.item} | ${*GTD.item.item_data} | ${*GTD.item.keyword} |"/>
 </LFET>

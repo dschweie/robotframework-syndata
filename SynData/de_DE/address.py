@@ -71,22 +71,27 @@ class Address(object):
     @staticmethod
     def build_random_house_number(min: int, max: int, mode: Literal["all", "odd", "even"]) -> str:
         extensions = ["a", "b", "c", "d", "e", "f", "g", "h"]
-        match mode:
-            case "odd": 
-                if(1 == min % 2):
-                    retval = f"{random.randrange(min, max+1, 2)}"
-                else: 
-                    retval = f"{random.randrange(min+1, max+1, 2)}"
-            case "even":
-                if(0 == min % 2):
-                    retval = f"{random.randrange(min, max+1, 2)}"
-                else: 
-                    retval = f"{random.randrange(min+1, max+1, 2)}"
-            case _:
-                retval = f"{random.randrange(min, max+1)}"
-        if(4 > random.randrange(0, 100)):
-            retval = f"{retval}{extensions[random.randrange(0, len(extensions))]}"
-        if(50 > random.randrange(0,100)):
-            retval = retval.upper()
+        retval = ""
+        if (min <= max): 
+            match mode:
+                case "odd": 
+                    if(1 == min % 2):
+                        retval = f"{random.randrange(min, max+1, 2)}"
+                    else:
+                        if(min < max):
+                            retval = f"{random.randrange(min+1, max+1, 2)}"
+                case "even":
+                    if(0 == min % 2):
+                        retval = f"{random.randrange(min, max+1, 2)}"
+                    else:
+                        if(min < max): 
+                            retval = f"{random.randrange(min+1, max+1, 2)}"
+                case _:
+                    retval = f"{random.randrange(min, max+1)}"
+        if (not ("" == retval)):
+            if(4 > random.randrange(0, 100)):
+                retval = f"{retval}{extensions[random.randrange(0, len(extensions))]}"
+            if(50 > random.randrange(0,100)):
+                retval = retval.upper()
         return retval
 

@@ -546,7 +546,7 @@ class SynData:
     #   ========================================================================
     
     @not_keyword
-    def set_configuration(self, mode: Literal["default", "replay"] = "default", localization: str ="en_US", logging: bool =False, logfile: str =None , replay_file: str = None):
+    def set_configuration(self, mode: Literal["default", "replay"] = "default", localization: str ="en_US", logging: bool =False, logfile: str|None =None , replay_file: str|None = None):
         self.mode = SynData.MODE_DEF
         self.default_localization = localization
         self.logging = (True == logging)
@@ -556,7 +556,7 @@ class SynData:
             case "replay":
                 if(None == replay_file):
                     self.add_rbt_log_message("The keyword Set Mode expects a full qualified path in parameter replay_file!", "ERROR")
-                elif(not(os.path.isfile(replay_file))) : 
+                elif(not(os.path.isfile(str(replay_file)))) : 
                     self.add_rbt_log_message(f"A file with the path '{replay_file}' could not be found!", "ERROR")
                 else:
                     self.mode = SynData.MODE_REP
@@ -567,7 +567,7 @@ class SynData:
                 file_name = datetime.datetime.now().strftime("SynData-%Y%m%d-%H%M%S")
                 self.logfile = f"{path}/{file_name}.csv"
             else:
-                if (-1 == logfile.find(".")):
+                if (-1 == str(logfile).find(".")):
                     self.logfile = f"{path}/{logfile}.csv"
                 else:
                     self.logfile = f"{path}/{logfile}"

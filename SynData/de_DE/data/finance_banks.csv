@@ -1559,7 +1559,6 @@ blz,city,bank,pan
 25050180,Wedemark,"Sparkasse Hannover",52501
 25050180,Wennigsen (Deister),"Sparkasse Hannover",52501
 25050180,Wunstorf,"Sparkasse Hannover",52501
-25050299,Hannover,"Sparkasse Hannover -alt-",52502
 25055500,Hannover,"LBS-Norddeutsche Landesbausparkasse",
 25060000,Hannover,"DZ BANK",62003
 25060000,Oldenburg (Oldb),"DZ BANK",62003
@@ -6884,7 +6883,6 @@ blz,city,bank,pan
 60040071,Waiblingen,"Commerzbank",24600
 60040075,Stuttgart,"Commerzbank, Filiale Stuttgart 2",24605
 60050000,Stuttgart,"Landesbank Baden-Württemberg",56001
-60050009,Stuttgart,"ZV Landesbank Baden-Württemberg ISE",
 60050101,Stuttgart,"Landesbank Baden-Württemberg/Baden-Württembergische Bank",56100
 60050101,Aalen,"Baden-Württemb.Bank/Landesbank Baden-Württemb.",56100
 60050101,Achern,"Baden-Württembergische Bank/Landesbank Baden-Württemberg",56100
@@ -9688,7 +9686,6 @@ blz,city,bank,pan
 73190000,Memmingen,"VR-Bank Memmingen (Gf P2)",87010
 73190000,Memmingerberg,"VR-Bank Memmingen",97010
 73190000,Mindelheim,"VR-Bank Memmingen",97010
-73311600,Riezlern,"Hypo Vorarlberg Bank",25653
 73320073,Kempten (Allgäu),"UniCredit Bank - HypoVereinsbank",22043
 73320073,Füssen,"UniCredit Bank - HypoVereinsbank",22043
 73321177,Oberstdorf,"UniCredit Bank - HypoVereinsbank",22066
