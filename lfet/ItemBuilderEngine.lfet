@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<LFET version="LF-ET 2.4.1 (260304a)" language="German" saveDate="2026.03.10 at 15:03:59 CET" saveUser="dschweie">
+<LFET version="LF-ET 2.4.1 (260304a)" language="German" saveDate="2026.03.11 at 08:45:25 CET" saveUser="dschweie">
   <Conditions>
     <Condition uId="17695068074589721">
       <Title language="German" value="Current Mode"/>
@@ -82,7 +82,7 @@
         <ConditionOccurrence uId="17702819237153981">
           <Symbol language="German" value="unequal"/>
           <Title language="German" value="In this case, another item is requested by the test case. This case is unexpected, but processing should not be interrupted."/>
-          <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, replay, replay, item != item.item"/>
+          <TestValue group="*ti.gtd.gherkin" type="tcpre" value="table, replay, replay, item != item.item"/>
         </ConditionOccurrence>
       </ConditionOccurrences>
     </Condition>

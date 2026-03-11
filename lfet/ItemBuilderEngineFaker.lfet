@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<LFET version="LF-ET 2.4.1 (260304a)" language="German" saveDate="2026.03.08 at 14:00:14 CET" saveUser="dschweie">
+<LFET version="LF-ET 2.4.1 (260304a)" language="German" saveDate="2026.03.11 at 08:40:31 CET" saveUser="dschweie">
   <Conditions>
     <Condition uId="17699466648051216">
       <Title language="German" value="Context is"/>
@@ -238,7 +238,7 @@
         <ActionOccurrence uId="17703803995974746">
           <Symbol language="German" value="address.state"/>
           <Title language="German" value="A federal state is to be returned."/>
-          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="local_data = &quot;&quot;"/>
+          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="local_data = Country.get_state_name(item_data, localization[-2:].upper())"/>
         </ActionOccurrence>
         <ActionOccurrence uId="17703803996014750">
           <Symbol language="German" value="address.country"/>
@@ -382,7 +382,7 @@
       </ActionOccurrences>
     </Action>
   </Actions>
-  <Rules lastId="52">
+  <Rules lastId="54">
     <Rule id="16">
       <ConditionOccurrenceLink link="17695070862679776"/>
       <ConditionOccurrenceLink link="17703752144862045"/>
@@ -431,10 +431,9 @@
       <ActionOccurrenceLink link="17703803995934742"/>
       <ActionOccurrenceLink link="17703805164565990"/>
     </Rule>
-    <Rule id="24">
+    <Rule id="53">
       <ConditionOccurrenceLink link="17695070862679776"/>
       <ConditionOccurrenceLink link="17703752147252069"/>
-      <ActionOccurrenceLink link="17703800092614355"/>
       <ActionOccurrenceLink link="17703803995974746"/>
       <ActionOccurrenceLink link="17703805164565990"/>
     </Rule>
@@ -553,12 +552,12 @@
       <ActionOccurrenceLink link="17703809349358249"/>
       <ActionOccurrenceLink link="17703807113007469"/>
     </Rule>
-    <Rule id="52">
+    <Rule id="54">
       <ConditionOccurrenceLink link="17695070862659774"/>
       <ConditionOccurrenceLink link="17703752147252069"/>
       <ActionOccurrenceLink link="17699478486131905"/>
       <ActionOccurrenceLink link="17703803995974746"/>
-      <ActionOccurrenceLink link="17703800092614355"/>
+      <ActionOccurrenceLink link="17703809349358249"/>
       <ActionOccurrenceLink link="17703807113007469"/>
     </Rule>
     <Rule id="36">

@@ -6,7 +6,7 @@ Documentation
 ...    | *Informationen zur Ausführung* | |
 ...    | Aktueller Benutzer: | dschweie |
 ...    | Aktuelles Verzeichnis (user.dir): | "E:/data/schweier/rbtfrmwrk/robotframework-syndata" |
-...    | Benötigte Zeit: | 00:00:00.750 (10.03.2026 16:01:30.585 - 10.03.2026 16:01:31.335) |
+...    | Benötigte Zeit: | 00:00:00.650 (11.03.2026 08:46:07.921 - 11.03.2026 08:46:08.571) |
 ...    | *Informationen zur Generierung* | |
 ...    | Kommandozeile: | -GenTest "./lfet/ItemBuilderEngineFaker.lfet" -Group "robot" -Config "acceptance tests" -GtdDirectory "./testdata/common" -GtdFileNamePattern "*.csv" -NonExecutableRules "50" -RecommendedTestCases -ExportRobotFramework "../test/acceptance_test/lfet/ItemBuilderEngineFaker.testcases.robot" |
 ...    | Entscheidungstabelle: | ././lfet/ItemBuilderEngineFaker.lfet |
@@ -21,7 +21,7 @@ Documentation
 ...    |  | ⠀⠀⠀⠀Erfolgreich eingelesen: localizations, 26 Sätze |
 
 Library    SynData
-Suite Setup    Set SynData Configuration   mode=default    localization=hr_HR    logging=${True}
+Suite Setup    Set SynData Configuration   mode=default    localization=lt_LT    logging=${True}
 Test Setup    Release Context
 
 *** Test Cases ***
@@ -93,10 +93,8 @@ Test Setup    Release Context
 0009 ItemBuilderEngineFaker 
      [Documentation]     ItemBuilderEngineFaker
      ...     | R09 | B01 Context is = None | B02 Requestes item code = address.state
-     [Tags]     robot:exclude
+     [Tags]     recommended
      ${output}    Get State
-     # The test case is considered skipped at this point because the keyword is not supported in the environment.
-     Skip
      # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
      Should Match Regexp    ${output}    pattern=^(.+((\\r\\n?|\\n))?)+$
 
@@ -172,7 +170,7 @@ Test Setup    Release Context
      [Documentation]     ItemBuilderEngineFaker
      ...     | R19 | B01 Context is = Set | B02 Requestes item code = address.address
      [Tags]     recommended
-     Set Context    TestCaseR19    et_EE    focus=test
+     Set Context    TestCaseR19    pl_PL    focus=test
      ${output}    Get Address
      # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
      Should Match Regexp    ${output}    pattern=^(.+((\\r\\n?|\\n))?)+$
@@ -184,7 +182,7 @@ Test Setup    Release Context
      [Documentation]     ItemBuilderEngineFaker
      ...     | R20 | B01 Context is = Set | B02 Requestes item code = address.address_country
      [Tags]     recommended
-     Set Context    TestCaseR20    en_US    focus=test
+     Set Context    TestCaseR20    hr_HR    focus=test
      ${output}    Get Address And Country
      # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
      Should Match Regexp    ${output}    pattern=^(.+((\\r\\n?|\\n))?)+$
@@ -208,7 +206,7 @@ Test Setup    Release Context
      [Documentation]     ItemBuilderEngineFaker
      ...     | R22 | B01 Context is = Set | B02 Requestes item code = address.street
      [Tags]     recommended
-     Set Context    TestCaseR22    sv_SE    focus=test
+     Set Context    TestCaseR22    en_AU    focus=test
      ${output}    Get Street
      # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
      Should Match Regexp    ${output}    pattern=^(.+((\\r\\n?|\\n))?)+$
@@ -220,7 +218,7 @@ Test Setup    Release Context
      [Documentation]     ItemBuilderEngineFaker
      ...     | R23 | B01 Context is = Set | B02 Requestes item code = address.house_number
      [Tags]     recommended
-     Set Context    TestCaseR23    es_ES    focus=test
+     Set Context    TestCaseR23    et_EE    focus=test
      ${output}    Get House Number
      # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
      Should Match Regexp    ${output}    pattern=^(.+((\\r\\n?|\\n))?)+$
@@ -232,7 +230,7 @@ Test Setup    Release Context
      [Documentation]     ItemBuilderEngineFaker
      ...     | R24 | B01 Context is = Set | B02 Requestes item code = address.postcode_city
      [Tags]     recommended
-     Set Context    TestCaseR24    de_AT    focus=test
+     Set Context    TestCaseR24    en_AU    focus=test
      ${output}    Get Postcode And City
      # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
      Should Match Regexp    ${output}    pattern=^(.+((\\r\\n?|\\n))?)+$
@@ -244,7 +242,7 @@ Test Setup    Release Context
      [Documentation]     ItemBuilderEngineFaker
      ...     | R25 | B01 Context is = Set | B02 Requestes item code = address.postcode
      [Tags]     recommended
-     Set Context    TestCaseR25    nl_NL    focus=test
+     Set Context    TestCaseR25    pl_PL    focus=test
      ${output}    Get Postcode
      # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
      Should Match Regexp    ${output}    pattern=^(.+((\\r\\n?|\\n))?)+$
@@ -256,7 +254,7 @@ Test Setup    Release Context
      [Documentation]     ItemBuilderEngineFaker
      ...     | R26 | B01 Context is = Set | B02 Requestes item code = address.city
      [Tags]     recommended
-     Set Context    TestCaseR26    en_GB    focus=test
+     Set Context    TestCaseR26    pt_PT    focus=test
      ${output}    Get City
      # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
      Should Match Regexp    ${output}    pattern=^(.+((\\r\\n?|\\n))?)+$
@@ -267,11 +265,9 @@ Test Setup    Release Context
 0027 ItemBuilderEngineFaker 
      [Documentation]     ItemBuilderEngineFaker
      ...     | R27 | B01 Context is = Set | B02 Requestes item code = address.state
-     [Tags]     robot:exclude
-     Set Context    TestCaseR27    pl_PL    focus=test
+     [Tags]     recommended
+     Set Context    TestCaseR27    fi_FI    focus=test
      ${output}    Get State
-     # The test case is considered skipped at this point because the keyword is not supported in the environment.
-     Skip
      # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
      Should Match Regexp    ${output}    pattern=^(.+((\\r\\n?|\\n))?)+$
      # Repetition of the keyword checks whether the result has also been saved in context.
@@ -282,7 +278,7 @@ Test Setup    Release Context
      [Documentation]     ItemBuilderEngineFaker
      ...     | R28 | B01 Context is = Set | B02 Requestes item code = address.country
      [Tags]     recommended
-     Set Context    TestCaseR28    es_AR    focus=test
+     Set Context    TestCaseR28    nl_NL    focus=test
      ${output}    Get Country
      # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
      Should Match Regexp    ${output}    pattern=^\\S.+$
@@ -294,7 +290,7 @@ Test Setup    Release Context
      [Documentation]     ItemBuilderEngineFaker
      ...     | R29 | B01 Context is = Set | B02 Requestes item code = address.country_code
      [Tags]     recommended
-     Set Context    TestCaseR29    pt_PT    focus=test
+     Set Context    TestCaseR29    en_US    focus=test
      ${output}    Get Country Code
      # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
      Should Match Regexp    ${output}    pattern=^(A[DEFGLMORTUZ])|(B[ABDEFGHIJNORSTWYZ])|(C[ADFGHILMNORUVYZ])|(D[EJKMOZ])|(E[CEGRST])|(F[IJMR])|(G[ABDEHMNQRTWY])|(H[NRTU])|(I[DELNQRST])|(J[MOP])|(K[EGHIMNPRWZ])|(L[ABCIKRSTUVY])|(M[ACDEGHKLMNRTUVWXYZ])|(N[AEGILOPRZ])|(OM)|(P[AEGHKLTWY])|(QA)|(R[OSUW])|(S[ABCDEGIKLMNORSTVYZ])|(T[DGHJLMNORTVZ])|(U[AGSYZ])|(V[CENU])|(WS)|(YE)|(Z[AMW])$
@@ -306,7 +302,7 @@ Test Setup    Release Context
      [Documentation]     ItemBuilderEngineFaker
      ...     | R30 | B01 Context is = Set | B02 Requestes item code = person.name | B03 Item person.first_name is = unknown | B04 Item person.last_name is = unknown
      [Tags]     recommended
-     Set Context    TestCaseR30    fi_FI    focus=test
+     Set Context    TestCaseR30    es_MX    focus=test
      ${output}    Get Name
      # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
      Should Match Regexp    ${output}    pattern=^\\S[^\\d]+\\s[^\\d]+$
@@ -318,7 +314,7 @@ Test Setup    Release Context
      [Documentation]     ItemBuilderEngineFaker
      ...     | R31 | B01 Context is = Set | B02 Requestes item code = person.name | B03 Item person.first_name is = unknown | B04 Item person.last_name is = known
      [Tags]     recommended
-     Set Context    TestCaseR31    cs_CZ    focus=test
+     Set Context    TestCaseR31    de_AT    focus=test
      # last name should be known and is pre-assigned.
      ${last_name}    Get Last Name
      ${output}    Get Name
@@ -332,7 +328,7 @@ Test Setup    Release Context
      [Documentation]     ItemBuilderEngineFaker
      ...     | R32 | B01 Context is = Set | B02 Requestes item code = person.name | B03 Item person.first_name is = known | B04 Item person.last_name is = unknown
      [Tags]     recommended
-     Set Context    TestCaseR32    de_CH    focus=test
+     Set Context    TestCaseR32    en_AU    focus=test
      # First name should be known and is pre-assigned.
      ${first_name}    Get First Name
      ${output}    Get Name
@@ -346,7 +342,7 @@ Test Setup    Release Context
      [Documentation]     ItemBuilderEngineFaker
      ...     | R33 | B01 Context is = Set | B02 Requestes item code = person.name | B03 Item person.first_name is = known | B04 Item person.last_name is = known
      [Tags]     recommended
-     Set Context    TestCaseR33    en_IE    focus=test
+     Set Context    TestCaseR33    it_IT    focus=test
      # First name should be known and is pre-assigned.
      ${first_name}    Get First Name
      # last name should be known and is pre-assigned.
@@ -362,7 +358,7 @@ Test Setup    Release Context
      [Documentation]     ItemBuilderEngineFaker
      ...     | R34 | B01 Context is = Set | B02 Requestes item code = person.first_name
      [Tags]     recommended
-     Set Context    TestCaseR34    no_NO    focus=test
+     Set Context    TestCaseR34    es_AR    focus=test
      ${output}    Get First Name
      # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
      Should Match Regexp    ${output}    pattern=^\\S[^\\d]+$
@@ -374,7 +370,7 @@ Test Setup    Release Context
      [Documentation]     ItemBuilderEngineFaker
      ...     | R35 | B01 Context is = Set | B02 Requestes item code = person.last_name
      [Tags]     recommended
-     Set Context    TestCaseR35    en_US    focus=test
+     Set Context    TestCaseR35    fr_FR    focus=test
      ${output}    Get Last Name
      # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
      Should Match Regexp    ${output}    pattern=^\\S[^\\d]+$
@@ -386,7 +382,7 @@ Test Setup    Release Context
      [Documentation]     ItemBuilderEngineFaker
      ...     | R36 | B01 Context is = Set | B02 Requestes item code = traffic.license_plate
      [Tags]     recommended
-     Set Context    TestCaseR36    es_MX    focus=test
+     Set Context    TestCaseR36    no_NO    focus=test
      ${output}    Get License Plate
      # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
      Should Match Regexp    ${output}    pattern=^.+$
@@ -398,7 +394,7 @@ Test Setup    Release Context
      [Documentation]     ItemBuilderEngineFaker
      ...     | R37 | B01 Context is = Set | B02 Requestes item code = finance.bank_name
      [Tags]     recommended
-     Set Context    TestCaseR37    en_IE    focus=test
+     Set Context    TestCaseR37    fi_FI    focus=test
      ${output}    Get Bank
      # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
      Should Match Regexp    ${output}    pattern=^.*$
@@ -410,7 +406,7 @@ Test Setup    Release Context
      [Documentation]     ItemBuilderEngineFaker
      ...     | R38 | B01 Context is = Set | B02 Requestes item code = finance.bank_bic
      [Tags]     recommended
-     Set Context    TestCaseR38    de_CH    focus=test
+     Set Context    TestCaseR38    en_AU    focus=test
      ${output}    Get Bic
      # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
      Should Match Regexp    ${output}    pattern=^[A-Z0-9]{8,11}$
@@ -422,7 +418,7 @@ Test Setup    Release Context
      [Documentation]     ItemBuilderEngineFaker
      ...     | R39 | B01 Context is = Set | B02 Requestes item code = finance.bank_iban
      [Tags]     recommended
-     Set Context    TestCaseR39    en_NZ    focus=test
+     Set Context    TestCaseR39    en_GB    focus=test
      ${output}    Get Iban
      # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
      Should Match Regexp    ${output}    pattern=^[A-Z]{2}[0-9]{2}[A-Z0-9]{1,30}$

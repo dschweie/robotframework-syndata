@@ -18,6 +18,17 @@ class Country(object):
         if(1 > len(names)):
             names = data["en"].array
         return names[random.randrange(0, len(names))]
+
+    @staticmethod
+    def get_state_name(item_data: dict, country_code:str) -> str:
+        data = pd.read_csv(f"{Country.CLASS_PATH}/data/subdivisions.csv", index_col=False, sep=',', low_memory=False)
+        data = data.query(f"country == '{country_code}'").query("parent.isna()")
+        if(0 < len(data)):
+            row = random.randrange(0, data.shape[0])
+            return data["name"].iloc[row]
+        else:
+            return ""
+
         
     @staticmethod
     def get_country_code(item_data: dict, code: Literal["ALPHA-2", "ALPHA-3"] ="ALPHA-2"):

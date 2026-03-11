@@ -422,7 +422,10 @@ class SynData:
         """
         The keyword contains the name of a state.
 
-        Depending on the location, the keyword may return a different result. 
+        Most countries have a structure referred to as a state, province, or 
+        region. The name of such an entity is returned by this keyword.
+
+        If the structure is unknown for a country, an empty string is returned.
 
         Germany is divided into 16 federal states. The keyword returns the name 
         of one of these federal states and, if a context is set, the return 

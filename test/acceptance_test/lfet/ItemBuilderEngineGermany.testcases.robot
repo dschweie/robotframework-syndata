@@ -6,7 +6,7 @@ Documentation
 ...    | *Informationen zur Ausführung* | |
 ...    | Aktueller Benutzer: | dschweie |
 ...    | Aktuelles Verzeichnis (user.dir): | "E:/data/schweier/rbtfrmwrk/robotframework-syndata" |
-...    | Benötigte Zeit: | 00:00:01.664 (10.03.2026 16:01:32.694 - 10.03.2026 16:01:34.358) |
+...    | Benötigte Zeit: | 00:00:01.318 (11.03.2026 08:46:09.750 - 11.03.2026 08:46:11.068) |
 ...    | *Informationen zur Generierung* | |
 ...    | Kommandozeile: | -GenTest "./lfet/ItemBuilderEngineGermany.lfet" -Group "robot" -Config "acceptance tests" -GtdDirectory "./testdata/de" -GtdFileNamePattern "*.csv" -DDTableName "keyword" -DDLimit "4" -NonExecutableRules "50" -RecommendedTestCases -ExportRobotFramework "../test/acceptance_test/lfet/ItemBuilderEngineGermany.testcases.robot" |
 ...    | Entscheidungstabelle: | ././lfet/ItemBuilderEngineGermany.lfet |
@@ -148,20 +148,20 @@ Test Setup     Release Context
      [Documentation]     ItemBuilderEngineGermany
      ...     | R16 | B01 Context is = None | B02 Domain of the item is = traffic | B05 Requested item code of domain "traffic" = traffic.license_plate
      [Tags]     datadriven     ddcount 04     r16     recommended     rid79
-     ${output}    Get License Plate    city=Wuppertal
+     ${output}    Get License Plate    city=Berlin
      # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
-     Should Match Regexp    ${output}    pattern=(?!.{11}$)^W\\s[A-Z]{1,2}\\s[1-9]\\d{0,3}[EH]?$
+     Should Match Regexp    ${output}    pattern=(?!.{11}$)^B\\s[A-Z]{1,2}\\s[1-9]\\d{0,3}[EH]?$
 
 0017 ItemBuilderEngineGermany 
      [Documentation]     ItemBuilderEngineGermany
      ...     | R17 | B01 Context is = Set | B02 Domain of the item is = address | B08 Geographical reference is = unknown
      [Tags]     datadriven     ddcount 04     r17     recommended     rid84
      Set Context    TestCaseR17    de_DE    focus=test
-     ${output}    Get House Number
+     ${output}    Get Country Code
      # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
-     Should Match Regexp    ${output}    pattern=^\\d\\d?\\d?[A-Ha-h]?$
+     Should Match Regexp    ${output}    pattern=^DE$
      # Repetition of the keyword checks whether the result has also been saved in context.
-     ${repetition}    Get House Number
+     ${repetition}    Get Country Code
      Should Be Equal As Strings    ${output}    ${repetition}
 
 0018 ItemBuilderEngineGermany 
@@ -171,11 +171,11 @@ Test Setup     Release Context
      Set Context    TestCaseR18    de_DE    focus=test
      # The test case asks for city to ensure geografical reference is set
      ${ref_city}    Get Postcode And City
-     ${output}    Get Street
+     ${output}    Get City
      # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
      Should Match Regexp    ${output}    pattern=^\\S.+$
      # Repetition of the keyword checks whether the result has also been saved in context.
-     ${repetition}    Get Street
+     ${repetition}    Get City
      Should Be Equal As Strings    ${output}    ${repetition}
 
 0019 ItemBuilderEngineGermany 
@@ -183,11 +183,11 @@ Test Setup     Release Context
      ...     | R19 | B01 Context is = Set | B02 Domain of the item is = finance
      [Tags]     datadriven     ddcount 02     r19     recommended     rid78
      Set Context    TestCaseR19    de_DE    focus=test
-     ${output}    Get Bic
+     ${output}    Get Iban
      # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
-     Should Match Regexp    ${output}    pattern=^[A-Z0-9]{4}DE([01][A-NP-Z]|[A-Z2-9][A-NP-Z0-9])([X]{3}|[A-WYZ0-9][A-Z0-9]{2})?$
+     Should Match Regexp    ${output}    pattern=^DE[0-9]{20}
      # Repetition of the keyword checks whether the result has also been saved in context.
-     ${repetition}    Get Bic
+     ${repetition}    Get Iban
      Should Be Equal As Strings    ${output}    ${repetition}
 
 0020 ItemBuilderEngineGermany 
@@ -275,11 +275,11 @@ Test Setup     Release Context
      ...     | R26 | B01 Context is = Set | B02 Domain of the item is = traffic | B05 Requested item code of domain "traffic" = traffic.license_plate | B08 Geographical reference is = unknown
      [Tags]     datadriven     ddcount 04     r26     recommended     rid82
      Set Context    TestCaseR26    de_DE    focus=test
-     ${output}    Get License Plate    state=Saxony
+     ${output}    Get License Plate    state=DE-HB
      # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
-     Should Match Regexp    ${output}    pattern=(?!.{11}$)^[A-ZÄÖÜ]{1,3}\\s[A-Z]{1,2}\\s[1-9]\\d{0,3}[EH]?$
+     Should Match Regexp    ${output}    pattern=(?!.{11}$)^HB\\s[A-Z]{1,2}\\s[1-9]\\d{0,3}[EH]?$
      # Repetition of the keyword checks whether the result has also been saved in context.
-     ${repetition}    Get License Plate    state=Saxony
+     ${repetition}    Get License Plate    state=DE-HB
      Should Be Equal As Strings    ${output}    ${repetition}
 
 0027 ItemBuilderEngineGermany 
@@ -310,19 +310,35 @@ Test Setup     Release Context
      [Documentation]     ItemBuilderEngineGermany
      ...     | R12 | B01 Context is = None | B02 Domain of the item is = finance
      [Tags]     datadriven     ddbase 0012     r12     rid58
-     ${output}    Get Iban
+     ${output}    Get Bic
      # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
-     Should Match Regexp    ${output}    pattern=^DE[0-9]{20}
+     Should Match Regexp    ${output}    pattern=^[A-Z0-9]{4}DE([01][A-NP-Z]|[A-Z2-9][A-NP-Z0-9])([X]{3}|[A-WYZ0-9][A-Z0-9]{2})?$
 
 0030 ItemBuilderEngineGermany 
      [Documentation]     ItemBuilderEngineGermany
      ...     | R12 | B01 Context is = None | B02 Domain of the item is = finance
      [Tags]     datadriven     ddbase 0012     r12     rid58
-     ${output}    Get Bic
+     ${output}    Get Iban
      # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
-     Should Match Regexp    ${output}    pattern=^[A-Z0-9]{4}DE([01][A-NP-Z]|[A-Z2-9][A-NP-Z0-9])([X]{3}|[A-WYZ0-9][A-Z0-9]{2})?$
+     Should Match Regexp    ${output}    pattern=^DE[0-9]{20}
 
 0031 ItemBuilderEngineGermany 
+     [Documentation]     ItemBuilderEngineGermany
+     ...     | R16 | B01 Context is = None | B02 Domain of the item is = traffic | B05 Requested item code of domain "traffic" = traffic.license_plate
+     [Tags]     datadriven     ddbase 0016     r16     rid79
+     ${output}    Get License Plate    city=München
+     # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
+     Should Match Regexp    ${output}    pattern=(?!.{11}$)^M(UC)?\\s[A-Z]{1,2}\\s[1-9]\\d{0,3}[EH]?$
+
+0032 ItemBuilderEngineGermany 
+     [Documentation]     ItemBuilderEngineGermany
+     ...     | R16 | B01 Context is = None | B02 Domain of the item is = traffic | B05 Requested item code of domain "traffic" = traffic.license_plate
+     [Tags]     datadriven     ddbase 0016     r16     rid79
+     ${output}    Get License Plate    city=Bremerhaven
+     # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
+     Should Match Regexp    ${output}    pattern=(?!.{11}$)^HB\\s[A-Z]{1,2}\\s[1-9]\\d{0,3}[EH]?$
+
+0033 ItemBuilderEngineGermany 
      [Documentation]     ItemBuilderEngineGermany
      ...     | R16 | B01 Context is = None | B02 Domain of the item is = traffic | B05 Requested item code of domain "traffic" = traffic.license_plate
      [Tags]     datadriven     ddbase 0016     r16     rid79
@@ -330,67 +346,27 @@ Test Setup     Release Context
      # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
      Should Match Regexp    ${output}    pattern=(?!.{11}$)^PLÖ\\s[A-Z]{1,2}\\s[1-9]\\d{0,3}[EH]?$
 
-0032 ItemBuilderEngineGermany 
-     [Documentation]     ItemBuilderEngineGermany
-     ...     | R16 | B01 Context is = None | B02 Domain of the item is = traffic | B05 Requested item code of domain "traffic" = traffic.license_plate
-     [Tags]     datadriven     ddbase 0016     r16     rid79
-     ${output}    Get License Plate    state=Berlin
-     # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
-     Should Match Regexp    ${output}    pattern=(?!.{11}$)^B\\s[A-Z]{1,2}\\s[1-9]\\d{0,3}[EH]?$
-
-0033 ItemBuilderEngineGermany 
-     [Documentation]     ItemBuilderEngineGermany
-     ...     | R16 | B01 Context is = None | B02 Domain of the item is = traffic | B05 Requested item code of domain "traffic" = traffic.license_plate
-     [Tags]     datadriven     ddbase 0016     r16     rid79
-     ${output}    Get License Plate    city=Hambach
-     # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
-     Should Match Regexp    ${output}    pattern=(?!.{11}$)^(EMS|DIZ|GOH)\\s[A-Z]{1,2}\\s[1-9]\\d{0,3}[EH]?$
-
 0034 ItemBuilderEngineGermany 
      [Documentation]     ItemBuilderEngineGermany
      ...     | R16 | B01 Context is = None | B02 Domain of the item is = traffic | B05 Requested item code of domain "traffic" = traffic.license_plate
      [Tags]     datadriven     ddbase 0016     r16     rid79
-     ${output}    Get License Plate    state=DE-HB
+     ${output}    Get License Plate    city=Budenheim
      # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
-     Should Match Regexp    ${output}    pattern=(?!.{11}$)^HB\\s[A-Z]{1,2}\\s[1-9]\\d{0,3}[EH]?$
+     Should Match Regexp    ${output}    pattern=(?!.{11}$)^(MZ|BIN)\\s[A-Z]{1,2}\\s[1-9]\\d{0,3}[EH]?$
 
 0035 ItemBuilderEngineGermany 
      [Documentation]     ItemBuilderEngineGermany
      ...     | R17 | B01 Context is = Set | B02 Domain of the item is = address | B08 Geographical reference is = unknown
      [Tags]     datadriven     ddbase 0017     r17     rid84
      Set Context    TestCaseR17    de_DE    focus=test
-     ${output}    Get Address
+     ${output}    Get Postcode
      # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
-     Should Match Regexp    ${output}    pattern=^\\S.+\\s\\d\\d?\\d?[A-Ha-h]?(\\r\\n?|\\n)\\d{5}\\s.+$
+     Should Match Regexp    ${output}    pattern=^\\d{5}$
      # Repetition of the keyword checks whether the result has also been saved in context.
-     ${repetition}    Get Address
+     ${repetition}    Get Postcode
      Should Be Equal As Strings    ${output}    ${repetition}
 
 0036 ItemBuilderEngineGermany 
-     [Documentation]     ItemBuilderEngineGermany
-     ...     | R17 | B01 Context is = Set | B02 Domain of the item is = address | B08 Geographical reference is = unknown
-     [Tags]     datadriven     ddbase 0017     r17     rid84
-     Set Context    TestCaseR17    de_DE    focus=test
-     ${output}    Get Country Code
-     # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
-     Should Match Regexp    ${output}    pattern=^DE$
-     # Repetition of the keyword checks whether the result has also been saved in context.
-     ${repetition}    Get Country Code
-     Should Be Equal As Strings    ${output}    ${repetition}
-
-0037 ItemBuilderEngineGermany 
-     [Documentation]     ItemBuilderEngineGermany
-     ...     | R17 | B01 Context is = Set | B02 Domain of the item is = address | B08 Geographical reference is = unknown
-     [Tags]     datadriven     ddbase 0017     r17     rid84
-     Set Context    TestCaseR17    de_DE    focus=test
-     ${output}    Get City
-     # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
-     Should Match Regexp    ${output}    pattern=^\\S.+$
-     # Repetition of the keyword checks whether the result has also been saved in context.
-     ${repetition}    Get City
-     Should Be Equal As Strings    ${output}    ${repetition}
-
-0038 ItemBuilderEngineGermany 
      [Documentation]     ItemBuilderEngineGermany
      ...     | R17 | B01 Context is = Set | B02 Domain of the item is = address | B08 Geographical reference is = unknown
      [Tags]     datadriven     ddbase 0017     r17     rid84
@@ -402,21 +378,31 @@ Test Setup     Release Context
      ${repetition}    Get Address And Country
      Should Be Equal As Strings    ${output}    ${repetition}
 
-0039 ItemBuilderEngineGermany 
+0037 ItemBuilderEngineGermany 
      [Documentation]     ItemBuilderEngineGermany
-     ...     | R18 | B01 Context is = Set | B02 Domain of the item is = address | B08 Geographical reference is = given
-     [Tags]     datadriven     ddbase 0018     r18     rid85
-     Set Context    TestCaseR18    de_DE    focus=test
-     # The test case asks for city to ensure geografical reference is set
-     ${ref_city}    Get Postcode And City
-     ${output}    Get Postcode And City
+     ...     | R17 | B01 Context is = Set | B02 Domain of the item is = address | B08 Geographical reference is = unknown
+     [Tags]     datadriven     ddbase 0017     r17     rid84
+     Set Context    TestCaseR17    de_DE    focus=test
+     ${output}    Get House Number
      # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
-     Should Match Regexp    ${output}    pattern=^\\d{5}\\s.+$
+     Should Match Regexp    ${output}    pattern=^\\d\\d?\\d?[A-Ha-h]?$
      # Repetition of the keyword checks whether the result has also been saved in context.
-     ${repetition}    Get Postcode And City
+     ${repetition}    Get House Number
      Should Be Equal As Strings    ${output}    ${repetition}
 
-0040 ItemBuilderEngineGermany 
+0038 ItemBuilderEngineGermany 
+     [Documentation]     ItemBuilderEngineGermany
+     ...     | R17 | B01 Context is = Set | B02 Domain of the item is = address | B08 Geographical reference is = unknown
+     [Tags]     datadriven     ddbase 0017     r17     rid84
+     Set Context    TestCaseR17    de_DE    focus=test
+     ${output}    Get Address
+     # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
+     Should Match Regexp    ${output}    pattern=^\\S.+\\s\\d\\d?\\d?[A-Ha-h]?(\\r\\n?|\\n)\\d{5}\\s.+$
+     # Repetition of the keyword checks whether the result has also been saved in context.
+     ${repetition}    Get Address
+     Should Be Equal As Strings    ${output}    ${repetition}
+
+0039 ItemBuilderEngineGermany 
      [Documentation]     ItemBuilderEngineGermany
      ...     | R18 | B01 Context is = Set | B02 Domain of the item is = address | B08 Geographical reference is = given
      [Tags]     datadriven     ddbase 0018     r18     rid85
@@ -430,21 +416,21 @@ Test Setup     Release Context
      ${repetition}    Get Street And House Number
      Should Be Equal As Strings    ${output}    ${repetition}
 
-0041 ItemBuilderEngineGermany 
+0040 ItemBuilderEngineGermany 
      [Documentation]     ItemBuilderEngineGermany
      ...     | R18 | B01 Context is = Set | B02 Domain of the item is = address | B08 Geographical reference is = given
      [Tags]     datadriven     ddbase 0018     r18     rid85
      Set Context    TestCaseR18    de_DE    focus=test
      # The test case asks for city to ensure geografical reference is set
      ${ref_city}    Get Postcode And City
-     ${output}    Get Postcode
+     ${output}    Get Postcode And City
      # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
-     Should Match Regexp    ${output}    pattern=^\\d{5}$
+     Should Match Regexp    ${output}    pattern=^\\d{5}\\s.+$
      # Repetition of the keyword checks whether the result has also been saved in context.
-     ${repetition}    Get Postcode
+     ${repetition}    Get Postcode And City
      Should Be Equal As Strings    ${output}    ${repetition}
 
-0042 ItemBuilderEngineGermany 
+0041 ItemBuilderEngineGermany 
      [Documentation]     ItemBuilderEngineGermany
      ...     | R18 | B01 Context is = Set | B02 Domain of the item is = address | B08 Geographical reference is = given
      [Tags]     datadriven     ddbase 0018     r18     rid85
@@ -458,16 +444,30 @@ Test Setup     Release Context
      ${repetition}    Get State
      Should Be Equal As Strings    ${output}    ${repetition}
 
+0042 ItemBuilderEngineGermany 
+     [Documentation]     ItemBuilderEngineGermany
+     ...     | R18 | B01 Context is = Set | B02 Domain of the item is = address | B08 Geographical reference is = given
+     [Tags]     datadriven     ddbase 0018     r18     rid85
+     Set Context    TestCaseR18    de_DE    focus=test
+     # The test case asks for city to ensure geografical reference is set
+     ${ref_city}    Get Postcode And City
+     ${output}    Get Country
+     # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
+     Should Match Regexp    ${output}    pattern=^Deutschland$
+     # Repetition of the keyword checks whether the result has also been saved in context.
+     ${repetition}    Get Country
+     Should Be Equal As Strings    ${output}    ${repetition}
+
 0043 ItemBuilderEngineGermany 
      [Documentation]     ItemBuilderEngineGermany
      ...     | R19 | B01 Context is = Set | B02 Domain of the item is = finance
      [Tags]     datadriven     ddbase 0019     r19     rid78
      Set Context    TestCaseR19    de_DE    focus=test
-     ${output}    Get Iban
+     ${output}    Get Bic
      # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
-     Should Match Regexp    ${output}    pattern=^DE[0-9]{20}
+     Should Match Regexp    ${output}    pattern=^[A-Z0-9]{4}DE([01][A-NP-Z]|[A-Z2-9][A-NP-Z0-9])([X]{3}|[A-WYZ0-9][A-Z0-9]{2})?$
      # Repetition of the keyword checks whether the result has also been saved in context.
-     ${repetition}    Get Iban
+     ${repetition}    Get Bic
      Should Be Equal As Strings    ${output}    ${repetition}
 
 0044 ItemBuilderEngineGermany 
@@ -487,11 +487,11 @@ Test Setup     Release Context
      ...     | R26 | B01 Context is = Set | B02 Domain of the item is = traffic | B05 Requested item code of domain "traffic" = traffic.license_plate | B08 Geographical reference is = unknown
      [Tags]     datadriven     ddbase 0026     r26     rid82
      Set Context    TestCaseR26    de_DE    focus=test
-     ${output}    Get License Plate    city=Bremen
+     ${output}    Get License Plate    city=Hambach
      # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
-     Should Match Regexp    ${output}    pattern=(?!.{11}$)^HB\\s[A-Z]{1,2}\\s[1-9]\\d{0,3}[EH]?$
+     Should Match Regexp    ${output}    pattern=(?!.{11}$)^(EMS|DIZ|GOH)\\s[A-Z]{1,2}\\s[1-9]\\d{0,3}[EH]?$
      # Repetition of the keyword checks whether the result has also been saved in context.
-     ${repetition}    Get License Plate    city=Bremen
+     ${repetition}    Get License Plate    city=Hambach
      Should Be Equal As Strings    ${output}    ${repetition}
 
 0046 ItemBuilderEngineGermany 
@@ -499,11 +499,11 @@ Test Setup     Release Context
      ...     | R26 | B01 Context is = Set | B02 Domain of the item is = traffic | B05 Requested item code of domain "traffic" = traffic.license_plate | B08 Geographical reference is = unknown
      [Tags]     datadriven     ddbase 0026     r26     rid82
      Set Context    TestCaseR26    de_DE    focus=test
-     ${output}    Get License Plate    city=Berlin
+     ${output}    Get License Plate    state=Bremen
      # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
-     Should Match Regexp    ${output}    pattern=(?!.{11}$)^B\\s[A-Z]{1,2}\\s[1-9]\\d{0,3}[EH]?$
+     Should Match Regexp    ${output}    pattern=(?!.{11}$)^HB\\s[A-Z]{1,2}\\s[1-9]\\d{0,3}[EH]?$
      # Repetition of the keyword checks whether the result has also been saved in context.
-     ${repetition}    Get License Plate    city=Berlin
+     ${repetition}    Get License Plate    state=Bremen
      Should Be Equal As Strings    ${output}    ${repetition}
 
 0047 ItemBuilderEngineGermany 
@@ -511,11 +511,11 @@ Test Setup     Release Context
      ...     | R26 | B01 Context is = Set | B02 Domain of the item is = traffic | B05 Requested item code of domain "traffic" = traffic.license_plate | B08 Geographical reference is = unknown
      [Tags]     datadriven     ddbase 0026     r26     rid82
      Set Context    TestCaseR26    de_DE    focus=test
-     ${output}    Get License Plate    city=Bremerhaven
+     ${output}    Get License Plate    state=DE-BE
      # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
-     Should Match Regexp    ${output}    pattern=(?!.{11}$)^HB\\s[A-Z]{1,2}\\s[1-9]\\d{0,3}[EH]?$
+     Should Match Regexp    ${output}    pattern=(?!.{11}$)^B\\s[A-Z]{1,2}\\s[1-9]\\d{0,3}[EH]?$
      # Repetition of the keyword checks whether the result has also been saved in context.
-     ${repetition}    Get License Plate    city=Bremerhaven
+     ${repetition}    Get License Plate    state=DE-BE
      Should Be Equal As Strings    ${output}    ${repetition}
 
 0048 ItemBuilderEngineGermany 
@@ -523,11 +523,11 @@ Test Setup     Release Context
      ...     | R26 | B01 Context is = Set | B02 Domain of the item is = traffic | B05 Requested item code of domain "traffic" = traffic.license_plate | B08 Geographical reference is = unknown
      [Tags]     datadriven     ddbase 0026     r26     rid82
      Set Context    TestCaseR26    de_DE    focus=test
-     ${output}    Get License Plate    state=Bavaria
+     ${output}    Get License Plate    state=Thuringia
      # The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.
      Should Match Regexp    ${output}    pattern=(?!.{11}$)^[A-ZÄÖÜ]{1,3}\\s[A-Z]{1,2}\\s[1-9]\\d{0,3}[EH]?$
      # Repetition of the keyword checks whether the result has also been saved in context.
-     ${repetition}    Get License Plate    state=Bavaria
+     ${repetition}    Get License Plate    state=Thuringia
      Should Be Equal As Strings    ${output}    ${repetition}
 
 ### end of generated test cases ###

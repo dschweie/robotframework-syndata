@@ -3,7 +3,7 @@
 # 
 # Aktueller Benutzer: dschweie
 # Aktuelles Verzeichnis (user.dir): "E:\data\schweier\rbtfrmwrk\robotframework-syndata"
-# Benötigte Zeit: 00:00:01.179 (10.03.2026 16:01:02.982 - 10.03.2026 16:01:04.161)
+# Benötigte Zeit: 00:00:00.960 (11.03.2026 08:45:44.173 - 11.03.2026 08:45:45.133)
 # 
 # Entscheidungstabelle: E:\data\schweier\rbtfrmwrk\robotframework-syndata\.\lfet\ItemBuilderEngineGermany.lfet
 # 
@@ -19,7 +19,7 @@
 #         ItemBuilderEngineGermany
 #         | R28 | B02=traffic | B05=else
 #         
-#         Die dynamisch erzeugte GTD Teilmenge 'item' enthält keine Datensätze. {(item, GherkinItems_de, *, 51 Sätze), (item, item, domain == "traffic", 3 Sätze), (item, item, item == "else", 0 Sätze)}  (10.03.2026 16:01:04.149)
+#         Die dynamisch erzeugte GTD Teilmenge 'item' enthält keine Datensätze. {(item, GherkinItems_de, *, 51 Sätze), (item, item, domain == "traffic", 3 Sätze), (item, item, item == "else", 0 Sätze)}  (11.03.2026 08:45:45.123)
 # 
 # Testfälle mit Warnungen: 0
 # 
@@ -195,8 +195,8 @@ Feature: Generating test data specifically for Germany
     *     in SynData no context is set
     When  the builder engine is called:
       | item              | item_data | keyword  |
-      | finance.bank_iban | {}        | Get Iban |
-    Then  the result for "finance.bank_iban" should match "^DE[0-9]{20}$"
+      | finance.bank_name | {}        | Get Bank |
+    Then  the result for "finance.bank_name" should match "^.+$"
     *     rule "12" of "28" from decision table "ItemBuilderEngineGermany" has been executed
     *     there must be no entry in the internal log
 
@@ -267,12 +267,12 @@ Feature: Generating test data specifically for Germany
       | data_json |
       | {}        |
     When  the builder engine is called:
-      | item                  | item_data | keyword               |
-      | address.postcode_city | {}        | Get Postcode And City |
-    Then  the result for "address.postcode_city" should match "^\d{5}\s.+$"
+      | item                    | item_data | keyword                 |
+      | address.address_country | {}        | Get Address And Country |
+    Then  the result for "address.address_country" should match "^\S.+\s\d+[A-Ha-h]?(\r\n?|\n)\d{5}\s.+(\r\n?|\n)Deutschland$"
     *     the internal storage for the following items should be checked:
-      | data_json                                                                                                                                                                                                                                                                                                                                                                           |
-      | {"address.address":"#stored", "address.address_country":"#stored", "address.city":"#stored", "address.country":"#stored", "address.country_code":"#stored", "address.house_number":"#stored", "address.postcode":"#stored", "address.postcode_city":"#retval", "address.state":"#stored", "address.street":"#stored", "address.street_address":"#stored", "location.ags":"#stored"} |
+      | data_json                                                                                                                                                                                                                                                                                                                                                                          |
+      | {"address.address":"#stored", "address.address_country":"#retval", "address.city":"#stored", "address.country":"Deutschland", "address.country_code":"DE", "address.house_number":"#stored", "address.postcode":"#stored", "address.postcode_city":"#stored", "address.state":"#stored", "address.street":"#stored", "address.street_address":"#stored", "location.ags":"#stored"} |
     *     rule "17" of "28" from decision table "ItemBuilderEngineGermany" has been executed
     *     there must be no entry in the internal log
 
@@ -285,14 +285,14 @@ Feature: Generating test data specifically for Germany
     *     in SynData the context "ItemBuilderEngineGermanyR18" with focus "test" and localization "de_DE" is set
     *     in SynData items are stored
       | data_json                   |
-      | {"location.ags":"03357013"} |
+      | {"location.ags":"07135070"} |
     When  the builder engine is called:
-      | item            | item_data | keyword     |
-      | address.address | {}        | Get Address |
-    Then  the result for "address.address" should match "^\S.+\s\d+[A-Ha-h]?(\r\n?|\n)27404 Elsdorf.*$"
+      | item             | item_data | keyword      |
+      | address.postcode | {}        | Get Postcode |
+    Then  the result for "address.postcode" should match "^56865$"
     *     the internal storage for the following items should be checked:
-      | data_json                                                                                                                                                                                                                                                                                                                                                                                |
-      | {"address.address":"#retval", "address.address_country":"#stored", "address.city":"Elsdorf", "address.country":"#stored", "address.country_code":"#stored", "address.house_number":"#stored", "address.postcode":"27404", "address.postcode_city":"#stored", "address.state":"Niedersachsen", "address.street":"#stored", "address.street_address":"#stored", "location.ags":"03357013"} |
+      | data_json                                                                                                                                                                                                                                                                                                                                                                                    |
+      | {"address.address":"#stored", "address.address_country":"#stored", "address.city":"#stored", "address.country":"#stored", "address.country_code":"#stored", "address.house_number":"#stored", "address.postcode":"#retval", "address.postcode_city":"#stored", "address.state":"Rheinland-Pfalz", "address.street":"#stored", "address.street_address":"#stored", "location.ags":"07135070"} |
     *     rule "18" of "28" from decision table "ItemBuilderEngineGermany" has been executed
     *     there must be no entry in the internal log
 
@@ -480,6 +480,6 @@ Feature: Generating test data specifically for Germany
   Scenario: 0028 ItemBuilderEngineGermany
     ItemBuilderEngineGermany
     R28 : B02 Domain of the item is = traffic ; B05 Requested item code of domain "traffic" = else    messages:
-    # Die dynamisch erzeugte GTD Teilmenge 'item' enthält keine Datensätze. {(item, GherkinItems_de, *, 51 Sätze), (item, item, domain == "traffic", 3 Sätze), (item, item, item == "else", 0 Sätze)}  (10.03.2026 16:01:04.149)
+    # Die dynamisch erzeugte GTD Teilmenge 'item' enthält keine Datensätze. {(item, GherkinItems_de, *, 51 Sätze), (item, item, domain == "traffic", 3 Sätze), (item, item, item == "else", 0 Sätze)}  (11.03.2026 08:45:45.123)
 
 ### end of generated test cases ###

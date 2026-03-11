@@ -11,6 +11,7 @@ __pycache__/
 build/
 develop-eggs/
 dist/
+**/node_modules/**/*.*
 downloads/
 eggs/
 .eggs/
@@ -128,10 +129,11 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-
-
 # Robot Framework Logs
 /results/**/*.*
+
+# This special file might be generated but will never be used.
+/**/common/data/finance_banks_de.csv
 
 # LF-ET backup / temp files
 /lfet/**/*.lfet.$bak.*
@@ -148,3 +150,5 @@ dmypy.json
 # Poetry
 poetry.lock
 /.idea/**/*.*
+node_modules/**
+
