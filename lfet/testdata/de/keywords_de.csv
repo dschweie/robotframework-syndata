@@ -14,6 +14,22 @@ Encoding = UTF-8
  Get State                                       ; address.state           ; address  ; false  ; ^\\S.+$                                                                           ;          ;          ; ^(.+((\\r\\n?|\\n))?)+$
  Get Country                                     ; address.country         ; address  ; false  ; ^Deutschland$                                                                     ;          ;          ; ^\\S.+$ 
  Get Country Code                                ; address.country_code    ; address  ; false  ; ^DE$                                                                              ;          ;          ; ^(A[DEFGLMORTUZ])|(B[ABDEFGHIJNORSTWYZ])|(C[ADFGHILMNORUVYZ])|(D[EJKMOZ])|(E[CEGRST])|(F[IJMR])|(G[ABDEHMNQRTWY])|(H[NRTU])|(I[DELNQRST])|(J[MOP])|(K[EGHIMNPRWZ])|(L[ABCIKRSTUVY])|(M[ACDEGHKLMNRTUVWXYZ])|(N[AEGILOPRZ])|(OM)|(P[AEGHKLTWY])|(QA)|(R[OSUW])|(S[ABCDEGIKLMNORSTVYZ])|(T[DGHJLMNORTVZ])|(U[AGSYZ])|(V[CENU])|(WS)|(YE)|(Z[AMW])$
+ Get EMail                                       ; communication.email     ; communication ; false ; ^.+@.+$ ; unknown  ; unknown  ; ^.+@.+$
+ Get EMail                                       ; communication.email     ; communication ; false ; ^.+@.+$ ; known    ; unknown  ; ^.+@.+$
+ Get EMail                                       ; communication.email     ; communication ; false ; ^.+@.+$ ; unknown  ; known    ; ^.+@.+$
+ Get EMail                                       ; communication.email     ; communication ; false ; ^.+@.+$ ; known    ; known    ; ^.+@.+$
+ Get EMail    sex=f                              ; communication.email     ; communication ; true  ; ^.+@.+$ ; unknown  ; unknown  ; ^.+@.+$
+ Get EMail    sex=f                              ; communication.email     ; communication ; true  ; ^.+@.+$ ; known    ; unknown  ; ^.+@.+$
+ Get EMail    sex=f                              ; communication.email     ; communication ; true  ; ^.+@.+$ ; unknown  ; known    ; ^.+@.+$
+ Get EMail    sex=f                              ; communication.email     ; communication ; true  ; ^.+@.+$ ; known    ; known    ; ^.+@.+$
+ Get EMail    sex=m                              ; communication.email     ; communication ; true  ; ^.+@.+$ ; unknown  ; unknown  ; ^.+@.+$
+ Get EMail    sex=m                              ; communication.email     ; communication ; true  ; ^.+@.+$ ; known    ; unknown  ; ^.+@.+$
+ Get EMail    sex=m                              ; communication.email     ; communication ; true  ; ^.+@.+$ ; unknown  ; known    ; ^.+@.+$
+ Get EMail    sex=m                              ; communication.email     ; communication ; true  ; ^.+@.+$ ; known    ; known    ; ^.+@.+$
+ Get EMail    sex=d                              ; communication.email     ; communication ; true  ; ^.+@.+$ ; unknown  ; unknown  ; ^.+@.+$
+ Get EMail    sex=d                              ; communication.email     ; communication ; true  ; ^.+@.+$ ; known    ; unknown  ; ^.+@.+$
+ Get EMail    sex=d                              ; communication.email     ; communication ; true  ; ^.+@.+$ ; unknown  ; known    ; ^.+@.+$
+ Get EMail    sex=d                              ; communication.email     ; communication ; true  ; ^.+@.+$ ; known    ; known    ; ^.+@.+$
  Get Name                                        ; person.name             ; person   ; false  ; ^\\S[^\\d]+\\s[^\\d]+$                                                            ; unknown  ; unknown  ; ^\\S[^\\d]+\\s[^\\d]+$
  Get Name                                        ; person.name             ; person   ; false  ; ^${first_name}\\s[^\\d]+$                                                         ; known    ; unknown  ; ^${first_name}\\s[^\\d]+$
  Get Name                                        ; person.name             ; person   ; false  ; ^\\S[^\\d]+\\s${last_name}$                                                       ; unknown  ; known    ; ^\\S[^\\d]+\\s${last_name}$

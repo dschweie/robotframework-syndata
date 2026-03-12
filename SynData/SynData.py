@@ -13,7 +13,7 @@ from .item_builder_engine import ItemBuilderEngine
 from .common.country import Country
 from .common.finance import Finance
 
-@library(scope='GLOBAL', version='0.1.1', auto_keywords=False)
+@library(scope='GLOBAL', version='0.1.2', auto_keywords=False)
 class SynData:
     """ 
     Test data is required in many projects. In some cases, the test data is 
@@ -223,6 +223,13 @@ class SynData:
         """
         This keyword can be used to reset the library configuration.
 
+        | =Arguments=      | =Descripion= |
+        | ``mode``         | The caller can choose between ``default`` and ``replay`` here. The ``default`` mode, which is also the default value, should be selected if the library is to be used to generate test data. For the ``replay`` mode, the path to a log file must be passed in the “replay_file” parameter, from which the values used as return values for the keywords are then taken. This mode is suitable for repeating a test case with data from a previous test execution. |
+        | ``localization`` | The parameter can be used to specify the localization for this context. The default value is ``en_US``. |
+        | ``logging``      | The caller can use this parameter to control whether the generated data should be logged. The default value ``False`` disables logging. |
+        | ``logfile``      | If logging has been enabled, the data is written to the Robot Framework output directory. Optionally, a file name can be specified; otherwise, the file name is generated from the date and time. |     
+        | ``replay_file``  | If the value ``replay`` is passed in the ``mode`` parameter, this parameter must contain the full path to the log file from which the data is to be replayed. |     
+        
         In principle, the library can also be configured using import 
         parameters. If a new test suite starts and a previous test suite has 
         initialized SynData, the import parameters of the current test suite 
@@ -234,12 +241,6 @@ class SynData:
 
         The keyword has no effect on previously saved data.
         
-        | =Arguments=      | =Descripion= |
-        | ``mode``         | The caller can choose between ``default`` and ``replay`` here. The ``default`` mode, which is also the default value, should be selected if the library is to be used to generate test data. For the ``replay`` mode, the path to a log file must be passed in the “replay_file” parameter, from which the values used as return values for the keywords are then taken. This mode is suitable for repeating a test case with data from a previous test execution. |
-        | ``localization`` | The parameter can be used to specify the localization for this context. The default value is ``en_US``. |
-        | ``logging``      | The caller can use this parameter to control whether the generated data should be logged. The default value ``False`` disables logging. |
-        | ``logfile``      | If logging has been enabled, the data is written to the Robot Framework output directory. Optionally, a file name can be specified; otherwise, the file name is generated from the date and time. |     
-        | ``replay_file``  | If the value ``replay`` is passed in the ``mode`` parameter, this parameter must contain the full path to the log file from which the data is to be replayed. |     
         """
         self.set_configuration(mode, localization, logging, logfile, replay_file)
 
@@ -253,6 +254,11 @@ class SynData:
     def Set_Context(self, context: str, localization: str ='en_US', focus: Literal["global", "suite", "test"] ='test') -> str:
         """
         The keyword can be used to set a context.
+
+        | =Arguments=      | =Descripion= |
+        | ``context``      | The name of the context is a string that describes the data space from a technical perspective. This parameter must contain a value. |
+        | ``localization`` | The parameter can be used to specify the localization for this context. The default value is ``en_US``. |
+        | ``focus``        | The parameter can be used to define the scope of the context. The valid values for this parameter are ``global``, ``suite``, and ``test``. The default value is ``test``, which means that the context is limited to the test case in which it is set. |
 
         The context is a data space in which the test data is generated 
         consistently and the generated test data is stored.
@@ -273,10 +279,6 @@ class SynData:
         - ``test``: In this case, the context is limited to the test case in which 
           it was created.
 
-        | =Arguments=      | =Descripion= |
-        | ``context``      | The name of the context is a string that describes the data space from a technical perspective. This parameter must contain a value. |
-        | ``localization`` | The parameter can be used to specify the localization for this context. The default value is ``en_US``. |
-        | ``focus``        | The parameter can be used to define the scope of the context. The valid values for this parameter are ``global``, ``suite``, and ``test``. The default value is ``test``, which means that the context is limited to the test case in which it is set. |
         """
         match focus.lower():
             case "global":
@@ -459,6 +461,32 @@ class SynData:
         return str(self.ibe.execute(self, self.get_current_localization(), "Get Country Code", "address.country_code", {}))
 
     #   ========================================================================
+    #       Keywords for Test Data Domain: Communication Data
+    #   ========================================================================
+
+    @keyword(tags=["Communication"])
+    def Get_EMail(self, sex: Literal["f", "m", "d", "*"] ="*") -> str:
+        """
+        The keyword provides an email address.
+
+        | =Arguments= | =Descripion= |
+        | ``sex``     | This parameter can be used to specify the gender, which affects the first name. The permitted values are ``m`` for male, ``f`` for female, ``d`` for diverse, and ``*`` for no gender specified. |
+
+        The email address consists of a local part and a domain part.
+
+        The local part, which is to the left of the ``@`` sign, is formed from 
+        a first and last name or just one of the two. In addition, a 
+        random combination of numbers can be appended.
+        
+        The domain part is set depending on the generator for localization. 
+        The two standard domains are rf-syndata.org and rf-syndata.net.
+        
+        For Germany, a random domain from a provider of free email accounts is 
+        appended as the domain part.       
+        """
+        return str(self.ibe.execute(self, self.get_current_localization(), "Get EMail", "communication.email", {"sex":sex}))
+
+    #   ========================================================================
     #       Keywords for Test Data Domain: Finance Data
     #   ========================================================================
 
@@ -526,13 +554,14 @@ class SynData:
         The keyword returns a string representing a license plate number 
         for motor vehicles.
 
+        | =Arguments= | =Descripion= |
+        | ``city``    | The name of a city can be entered as a filter criterion in the parameter. |
+        | ``state``   | In this parameter, the name or code for a state can be passed as a filter criterion. |
+
         The parameters defined for this keyword are ignored if they are not 
         supported by the localization. The values can also be ignored if 
         competing conditions lead to a conflict.
         
-        | =Arguments= | =Descripion= |
-        | ``city``    | The name of a city can be entered as a filter criterion in the parameter. |
-        | ``state``   | In this parameter, the name or code for a state can be passed as a filter criterion. |
         """
         item_data = {}
         if ( None != city ) :

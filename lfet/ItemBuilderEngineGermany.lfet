@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<LFET version="LF-ET 2.4.1 (260304a)" language="German" saveDate="2026.03.07 at 16:59:23 CET" saveUser="dschweie">
+<LFET version="LF-ET 2.4.1 (260304a)" language="German" saveDate="2026.03.12 at 09:59:52 CET" saveUser="dschweie">
   <Conditions>
     <Condition uId="17699446339764473">
       <Title language="German" value="Context is"/>
@@ -30,6 +30,13 @@
           <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;$$Symbol&quot; == item.split(&quot;.&quot;)[0] )"/>
           <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, domain = &quot;address&quot;"/>
           <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, item, item, domain == &quot;${*LFET.Wert.Symbol}&quot;"/>
+        </ConditionOccurrence>
+        <ConditionOccurrence uId="17732394784474052">
+          <Symbol language="German" value="communication"/>
+          <Title language="German" value="communication data"/>
+          <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;$$Symbol&quot; == item.split(&quot;.&quot;)[0] )"/>
+          <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, item, item, domain == &quot;${*LFET.Wert.Symbol}&quot;"/>
+          <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, domain = &quot;communication&quot;"/>
         </ConditionOccurrence>
         <ConditionOccurrence uId="17713276516249880">
           <Symbol language="German" value="finance"/>
@@ -133,6 +140,25 @@
           <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;$$Symbol&quot; == item )"/>
           <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;address.country_code&quot;"/>
           <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, item, item, item == &quot;${*LFET.Wert.Symbol}&quot;"/>
+        </ConditionOccurrence>
+      </ConditionOccurrences>
+    </Condition>
+    <Condition uId="17732421948654735">
+      <Title language="German" value="Requested item code of domain &quot;communication&quot;"/>
+      <ConditionOccurrences>
+        <ConditionOccurrence uId="17732422223125436">
+          <Symbol language="German" value="communication.email"/>
+          <Title language="German" value="email address"/>
+          <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;$$Symbol&quot; == item )"/>
+          <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, item, item, item == &quot;${*LFET.Wert.Symbol}&quot;"/>
+          <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;communication.email&quot;"/>
+        </ConditionOccurrence>
+        <ConditionOccurrence uId="17732422223145438">
+          <Symbol language="German" value="communication.mobile"/>
+          <Title language="German" value="mobile phone number"/>
+          <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;$$Symbol&quot; == item )"/>
+          <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, item, item, item == &quot;${*LFET.Wert.Symbol}&quot;"/>
+          <TestValue group="*ti.att.robot" type="tsi" value="tags=robot:exclude"/>
         </ConditionOccurrence>
       </ConditionOccurrences>
     </Condition>
@@ -338,6 +364,36 @@
         </ActionOccurrence>
       </ActionOccurrences>
     </Action>
+    <Action uId="17732427141576155">
+      <Title language="German" value="Create communication.email and add to ..."/>
+      <ActionOccurrences>
+        <ActionOccurrence uId="17732427968926910">
+          <Symbol language="German" value="local"/>
+          <Title language="German" value="Item is stored in a local variable."/>
+          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="first_name = Person.get_first_name(item_data)&lt;br/&gt;last_name = Person.get_last_name(item_data)&lt;br/&gt;local_data = Communication.build_random_mail(item_data, first_name, last_name)"/>
+        </ActionOccurrence>
+        <ActionOccurrence uId="17732428186569136">
+          <Symbol language="German" value="context"/>
+          <Title language="German" value="Item is stored in context."/>
+          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="instance.add_item(&quot;communication.email&quot;, Communication.build_random_mail(item_data, instance.get_item(&quot;person.first_name&quot;), instance.get_item(&quot;person.last_name&quot;)))"/>
+        </ActionOccurrence>
+      </ActionOccurrences>
+    </Action>
+    <Action uId="17732433337857852">
+      <Title language="German" value="Create communication.mobile and add to ..."/>
+      <ActionOccurrences>
+        <ActionOccurrence uId="17732433337887855">
+          <Symbol language="German" value="local"/>
+          <Title language="German" value="Item is stored in a local variable."/>
+          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="local_data = Communication.build_random_mobile_number(item_data)"/>
+        </ActionOccurrence>
+        <ActionOccurrence uId="17732433337927859">
+          <Symbol language="German" value="context"/>
+          <Title language="German" value="Item is stored in context."/>
+          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="instance.add_item(&quot;communication.mobile&quot;, Communication.build_random_mobile_number(item_data))"/>
+        </ActionOccurrence>
+      </ActionOccurrences>
+    </Action>
     <Action uId="17714806208366637">
       <Title language="German" value="Create traffic data"/>
       <ActionOccurrences>
@@ -428,7 +484,7 @@
       </ActionOccurrences>
     </Action>
   </Actions>
-  <Rules lastId="85">
+  <Rules lastId="99">
     <Rule id="47">
       <ConditionOccurrenceLink link="17695070862679776"/>
       <ConditionOccurrenceLink link="17703687043725472"/>
@@ -504,6 +560,20 @@
       <ActionOccurrenceLink link="17705639366741983"/>
       <ConditionOccurrenceLink link="17704781239101340"/>
     </Rule>
+    <Rule id="86">
+      <ConditionOccurrenceLink link="17732394784474052"/>
+      <ConditionOccurrenceLink link="17695070862679776"/>
+      <ConditionOccurrenceLink link="17732422223125436"/>
+      <ActionOccurrenceLink link="17732427968926910"/>
+      <ActionOccurrenceLink link="17714812770633672"/>
+    </Rule>
+    <Rule id="93">
+      <ConditionOccurrenceLink link="17732394784474052"/>
+      <ConditionOccurrenceLink link="17695070862679776"/>
+      <ConditionOccurrenceLink link="17732422223145438"/>
+      <ActionOccurrenceLink link="17732433337887855"/>
+      <ActionOccurrenceLink link="17714812770633672"/>
+    </Rule>
     <Rule id="58">
       <ConditionOccurrenceLink link="17695070862679776"/>
       <ConditionOccurrenceLink link="17713276516249880"/>
@@ -556,6 +626,57 @@
       <ActionOccurrenceLink link="17714813847005342"/>
       <ConditionOccurrenceLink link="17715085390755225"/>
       <ActionOccurrenceLink link="17715106734521470"/>
+    </Rule>
+    <Rule id="96">
+      <ConditionOccurrenceLink link="17732394784474052"/>
+      <ConditionOccurrenceLink link="17695070862659774"/>
+      <ConditionOccurrenceLink link="17732422223125436"/>
+      <ActionOccurrenceLink link="17714813847005342"/>
+      <ActionOccurrenceLink link="17732428186569136"/>
+      <ConditionOccurrenceLink link="17695903929023217"/>
+      <ConditionOccurrenceLink link="17695905386063460"/>
+      <ActionOccurrenceLink link="17699478904892217"/>
+      <ActionOccurrenceLink link="17699479045322532"/>
+      <ActionOccurrenceLink link="17699479186972856"/>
+    </Rule>
+    <Rule id="97">
+      <ConditionOccurrenceLink link="17732394784474052"/>
+      <ConditionOccurrenceLink link="17695070862659774"/>
+      <ConditionOccurrenceLink link="17732422223125436"/>
+      <ActionOccurrenceLink link="17714813847005342"/>
+      <ActionOccurrenceLink link="17732428186569136"/>
+      <ConditionOccurrenceLink link="17695903929023217"/>
+      <ConditionOccurrenceLink link="17695905388243463"/>
+      <ActionOccurrenceLink link="17699478904892217"/>
+      <ActionOccurrenceLink link="17699479186972856"/>
+    </Rule>
+    <Rule id="98">
+      <ConditionOccurrenceLink link="17732394784474052"/>
+      <ConditionOccurrenceLink link="17695070862659774"/>
+      <ConditionOccurrenceLink link="17732422223125436"/>
+      <ActionOccurrenceLink link="17714813847005342"/>
+      <ActionOccurrenceLink link="17732428186569136"/>
+      <ConditionOccurrenceLink link="17695903929043219"/>
+      <ConditionOccurrenceLink link="17695905386063460"/>
+      <ActionOccurrenceLink link="17699479045322532"/>
+      <ActionOccurrenceLink link="17699479186972856"/>
+    </Rule>
+    <Rule id="99">
+      <ConditionOccurrenceLink link="17732394784474052"/>
+      <ConditionOccurrenceLink link="17695070862659774"/>
+      <ConditionOccurrenceLink link="17732422223125436"/>
+      <ActionOccurrenceLink link="17714813847005342"/>
+      <ActionOccurrenceLink link="17732428186569136"/>
+      <ConditionOccurrenceLink link="17695903929043219"/>
+      <ConditionOccurrenceLink link="17695905388243463"/>
+      <ActionOccurrenceLink link="17699479186972856"/>
+    </Rule>
+    <Rule id="95">
+      <ConditionOccurrenceLink link="17732394784474052"/>
+      <ConditionOccurrenceLink link="17695070862659774"/>
+      <ConditionOccurrenceLink link="17732422223145438"/>
+      <ActionOccurrenceLink link="17732433337927859"/>
+      <ActionOccurrenceLink link="17714813847005342"/>
     </Rule>
     <Rule id="78">
       <ConditionOccurrenceLink link="17695070862659774"/>
@@ -651,9 +772,9 @@
   <UrlsOut>
     <Url title="Ordner" url="file:///./"/>
   </UrlsOut>
-  <SourceCode codeLanguage="Python" sourceCodeType="Prolog" value="# $$BasicIndentLevel=2&lt;br/&gt;from .person import Person&lt;br/&gt;from .address import Address&lt;br/&gt;from .finance import Finance as deFinance&lt;br/&gt;from .traffic import Traffic&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;class ItemBuilderEngineGermany:&lt;br/&gt;&lt;br/&gt;    @staticmethod&lt;br/&gt;    def execute(instance, localization: str, keyword: str, item: str, item_data: dict):"/>
+  <SourceCode codeLanguage="Python" sourceCodeType="Prolog" value="# $$BasicIndentLevel=2&lt;br/&gt;from .person import Person&lt;br/&gt;from .address import Address&lt;br/&gt;from .communication import Communication&lt;br/&gt;from .finance import Finance as deFinance&lt;br/&gt;from .traffic import Traffic&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;class ItemBuilderEngineGermany:&lt;br/&gt;&lt;br/&gt;    @staticmethod&lt;br/&gt;    def execute(instance, localization: str, keyword: str, item: str, item_data: dict):"/>
   <SourceCode codeLanguage="Python" sourceCodeType="Trace" value="instance.add_rbt_log_message(&quot;[SynData] Decision table $$EtName ($$Version), rule $$Rule of $$Rules has been executed&quot;, &quot;DEBUG&quot;)"/>
-  <TestValueGroups selectedGroup="gherkin">
+  <TestValueGroups selectedGroup="robot">
     <TestValueGroup name="*ti.gtd.gherkin"/>
     <TestValueGroup name="*ti.att.gherkin"/>
     <TestValueGroup name="*ti.check.robot"/>

@@ -38,7 +38,8 @@ def engine_fixture():
 def pytest_bdd_step_error(request, feature, scenario, step, step_func, step_func_args, exception):
     if("engine_fixture" in request.fixturenames):
         instance = request.getfixturevalue("engine_fixture")["instance"]
-        print(f"trace messages:\n{instance.trace[["level", "message"]].values}")
+        print(f"result: {request.getfixturevalue("engine_fixture").get("result", "-/-")}")
+        print(f"trace messages:\n{instance.trace[["level", "message"]].values[-3:]}")
 
 def pytest_bdd_before_step(request, feature, scenario, step, step_func):
     instance_mock.set_test_suite(str(feature.name))

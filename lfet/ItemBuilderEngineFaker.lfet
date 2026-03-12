@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<LFET version="LF-ET 2.4.1 (260304a)" language="German" saveDate="2026.03.11 at 08:40:31 CET" saveUser="dschweie">
+<LFET version="LF-ET 2.4.1 (260304a)" language="German" saveDate="2026.03.12 at 09:55:43 CET" saveUser="dschweie">
   <Conditions>
     <Condition uId="17699466648051216">
       <Title language="German" value="Context is"/>
@@ -101,6 +101,13 @@
           <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;address.country_code&quot;"/>
           <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, item, item, item == &quot;${*LFET.Wert.Symbol}&quot;"/>
         </ConditionOccurrence>
+        <ConditionOccurrence uId="17733002357099095">
+          <Symbol language="German" value="communication.email"/>
+          <Title language="German" value="An email address should be returned"/>
+          <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;$$Symbol&quot; == item )"/>
+          <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, item, item, item == &quot;${*LFET.Wert.Symbol}&quot;"/>
+          <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;communication.email&quot;"/>
+        </ConditionOccurrence>
         <ConditionOccurrence uId="17695103847460300">
           <Symbol language="German" value="person.name"/>
           <Title language="German" value="A complete name consisting of first name and last name should be returned."/>
@@ -192,6 +199,36 @@
     </Condition>
   </Conditions>
   <Actions>
+    <Action uId="17699480756763025">
+      <Title language="German" value="Create person.first_name and add to context"/>
+      <ActionOccurrences>
+        <ActionOccurrence uId="17699478904892217">
+          <Symbol language="German" value="person.first_name"/>
+          <Title language="German" value="Aktion ausführen"/>
+          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="match item_data.get(&quot;sex&quot;):&lt;br/&gt;    case &quot;f&quot;:&lt;br/&gt;        instance.add_item(&quot;person.first_name&quot;, fake.first_name_female())&lt;br/&gt;    case &quot;m&quot;:&lt;br/&gt;        instance.add_item(&quot;person.first_name&quot;, fake.first_name_male())&lt;br/&gt;    case &quot;d&quot;:&lt;br/&gt;        instance.add_item(&quot;person.first_name&quot;, fake.first_name_nonbinary())&lt;br/&gt;    case _:&lt;br/&gt;        instance.add_item(&quot;person.first_name&quot;, fake.first_name_nonbinary())"/>
+        </ActionOccurrence>
+      </ActionOccurrences>
+    </Action>
+    <Action uId="17699480807803032">
+      <Title language="German" value="Create person.last_name and add to context"/>
+      <ActionOccurrences>
+        <ActionOccurrence uId="17699479045322532">
+          <Symbol language="German" value="person.last_name"/>
+          <Title language="German" value="Aktion ausführen"/>
+          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="match item_data.get(&quot;sex&quot;):&lt;br/&gt;    case &quot;f&quot;:&lt;br/&gt;        instance.add_item(&quot;person.last_name&quot;, fake.last_name_female())&lt;br/&gt;    case &quot;m&quot;:&lt;br/&gt;        instance.add_item(&quot;person.last_name&quot;, fake.last_name_male())&lt;br/&gt;    case &quot;d&quot;:&lt;br/&gt;        instance.add_item(&quot;person.last_name&quot;, fake.last_name_nonbinary())&lt;br/&gt;    case _:&lt;br/&gt;        instance.add_item(&quot;person.last_name&quot;, fake.last_name_nonbinary())"/>
+        </ActionOccurrence>
+      </ActionOccurrences>
+    </Action>
+    <Action uId="17699480870533039">
+      <Title language="German" value="Compile person.name and add to context"/>
+      <ActionOccurrences>
+        <ActionOccurrence uId="17699479186972856">
+          <Symbol language="German" value="person.name"/>
+          <Title language="German" value="Aktion ausführen"/>
+          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="first_name = instance.get_item(&quot;person.first_name&quot;)&lt;br/&gt;last_name = instance.get_item(&quot;person.last_name&quot;)&lt;br/&gt;instance.add_item(&quot;person.name&quot;, f&quot;{first_name} {last_name}&quot;)"/>
+        </ActionOccurrence>
+      </ActionOccurrences>
+    </Action>
     <Action uId="17703803995534702">
       <Title language="German" value="Create local data"/>
       <ActionOccurrences>
@@ -250,6 +287,11 @@
           <Title language="German" value="The country code based on localization should be returned"/>
           <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="local_data = Country.get_country_code(item_data, &quot;ALPHA-2&quot;)"/>
         </ActionOccurrence>
+        <ActionOccurrence uId="17733003434490260">
+          <Symbol language="German" value="communication.email"/>
+          <Title language="German" value="An email address should be returned"/>
+          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="first_name = instance.get_item(&quot;person.first_name&quot;)&lt;br/&gt;last_name = instance.get_item(&quot;person.last_name&quot;)&lt;br/&gt;local_data = f&quot;{StringTools().build_email_local_part(first_name, last_name)}@rf-syndata.net&quot;"/>
+        </ActionOccurrence>
         <ActionOccurrence uId="17714901019522844">
           <Symbol language="German" value="traffic.license_plate"/>
           <Title language="German" value="A licence plate for a motor vehicle should be returned."/>
@@ -264,36 +306,6 @@
           <Symbol language="German" value="finance.bic_name"/>
           <Title language="German" value="A BIC and bank name should be returnes as dictionary."/>
           <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="data_dict = Finance.get_bank_and_bic(localization[-2:])&lt;br/&gt;instance.add_rbt_log_message(f&quot;[SynData] Finance.get_bank_and_bic({localization[-2:]}) = {data_dict}&quot;, &quot;DEBUG&quot;)"/>
-        </ActionOccurrence>
-      </ActionOccurrences>
-    </Action>
-    <Action uId="17699480756763025">
-      <Title language="German" value="Create person.first_name and add to context"/>
-      <ActionOccurrences>
-        <ActionOccurrence uId="17699478904892217">
-          <Symbol language="German" value="person.first_name"/>
-          <Title language="German" value="Aktion ausführen"/>
-          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="match item_data.get(&quot;sex&quot;):&lt;br/&gt;    case &quot;f&quot;:&lt;br/&gt;        instance.add_item(&quot;person.first_name&quot;, fake.first_name_female())&lt;br/&gt;    case &quot;m&quot;:&lt;br/&gt;        instance.add_item(&quot;person.first_name&quot;, fake.first_name_male())&lt;br/&gt;    case &quot;d&quot;:&lt;br/&gt;        instance.add_item(&quot;person.first_name&quot;, fake.first_name_nonbinary())&lt;br/&gt;    case _:&lt;br/&gt;        instance.add_item(&quot;person.first_name&quot;, fake.first_name_nonbinary())"/>
-        </ActionOccurrence>
-      </ActionOccurrences>
-    </Action>
-    <Action uId="17699480807803032">
-      <Title language="German" value="Create person.last_name and add to context"/>
-      <ActionOccurrences>
-        <ActionOccurrence uId="17699479045322532">
-          <Symbol language="German" value="person.last_name"/>
-          <Title language="German" value="Aktion ausführen"/>
-          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="match item_data.get(&quot;sex&quot;):&lt;br/&gt;    case &quot;f&quot;:&lt;br/&gt;        instance.add_item(&quot;person.last_name&quot;, fake.last_name_female())&lt;br/&gt;    case &quot;m&quot;:&lt;br/&gt;        instance.add_item(&quot;person.last_name&quot;, fake.last_name_male())&lt;br/&gt;    case &quot;d&quot;:&lt;br/&gt;        instance.add_item(&quot;person.last_name&quot;, fake.last_name_nonbinary())&lt;br/&gt;    case _:&lt;br/&gt;        instance.add_item(&quot;person.last_name&quot;, fake.last_name_nonbinary())"/>
-        </ActionOccurrence>
-      </ActionOccurrences>
-    </Action>
-    <Action uId="17699480870533039">
-      <Title language="German" value="Compile person.name and add to context"/>
-      <ActionOccurrences>
-        <ActionOccurrence uId="17699479186972856">
-          <Symbol language="German" value="person.name"/>
-          <Title language="German" value="Aktion ausführen"/>
-          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="first_name = instance.get_item(&quot;person.first_name&quot;)&lt;br/&gt;last_name = instance.get_item(&quot;person.last_name&quot;)&lt;br/&gt;instance.add_item(&quot;person.name&quot;, f&quot;{first_name} {last_name}&quot;)"/>
         </ActionOccurrence>
       </ActionOccurrences>
     </Action>
@@ -366,6 +378,12 @@
           <TestValue group="robot" type="tse" value="# The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.&lt;br/&gt;Should Match Regexp    ${output}    pattern=${*GTD.keyword.pattern}"/>
           <TestValue group="gherkin" type="tse" value="the result for &quot;${*GTD.item.item}&quot; should match &quot;${*GTD.item.expected_term}&quot;"/>
         </ActionOccurrence>
+        <ActionOccurrence uId="17733007129651597">
+          <Symbol language="German" value="communication.email"/>
+          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="match item_data.get(&quot;sex&quot;):&lt;br/&gt;    case &quot;f&quot;:&lt;br/&gt;        first_name = fake.first_name_female()&lt;br/&gt;        last_name = fake.last_name_female()&lt;br/&gt;    case &quot;m&quot;:&lt;br/&gt;        first_name = fake.first_name_male()&lt;br/&gt;        last_name = fake.last_name_male()&lt;br/&gt;    case &quot;d&quot;:&lt;br/&gt;        first_name = fake.first_name_nonbinary()&lt;br/&gt;        last_name = fake.last_name_nonbinary()&lt;br/&gt;    case _:&lt;br/&gt;        first_name = fake.first_name()&lt;br/&gt;        last_name = fake.last_name()&lt;br/&gt;return f&quot;{StringTools().build_email_local_part(first_name, last_name)}@rf-syndata.org&quot;"/>
+          <TestValue group="gherkin" type="tse" value="the result for &quot;${*GTD.item.item}&quot; should match &quot;${*GTD.item.expected_term}&quot;"/>
+          <TestValue group="robot" type="tse" value="# The output of the keyword is checked against the regular expression to ensure that it is syntactically correct.&lt;br/&gt;Should Match Regexp    ${output}    pattern=${*GTD.keyword.pattern}"/>
+        </ActionOccurrence>
         <ActionOccurrence uId="17703805164565990">
           <Symbol language="German" value="local"/>
           <Title language="German" value="The locally generated data will be returned"/>
@@ -382,7 +400,7 @@
       </ActionOccurrences>
     </Action>
   </Actions>
-  <Rules lastId="54">
+  <Rules lastId="59">
     <Rule id="16">
       <ConditionOccurrenceLink link="17695070862679776"/>
       <ConditionOccurrenceLink link="17703752144862045"/>
@@ -448,6 +466,11 @@
       <ConditionOccurrenceLink link="17703752147312075"/>
       <ActionOccurrenceLink link="17703803996054754"/>
       <ActionOccurrenceLink link="17703805164565990"/>
+    </Rule>
+    <Rule id="55">
+      <ConditionOccurrenceLink link="17695070862679776"/>
+      <ConditionOccurrenceLink link="17733002357099095"/>
+      <ActionOccurrenceLink link="17733007129651597"/>
     </Rule>
     <Rule id="5">
       <ConditionOccurrenceLink link="17695070862679776"/>
@@ -576,6 +599,50 @@
       <ActionOccurrenceLink link="17703809349358249"/>
       <ActionOccurrenceLink link="17703807113007469"/>
     </Rule>
+    <Rule id="56">
+      <ConditionOccurrenceLink link="17695070862659774"/>
+      <ConditionOccurrenceLink link="17733002357099095"/>
+      <ActionOccurrenceLink link="17733003434490260"/>
+      <ActionOccurrenceLink link="17703807113007469"/>
+      <ActionOccurrenceLink link="17699478486131905"/>
+      <ConditionOccurrenceLink link="17695903929023217"/>
+      <ConditionOccurrenceLink link="17695905386063460"/>
+      <ActionOccurrenceLink link="17699478904892217"/>
+      <ActionOccurrenceLink link="17699479045322532"/>
+      <ActionOccurrenceLink link="17699479186972856"/>
+    </Rule>
+    <Rule id="57">
+      <ConditionOccurrenceLink link="17695070862659774"/>
+      <ConditionOccurrenceLink link="17733002357099095"/>
+      <ActionOccurrenceLink link="17733003434490260"/>
+      <ActionOccurrenceLink link="17703807113007469"/>
+      <ActionOccurrenceLink link="17699478486131905"/>
+      <ConditionOccurrenceLink link="17695903929023217"/>
+      <ConditionOccurrenceLink link="17695905388243463"/>
+      <ActionOccurrenceLink link="17699478904892217"/>
+      <ActionOccurrenceLink link="17699479186972856"/>
+    </Rule>
+    <Rule id="58">
+      <ConditionOccurrenceLink link="17695070862659774"/>
+      <ConditionOccurrenceLink link="17733002357099095"/>
+      <ActionOccurrenceLink link="17733003434490260"/>
+      <ActionOccurrenceLink link="17703807113007469"/>
+      <ActionOccurrenceLink link="17699478486131905"/>
+      <ConditionOccurrenceLink link="17695903929043219"/>
+      <ConditionOccurrenceLink link="17695905386063460"/>
+      <ActionOccurrenceLink link="17699479045322532"/>
+      <ActionOccurrenceLink link="17699479186972856"/>
+    </Rule>
+    <Rule id="59">
+      <ConditionOccurrenceLink link="17695070862659774"/>
+      <ConditionOccurrenceLink link="17733002357099095"/>
+      <ActionOccurrenceLink link="17733003434490260"/>
+      <ActionOccurrenceLink link="17703807113007469"/>
+      <ActionOccurrenceLink link="17699478486131905"/>
+      <ConditionOccurrenceLink link="17695903929043219"/>
+      <ConditionOccurrenceLink link="17695905388243463"/>
+      <ActionOccurrenceLink link="17699479186972856"/>
+    </Rule>
     <Rule id="8">
       <ConditionOccurrenceLink link="17695070862659774"/>
       <ConditionOccurrenceLink link="17695103847460300"/>
@@ -659,9 +726,9 @@
   <UrlsOut>
     <Url title="Ordner" url="file:///./"/>
   </UrlsOut>
-  <SourceCode codeLanguage="Python" sourceCodeType="Prolog" value="# $$BasicIndentLevel=2&lt;br/&gt;from robot.libraries.BuiltIn import BuiltIn&lt;br/&gt;&lt;br/&gt;from faker import Faker&lt;br/&gt;from .country import Country&lt;br/&gt;from .finance import Finance&lt;br/&gt;&lt;br/&gt;class ItemBuilderEngineFaker:&lt;br/&gt;&lt;br/&gt;    @staticmethod&lt;br/&gt;    def execute(instance, localization: str, keyword: str, item: str, item_data: dict):&lt;br/&gt;        fake = Faker(localization)"/>
+  <SourceCode codeLanguage="Python" sourceCodeType="Prolog" value="# $$BasicIndentLevel=2&lt;br/&gt;from faker import Faker&lt;br/&gt;from .country import Country&lt;br/&gt;from .finance import Finance&lt;br/&gt;from ..utils.stringtools import StringTools&lt;br/&gt;&lt;br/&gt;class ItemBuilderEngineFaker:&lt;br/&gt;&lt;br/&gt;    @staticmethod&lt;br/&gt;    def execute(instance, localization: str, keyword: str, item: str, item_data: dict):&lt;br/&gt;        fake = Faker(localization)"/>
   <SourceCode codeLanguage="Python" sourceCodeType="Trace" value="instance.add_rbt_log_message(&quot;[SynData] Decision table $$EtName ($$Version), rule $$Rule of $$Rules has been executed&quot;, &quot;DEBUG&quot;)"/>
-  <TestValueGroups selectedGroup="gherkin">
+  <TestValueGroups selectedGroup="robot">
     <TestValueGroup name="*ti.gtd.gherkin"/>
     <TestValueGroup name="*ti.att.gherkin"/>
     <TestValueGroup name="*ti.check.robot"/>

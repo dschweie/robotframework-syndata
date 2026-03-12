@@ -3,7 +3,7 @@
 # 
 # Aktueller Benutzer: dschweie
 # Aktuelles Verzeichnis (user.dir): "E:\data\schweier\rbtfrmwrk\robotframework-syndata"
-# Benötigte Zeit: 00:00:00.707 (11.03.2026 08:45:46.213 - 11.03.2026 08:45:46.920)
+# Benötigte Zeit: 00:00:00.756 (12.03.2026 10:03:32.570 - 12.03.2026 10:03:33.326)
 # 
 # Entscheidungstabelle: E:\data\schweier\rbtfrmwrk\robotframework-syndata\.\lfet\ItemBuilderEngine.lfet
 # 
@@ -19,9 +19,9 @@
 # Informationen: 1
 # 
 #     1. E:\data\schweier\rbtfrmwrk\robotframework-syndata\lfet\testdata\gherkin\items_common.csv
-#            Erfolgreich eingelesen: GherkinItems_com, 108 Sätze, Encoding UTF-8
+#            Erfolgreich eingelesen: GherkinItems_com, 182 Sätze, Encoding UTF-8
 #         E:\data\schweier\rbtfrmwrk\robotframework-syndata\lfet\testdata\gherkin\items_de.csv
-#            Erfolgreich eingelesen: GherkinItems_de, 51 Sätze, Encoding UTF-8
+#            Erfolgreich eingelesen: GherkinItems_de, 58 Sätze, Encoding UTF-8
 #         E:\data\schweier\rbtfrmwrk\robotframework-syndata\lfet\testdata\gherkin\replay.csv
 #            Erfolgreich eingelesen: GherkinReplayData, 76 Sätze, Encoding UTF-8
 
@@ -37,9 +37,9 @@ Feature: Choice of method for generating the test data
     *     that logging for SynData should be done in "SynData-unit_test"
     *     no context is set
     When  the builder engine is called:
-      | item             | item_data | keyword |
-      | finance.bank_bic | {}        | Get Bic |
-    Then  the result for "finance.bank_bic" should match "^[A-Z0-9]{4}DE([01][A-NP-Z]|[A-Z2-9][A-NP-Z0-9])([X]{3}|[A-WYZ0-9][A-Z0-9]{2})?$"
+      | item         | item_data | keyword  |
+      | address.city | {}        | Get City |
+    Then  the result for "address.city" should match "^\S.+$"
     *     rule "1" of "9" from decision table "ItemBuilderEngine" has been executed
     *     rule from decision table "ItemBuilderEngineGermany" has been executed
 
@@ -47,13 +47,13 @@ Feature: Choice of method for generating the test data
   Scenario: 0002 ItemBuilderEngine
     ItemBuilderEngine
     R02 : B01 Current Mode = DEF ; B02 Context is = None ; B06 Localization = *
-    Given SynData is in "default" mode and the localization is "it_IT"
+    Given SynData is in "default" mode and the localization is "et_EE"
     *     that logging for SynData should be done in "SynData-unit_test"
     *     no context is set
     When  the builder engine is called:
-      | item                  | item_data | keyword               |
-      | address.postcode_city | {}        | Get Postcode And City |
-    Then  the result for "address.postcode_city" should match "^(.+((\r\n?|\n))?)+$"
+      | item              | item_data | keyword        |
+      | person.first_name | {}        | Get First Name |
+    Then  the result for "person.first_name" should match "^\S[^\d]+$"
     *     rule "2" of "9" from decision table "ItemBuilderEngine" has been executed
     *     rule from decision table "ItemBuilderEngineFaker" has been executed
 
@@ -65,59 +65,59 @@ Feature: Choice of method for generating the test data
     *     that logging for SynData should be done in "SynData-unit_test"
     *     in SynData the context "ItemBuilderEngineR03" with focus "test" and localization "de_DE" is set
     *     in SynData items are stored
-      | data_json                   |
-      | {"location.ags":"09772202"} |
+      | data_json                                                   |
+      | {"person.first_name":"Oskar", "person.last_name":"Tietjen"} |
     When  the builder engine is called:
-      | item                 | item_data | keyword          |
-      | address.country_code | {}        | Get Country Code |
-    Then  the result for "address.country_code" should match "^DE$"
+      | item        | item_data | keyword  |
+      | person.name | {}        | Get Name |
+    Then  the result for "person.name" should match "^Oskar Tietjen$"
     *     rule "3" of "9" from decision table "ItemBuilderEngine" has been executed
     *     rule from decision table "ItemBuilderEngineGermany" has been executed
     *     the internal storage for the following items should be checked:
-      | data_json                                                                                                                                                                                                                                                                                                                                                                             |
-      | {"address.address":"#stored", "address.address_country":"#stored", "address.city":"Stadtbergen", "address.country":"#stored", "address.country_code":"#retval", "address.house_number":"#stored", "address.postcode":"86391", "address.postcode_city":"#stored", "address.state":"Bayern", "address.street":"#stored", "address.street_address":"#stored", "location.ags":"09772202"} |
+      | data_json                                                                            |
+      | {"person.first_name":"Oskar", "person.last_name":"Tietjen", "person.name":"#retval"} |
 
   @recommended
   Scenario: 0004 ItemBuilderEngine
     ItemBuilderEngine
     R04 : B01 Current Mode = DEF ; B02 Context is = Set ; B03 Requested item is = unknown ; B06 Localization = *
-    Given SynData is in "default" mode and the localization is "en_IE"
+    Given SynData is in "default" mode and the localization is "no_NO"
     *     that logging for SynData should be done in "SynData-unit_test"
-    *     in SynData the context "ItemBuilderEngineR04" with focus "test" and localization "en_IE" is set
+    *     in SynData the context "ItemBuilderEngineR04" with focus "test" and localization "no_NO" is set
     *     in SynData items are stored
-      | data_json                     |
-      | {"person.last_name":"Kenlan"} |
+      | data_json                      |
+      | {"person.last_name":"Arnesen"} |
     When  the builder engine is called:
       | item        | item_data | keyword  |
       | person.name | {}        | Get Name |
-    Then  the result for "person.name" should match "^\S[^\d]+\sKenlan$"
+    Then  the result for "person.name" should match "^\S[^\d]+\sArnesen$"
     *     rule "4" of "9" from decision table "ItemBuilderEngine" has been executed
     *     rule from decision table "ItemBuilderEngineFaker" has been executed
     *     the internal storage for the following items should be checked:
-      | data_json                                                                             |
-      | {"person.first_name":"#stored", "person.last_name":"Kenlan", "person.name":"#retval"} |
+      | data_json                                                                              |
+      | {"person.first_name":"#stored", "person.last_name":"Arnesen", "person.name":"#retval"} |
 
   @recommended
   Scenario: 0005 ItemBuilderEngine
     ItemBuilderEngine
     R05 : B01 Current Mode = DEF ; B02 Context is = Set ; B03 Requested item is = known
-    Given SynData is in "default" mode and the localization is "en_GB"
+    Given SynData is in "default" mode and the localization is "en_AU"
     *     that logging for SynData should be done in "SynData-unit_test"
-    *     in SynData the context "ItemBuilderEngineR05" with focus "test" and localization "en_GB" is set
+    *     in SynData the context "ItemBuilderEngineR05" with focus "test" and localization "en_AU" is set
     *     in SynData items are stored
-      | data_json                      |
-      | {"person.last_name":"Wilkins"} |
+      | data_json                                                   |
+      | {"person.first_name":"Melanie", "person.last_name":"Weber"} |
     *     the builder engine is called:
       | item        | item_data | keyword  |
       | person.name | {}        | Get Name |
     When  the builder engine is called:
       | item        | item_data | keyword  |
       | person.name | {}        | Get Name |
-    Then  the result for "person.name" should match "^\S[^\d]+\sWilkins$"
+    Then  the result for "person.name" should match "^Melanie Weber$"
     *     rule "5" of "9" from decision table "ItemBuilderEngine" has been executed
     *     the internal storage for the following items should be checked:
-      | data_json                                                                              |
-      | {"person.first_name":"#stored", "person.last_name":"Wilkins", "person.name":"#retval"} |
+      | data_json                                                                            |
+      | {"person.first_name":"Melanie", "person.last_name":"Weber", "person.name":"#retval"} |
 
   @recommended
   Scenario: 0006 ItemBuilderEngine
@@ -127,13 +127,13 @@ Feature: Choice of method for generating the test data
       | mode   | replay_file             | localization | logging |
       | replay | replay_file_gherkin.csv | en_US        | True    |
     *     the replay file contains the following data:
-      | item              | value                | test_suite | test_case | keyword  |
-      | finance.bank_name | CITADEL ADVISORS LLC | #current   | #current  | Get Bank |
+      | item                  | value   | test_suite | test_case | keyword |
+      | traffic.license_plate | 62J 665 | #current   | #current  |         |
     *     data for given test case is read
     When  the builder engine is called:
-      | item              | item_data | keyword  |
-      | finance.bank_name | {}        | Get Bank |
-    Then  the result for "finance.bank_name" should be equal to "CITADEL ADVISORS LLC"
+      | item                  | item_data | keyword           |
+      | traffic.license_plate | {}        | Get License Plate |
+    Then  the result for "traffic.license_plate" should be equal to "62J 665"
     *     rule "6" of "9" from decision table "ItemBuilderEngine" has been executed
 
   @recommended
@@ -144,13 +144,13 @@ Feature: Choice of method for generating the test data
       | mode   | replay_file             | localization | logging |
       | replay | replay_file_gherkin.csv | de_DE        | True    |
     *     the replay file contains the following data:
-      | item              | value                                     | test_suite | test_case | keyword  |
-      | finance.bank_name | Volksbank Raiffeisenbank Obermain (Gf P2) | #current   | #current  | Get Bank |
+      | item                 | value | test_suite | test_case | keyword          |
+      | address.house_number |    24 | #current   | #current  | Get House Number |
     *     data for given test case is read
     When  the builder engine is called:
-      | item              | item_data | keyword        |
-      | person.first_name | {}        | Get First Name |
-    Then  the result for "person.first_name" should match "^\S[^\d]+$"
+      | item           | item_data | keyword    |
+      | address.street | {}        | Get Street |
+    Then  the result for "address.street" should match "^\S.+$"
     *     rule "7" of "9" from decision table "ItemBuilderEngine" has been executed
     *     rule from decision table "ItemBuilderEngineGermany" has been executed
     *     the "warning" with id "SynData.NOREP" must be in the internal log
@@ -163,13 +163,13 @@ Feature: Choice of method for generating the test data
       | mode   | replay_file             | localization | logging |
       | replay | replay_file_gherkin.csv | en_US        | True    |
     *     the replay file contains the following data:
-      | item            | value        | test_suite | test_case | keyword     |
-      | address.country | Saudi Arabia | #current   | #current  | Get Country |
+      | item             | value   | test_suite | test_case | keyword       |
+      | person.last_name | Richard | #current   | #current  | Get Last Name |
     *     data for given test case is read
     When  the builder engine is called:
-      | item          | item_data | keyword   |
-      | address.state | {}        | Get State |
-    Then  the result for "address.state" should match "^(.*((\r\n?|\n))?)+$"
+      | item                   | item_data | keyword                     |
+      | address.street_address | {}        | Get Street And House Number |
+    Then  the result for "address.street_address" should match "^(.+((\r\n?|\n))?)+$"
     *     rule "8" of "9" from decision table "ItemBuilderEngine" has been executed
     *     rule from decision table "ItemBuilderEngineFaker" has been executed
     *     the "warning" with id "SynData.NOREP" must be in the internal log
@@ -182,12 +182,12 @@ Feature: Choice of method for generating the test data
       | mode   | replay_file             | localization | logging |
       | replay | replay_file_gherkin.csv | en_US        | True    |
     *     the replay file contains the following data:
-      | item             | value  | test_suite | test_case            | keyword       |
-      | person.last_name | Wilson | #current   | 4711 Dummy Test Case | Get Last Name |
+      | item                  | value                | test_suite | test_case            | keyword               |
+      | address.postcode_city | Cindyburgh, OK 54788 | #current   | 4711 Dummy Test Case | Get Postcode And City |
     When  the builder engine is called:
-      | item            | item_data | keyword     |
-      | address.country | {}        | Get Country |
-    Then  the result for "address.country" should match "^\S.+$"
+      | item                  | item_data | keyword               |
+      | address.postcode_city | {}        | Get Postcode And City |
+    Then  the result for "address.postcode_city" should match "^(.+((\r\n?|\n))?)+$"
     *     rule "9" of "9" from decision table "ItemBuilderEngine" has been executed
 
 ### end of generated test cases ###

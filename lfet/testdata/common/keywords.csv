@@ -14,6 +14,22 @@ Encoding = UTF-8
  Get State                   ; address.state           ; address       ;          ;          ; ^(.+((\\r\\n?|\\n))?)+$
  Get Country                 ; address.country         ; address       ;          ;          ; ^\\S.+$ 
  Get Country Code            ; address.country_code    ; address       ;          ;          ; ^(A[DEFGLMORTUZ])|(B[ABDEFGHIJNORSTWYZ])|(C[ADFGHILMNORUVYZ])|(D[EJKMOZ])|(E[CEGRST])|(F[IJMR])|(G[ABDEHMNQRTWY])|(H[NRTU])|(I[DELNQRST])|(J[MOP])|(K[EGHIMNPRWZ])|(L[ABCIKRSTUVY])|(M[ACDEGHKLMNRTUVWXYZ])|(N[AEGILOPRZ])|(OM)|(P[AEGHKLTWY])|(QA)|(R[OSUW])|(S[ABCDEGIKLMNORSTVYZ])|(T[DGHJLMNORTVZ])|(U[AGSYZ])|(V[CENU])|(WS)|(YE)|(Z[AMW])$
+ Get EMail                   ; communication.email     ; communication ; unknown  ; unknown  ; ^.+@.+$
+ Get EMail                   ; communication.email     ; communication ; known    ; unknown  ; ^.+@.+$
+ Get EMail                   ; communication.email     ; communication ; unknown  ; known    ; ^.+@.+$
+ Get EMail                   ; communication.email     ; communication ; known    ; known    ; ^.+@.+$
+ Get EMail    sex=f          ; communication.email     ; communication ; unknown  ; unknown  ; ^.+@.+$
+ Get EMail    sex=f          ; communication.email     ; communication ; known    ; unknown  ; ^.+@.+$
+ Get EMail    sex=f          ; communication.email     ; communication ; unknown  ; known    ; ^.+@.+$
+ Get EMail    sex=f          ; communication.email     ; communication ; known    ; known    ; ^.+@.+$
+ Get EMail    sex=m          ; communication.email     ; communication ; unknown  ; unknown  ; ^.+@.+$
+ Get EMail    sex=m          ; communication.email     ; communication ; known    ; unknown  ; ^.+@.+$
+ Get EMail    sex=m          ; communication.email     ; communication ; unknown  ; known    ; ^.+@.+$
+ Get EMail    sex=m          ; communication.email     ; communication ; known    ; known    ; ^.+@.+$
+ Get EMail    sex=d          ; communication.email     ; communication ; unknown  ; unknown  ; ^.+@.+$
+ Get EMail    sex=d          ; communication.email     ; communication ; known    ; unknown  ; ^.+@.+$
+ Get EMail    sex=d          ; communication.email     ; communication ; unknown  ; known    ; ^.+@.+$
+ Get EMail    sex=d          ; communication.email     ; communication ; known    ; known    ; ^.+@.+$
  Get Name                    ; person.name             ; person        ; unknown  ; unknown  ; ^\\S[^\\d]+\\s[^\\d]+$
  Get Name                    ; person.name             ; person        ; known    ; unknown  ; ^${first_name}\\s[^\\d]+$
  Get Name                    ; person.name             ; person        ; unknown  ; known    ; ^\\S[^\\d]+\\s${last_name}$

@@ -94,4 +94,3 @@ class Address(object):
             if(50 > random.randrange(0,100)):
                 retval = retval.upper()
         return retval
-
