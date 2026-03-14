@@ -1,7 +1,8 @@
-# import random
+import random
 import datetime
 import time
 import os
+
 
 import pandas as pd
 
@@ -484,7 +485,7 @@ class SynData:
         For Germany, a random domain from a provider of free email accounts is 
         appended as the domain part.       
         """
-        return str(self.ibe.execute(self, self.get_current_localization(), "Get EMail", "communication.email", {"sex":sex}))
+        return str(self.ibe.execute(self, self.get_current_localization(), "Get EMail", "communication.email", {"sex":self.get_item_with_set_option("person.sex", sex)}))
 
     #   ========================================================================
     #       Keywords for Test Data Domain: Finance Data
@@ -525,7 +526,7 @@ class SynData:
         | =Arguments= | =Descripion= |
         | ``sex``     | This parameter can be used to specify the gender, which affects the first name. The permitted values are ``m`` for male, ``f`` for female, ``d`` for diverse, and ``*`` for no gender specified. |
         """
-        return str(self.ibe.execute(self, self.get_current_localization(), "Get Name", "person.name", {"sex":sex}))
+        return str(self.ibe.execute(self, self.get_current_localization(), "Get Name", "person.name", {"sex":self.get_item_with_set_option("person.sex", sex)}))
 
     @keyword(tags=["Person"])
     def Get_First_Name(self, sex: Literal["f", "m", "d", "*"] ="*") -> str:
@@ -535,7 +536,7 @@ class SynData:
         | =Arguments= | =Descripion= |
         | ``sex``     | This parameter can be used to specify the gender, which affects the first name. The permitted values are ``m`` for male, ``f`` for female, ``d`` for diverse, and ``*`` for no gender specified. |
         """
-        return str(self.ibe.execute(self, self.get_current_localization(), "Get First Name", "person.first_name", {"sex":sex}))
+        return str(self.ibe.execute(self, self.get_current_localization(), "Get First Name", "person.first_name", {"sex":self.get_item_with_set_option("person.sex", sex)}))
     
     @keyword(tags=["Person"])
     def Get_Last_Name(self) -> str:
@@ -543,6 +544,22 @@ class SynData:
         The keyword provides a last name.
         """
         return str(self.ibe.execute(self, self.get_current_localization(), "Get Last Name", "person.last_name", {}))
+
+    @keyword(tags=["Person"])
+    def Get_Social_Security_Number(self) -> str:
+        """
+        This keyword returns information assigned to an individual by a 
+        government agency.
+        
+        In almost every country, there is a tax ID number or social security 
+        number assigned to every citizen. This identifier is generated using 
+        this keyword.
+        
+        In Germany, the former "Sozialversicherungsnummer", now also known as 
+        the "Rentenversicherungsnummer", is the identifier generated using this 
+        keyword.
+        """
+        return str(self.ibe.execute(self, self.get_current_localization(), "Get Social Security Number", "person.ssn", {}))
 
     #   ========================================================================
     #       Keywords for Test Data Domain: Traffic
@@ -616,6 +633,25 @@ class SynData:
         else: 
             return self.data[self.context].get(item)
         
+    @not_keyword
+    def get_item_with_set_option(self, item:str, value:str) -> str:
+        if ( None == self.context ):
+            return value
+        else:
+            if(None == self.get_item(item)):
+                match(item):
+                    case "person.sex" if ("*" == value):
+                        # In this case, the caller has not specified a clear 
+                        # gender. Due to the fact that people who cannot be 
+                        # assigned to a gender make up significantly less 
+                        # than 2%, the gender is randomly set to male or female.
+                        sex_array = ["m", "f"]
+                        self.add_item(item, sex_array[random.randrange(len(sex_array))])
+                    case _ :
+                        self.add_item(item, value)
+            return str(self.get_item(item))
+    
+    @not_keyword    
     def is_item_stored(self, item) -> bool:
         if ( None == self.context ):
             return False

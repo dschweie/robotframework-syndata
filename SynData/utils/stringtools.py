@@ -15,6 +15,10 @@ class StringTools:
             cls.instance = super().__new__(cls)
             cls.translation_map = {ord(key):val for key, val in cls.dictionary.items()}
         return cls.instance
+    
+    @staticmethod
+    def translate_to_ascii(text:str) -> str:
+        return text.translate(StringTools().translation_map).encode(encoding="ascii",errors="ignore").decode()
 
     def build_email_local_part(self, first_name:str, last_name:str) -> str:
         pattern_list = [    "1111", "3214", "2111", "1214", "1221", "2214",

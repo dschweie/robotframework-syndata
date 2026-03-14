@@ -36,6 +36,7 @@ Encoding = UTF-8
  Get Name                    ; person.name             ; person        ; known    ; known    ; ^${first_name}\\s${last_name}$
  Get First Name              ; person.first_name       ; person        ;          ;          ; ^\\S[^\\d]+$
  Get Last Name               ; person.last_name        ; person        ;          ;          ; ^\\S[^\\d]+$
+ Get Social Security Number  ; person.ssn              ; person        ;          ;          ; ^.+$
  Get License Plate           ; traffic.license_plate   ; traffic       ;          ;          ; ^.+$
  Get License Plate           ; traffic.license_plate   ; unused        ;          ;          ; ^.+$
  Get Bank                    ; finance.bank_name       ; finance       ;          ;          ; ^.*$

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<LFET version="LF-ET 2.4.1 (260304a)" language="German" saveDate="2026.03.12 at 09:55:43 CET" saveUser="dschweie">
+<LFET version="LF-ET 2.4.1 (260304a)" language="German" saveDate="2026.03.14 at 12:48:40 CET" saveUser="dschweie">
   <Conditions>
     <Condition uId="17699466648051216">
       <Title language="German" value="Context is"/>
@@ -128,6 +128,13 @@
           <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;person.last_name&quot; == item )"/>
           <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;person.last_name&quot;"/>
           <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, item, item, item == &quot;${*LFET.Wert.Symbol}&quot;"/>
+        </ConditionOccurrence>
+        <ConditionOccurrence uId="17734852475814825">
+          <Symbol language="German" value="person.ssn"/>
+          <Title language="German" value="A social security number should be returned."/>
+          <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;person.ssn&quot; == item )"/>
+          <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, item, item, item == &quot;${*LFET.Wert.Symbol}&quot;"/>
+          <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;person.ssn&quot;"/>
         </ConditionOccurrence>
         <ConditionOccurrence uId="17714897552972343">
           <Symbol language="German" value="traffic.license_plate"/>
@@ -292,6 +299,11 @@
           <Title language="German" value="An email address should be returned"/>
           <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="first_name = instance.get_item(&quot;person.first_name&quot;)&lt;br/&gt;last_name = instance.get_item(&quot;person.last_name&quot;)&lt;br/&gt;local_data = f&quot;{StringTools().build_email_local_part(first_name, last_name)}@rf-syndata.net&quot;"/>
         </ActionOccurrence>
+        <ActionOccurrence uId="17734853196096119">
+          <Symbol language="German" value="person.ssn"/>
+          <Title language="German" value="A social security number is generated based on faker."/>
+          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="local_data = fake.ssn()"/>
+        </ActionOccurrence>
         <ActionOccurrence uId="17714901019522844">
           <Symbol language="German" value="traffic.license_plate"/>
           <Title language="German" value="A licence plate for a motor vehicle should be returned."/>
@@ -400,7 +412,7 @@
       </ActionOccurrences>
     </Action>
   </Actions>
-  <Rules lastId="59">
+  <Rules lastId="61">
     <Rule id="16">
       <ConditionOccurrenceLink link="17695070862679776"/>
       <ConditionOccurrenceLink link="17703752144862045"/>
@@ -486,6 +498,12 @@
       <ConditionOccurrenceLink link="17695070862679776"/>
       <ConditionOccurrenceLink link="17695103847480302"/>
       <ActionOccurrenceLink link="17695186572183109"/>
+    </Rule>
+    <Rule id="61">
+      <ConditionOccurrenceLink link="17695070862679776"/>
+      <ConditionOccurrenceLink link="17734852475814825"/>
+      <ActionOccurrenceLink link="17734853196096119"/>
+      <ActionOccurrenceLink link="17703805164565990"/>
     </Rule>
     <Rule id="45">
       <ConditionOccurrenceLink link="17695070862679776"/>
@@ -690,6 +708,13 @@
       <ConditionOccurrenceLink link="17695103847480302"/>
       <ActionOccurrenceLink link="17699479045322532"/>
       <ActionOccurrenceLink link="17699478486131905"/>
+    </Rule>
+    <Rule id="60">
+      <ConditionOccurrenceLink link="17695070862659774"/>
+      <ConditionOccurrenceLink link="17734852475814825"/>
+      <ActionOccurrenceLink link="17734853196096119"/>
+      <ActionOccurrenceLink link="17703807113007469"/>
+      <ActionOccurrenceLink link="17703805164565990"/>
     </Rule>
     <Rule id="41">
       <ConditionOccurrenceLink link="17695070862659774"/>
