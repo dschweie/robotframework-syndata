@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<LFET version="LF-ET 2.4.1 (260304a)" language="German" saveDate="2026.03.14 at 12:44:30 CET" saveUser="dschweie">
+<LFET version="LF-ET 2.4.1 (260304a)" language="German" saveDate="2026.03.18 at 10:53:51 CET" saveUser="dschweie">
   <Conditions>
     <Condition uId="17699446339764473">
       <Title language="German" value="Context is"/>
@@ -578,7 +578,7 @@
       </ActionOccurrences>
     </Action>
   </Actions>
-  <Rules lastId="116">
+  <Rules lastId="118">
     <Rule id="47">
       <ConditionOccurrenceLink link="17695070862679776"/>
       <ConditionOccurrenceLink link="17703687043725472"/>
@@ -781,12 +781,22 @@
       <ActionOccurrenceLink link="17732433337927859"/>
       <ActionOccurrenceLink link="17714813847005342"/>
     </Rule>
-    <Rule id="78">
+    <Rule id="117">
       <ConditionOccurrenceLink link="17695070862659774"/>
       <ConditionOccurrenceLink link="17713276516249880"/>
       <ActionOccurrenceLink link="17713338232670775"/>
       <ActionOccurrenceLink link="17703690984379449"/>
       <ActionOccurrenceLink link="17714813847005342"/>
+      <ConditionOccurrenceLink link="17715085390775227"/>
+    </Rule>
+    <Rule id="118">
+      <ConditionOccurrenceLink link="17695070862659774"/>
+      <ConditionOccurrenceLink link="17713276516249880"/>
+      <ActionOccurrenceLink link="17713338232670775"/>
+      <ActionOccurrenceLink link="17703690984379449"/>
+      <ActionOccurrenceLink link="17714813847005342"/>
+      <ConditionOccurrenceLink link="17715085390755225"/>
+      <ActionOccurrenceLink link="17715106734521470"/>
     </Rule>
     <Rule id="111">
       <ConditionOccurrenceLink link="17695070862659774"/>
@@ -981,7 +991,7 @@
   </UrlsOut>
   <SourceCode codeLanguage="Python" sourceCodeType="Prolog" value="# $$BasicIndentLevel=2&lt;br/&gt;from .person import Person&lt;br/&gt;from .address import Address&lt;br/&gt;from .communication import Communication&lt;br/&gt;from .finance import Finance as deFinance&lt;br/&gt;from .traffic import Traffic&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;class ItemBuilderEngineGermany:&lt;br/&gt;&lt;br/&gt;    @staticmethod&lt;br/&gt;    def execute(instance, localization: str, keyword: str, item: str, item_data: dict):"/>
   <SourceCode codeLanguage="Python" sourceCodeType="Trace" value="instance.add_rbt_log_message(&quot;[SynData] Decision table $$EtName ($$Version), rule $$Rule of $$Rules has been executed&quot;, &quot;DEBUG&quot;)"/>
-  <TestValueGroups selectedGroup="robot">
+  <TestValueGroups selectedGroup="gherkin">
     <TestValueGroup name="*ti.gtd.gherkin"/>
     <TestValueGroup name="*ti.att.gherkin"/>
     <TestValueGroup name="*ti.check.robot"/>
@@ -991,7 +1001,7 @@
       <Config name="acceptance tests" tags="default" description="This test configuration is the basis for the automatically generated acceptance tests of the library.&lt;br/&gt;This decision table covers the cases where the localization is “de_DE.”" parms="-Group 'robot' -GtdDirectory './testdata/de' -GtdFileNamePattern '*.csv' -DDTableName 'keyword' -DDLimit '4' -NonExecutableRules '50' -RecommendedTestCases -ExportRobotFramework '../test/acceptance_test/lfet/ItemBuilderEngineGermany.testcases.robot'"/>
     </TestValueGroup>
     <TestValueGroup name="gherkin" description="The test instructions from this group are used to generate unit tests, which are then executed using pytest-bdd." tvgTiAtt="*ti.att.gherkin" tvgTiGTD="*ti.gtd.gherkin">
-      <Config name="unit tests" tags="unit_test" parms="-Group 'gherkin' -GtdDirectory './testdata/gherkin' -GtdFileNamePattern '*_de.csv' -NonExecutableRules '50' -RecommendedTestCases -Protocol -OutGherkin 'ItemBuilderEngineGermany.testcases.feature'"/>
+      <Config name="unit tests" tags="unit_test" parms="-Group 'gherkin' -GtdDirectory './testdata/gherkin' -GtdFileNamePattern '*_de.csv' -DDTableName 'item' -DDLimit '3' -NonExecutableRules '50' -RecommendedTestCases -Protocol -OutGherkin 'ItemBuilderEngineGermany.testcases.feature'"/>
     </TestValueGroup>
   </TestValueGroups>
   <TestValue group="robot" type="tcpre" value="*robot.Settings    Library        SynData&lt;br/&gt;*robot.Settings    Suite Setup    Set SynData Configuration   mode=default    localization=de_DE    logging=${True}&lt;br/&gt;*robot.Settings    Test Setup     Release Context"/>

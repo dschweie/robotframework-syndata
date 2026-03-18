@@ -2,7 +2,7 @@ import random
 import datetime
 import time
 import os
-
+import uuid
 
 import pandas as pd
 
@@ -591,6 +591,93 @@ class SynData:
 
 
     #   ========================================================================
+    #       Keywords to export Test Data
+    #   ========================================================================
+
+    @keyword
+    def Write_Table_To_File(self, rows:int, columns:list, localization:str, output:str, format="csv"):
+        """
+        This keyword can be used to generate a file containing test data.
+
+        | =Arguments=      | =Descripion= |
+        | ``rows``         | This parameter specifies the number of records to be generated and saved. |
+        | ``columns``      | This parameter specifies the list of keywords that will be used to generate the content for each column. The keywords are also used for the column headers. |
+        | ``localization`` | This parameter specifies the country for which the test data should be generated. |
+        | ``output``       | This parameter specifies the path to the file where the results should be written. |
+        | ``format``       | This parameter controls the format in which the data should be saved. The default value is ``csv``. |
+
+        The general purpose of this library is to use the generated test data in test cases. However, it is also conceivable that a set of data is needed for another testing tool or data-driven tests. In this case, data can be generated using this keyword and saved as a .csv file.
+
+        For the generation of each data record, a context is created internally to ensure that the test data is consistent, provided this is supported by the specific generator.
+        """
+        data = pd.DataFrame(columns=columns)
+        for i in range(int(rows)):
+            self.Set_Context(str(uuid.uuid4()), localization, "test")
+            row_elements = []
+            for col in columns:
+                match(col):
+                    case "address.address" | "Get Address" :
+                        row_elements.append(self.Get_Address())
+                    case "address.address_country" | "Get Address And Country" :
+                        row_elements.append(self.Get_Address_And_Country())
+                    case "address.city" | "Get City" :
+                        row_elements.append(self.Get_City())
+                    case "address.country" | "Get Country" :
+                        row_elements.append(self.Get_Country())
+                    case "address.country_code" | "Get Country Code" :
+                        row_elements.append(self.Get_Country_Code())
+                    case "address.house_number" | "Get House Number" :
+                        row_elements.append(self.Get_House_Number())
+                    case "address.postcode" | "Get Postcode" :
+                        row_elements.append(self.Get_Postcode())
+                    case "address.postcode_city" | "Get Postcode And City" :
+                        row_elements.append(self.Get_Postcode_And_City())
+                    case "address.state" | "Get State" :
+                        row_elements.append(self.Get_State())
+                    case "address.street" | "Get Street" :
+                        row_elements.append(self.Get_Street())
+                    case "address.street_address" | "Get Street And House Number" :
+                        row_elements.append(self.Get_Street_And_House_Number())
+                    case "communication.email" | "Get EMail" :
+                        row_elements.append(self.Get_EMail())
+                    case "communication.mobile" | "Get Mobile" :
+                        row_elements.append("")
+                    case "finance.bank_name" | "Get Bank" :
+                        row_elements.append(self.Get_Bank())
+                    case "finance.bank_bic" | "Get Bic" :
+                        row_elements.append(self.Get_Bic())
+                    case "finance.bank_iban" | "Get Iban" :
+                        row_elements.append(self.Get_Iban())
+                    case "person.first_name" | "Get First Name" :
+                        row_elements.append(self.Get_First_Name())
+                    case "person.last_name" | "Get Last Name" :
+                        row_elements.append(self.Get_Last_Name())
+                    case "person.name" | "Get Name" :
+                        row_elements.append(self.Get_Name())
+                    case "person.ssn" | "Get Social Security Number" :
+                        row_elements.append(self.Get_Social_Security_Number())
+                    case "traffic.license_plate" | "Get License Plate" :
+                        row_elements.append(self.Get_License_Plate())
+                    case "person.sex":
+                        row_elements.append(self.get_item("person.sex"))
+                    case _:
+                        row_elements.append("")
+                
+            data.loc[len(data)] = row_elements
+        match(format.lower()):
+            case "excel":
+                self.add_rbt_log_message("[SynData.Write Table To File] The output format 'excel' is currently not supported", "INFO")
+                # data.to_excel(output, sheet_name="SynData")
+            case "csv":
+                data.to_csv(output)
+            case _:
+                self.add_rbt_log_message(f"[SynData.Write Table To File] The output format '{format}' is not supported", "WARN")
+
+        pass
+
+
+
+    #   ========================================================================
     #       Methods for internal management                 @not_keyword
     #   ========================================================================
     
@@ -720,12 +807,6 @@ class SynData:
     def get_common_iban(self, country: str, sequence: str) -> str:
         return Finance.create_iban(country, sequence)
         
-    # @not_keyword
-    # def Hello_World(self):
-    #     """ Bei diesem Schlüsselwort ist der Name verdächtig. ;-) Es ist das erste Schlüsselwort und
-    #         kann nicht einmal "Hallo" sagen."""
-    #     pass
-
     # @not_keyword
     # def Create_Person(self, gender="any", forenames=1, forename_hyphen=False, compound_name=False, birth_name=False):
     #     """Lorem ipsum dolor it."""
