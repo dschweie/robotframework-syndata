@@ -9,13 +9,13 @@ class Person(object):
     CLASS_PATH = pathlib.Path(__file__).parent.resolve()
 
     @staticmethod 
-    def get_name(item_data: dict):
+    def get_name(item_data: dict) -> str:
         first_name = Person.get_first_name(item_data)
         last_name = Person.get_last_name(item_data)
         return f"{first_name} {last_name}"
 
     @staticmethod
-    def get_first_name(item_data: dict):
+    def get_first_name(item_data: dict) -> str:
         data = pd.read_csv(f"{Person.CLASS_PATH}/data/first_names.csv", sep=',', header=0, index_col="idx")
         match str(item_data.get("person.sex", item_data.get("sex","*"))).lower():
             case "f":
@@ -59,10 +59,10 @@ class Person(object):
                     second_first_name = str(data.iat[random.randrange(0, data.shape[0]), 0])
                 return f"{first_first_name} {second_first_name}"
         else: 
-            return data.iat[random.randrange(0, data.shape[0]), 0]
+            return str(data.iat[random.randrange(0, data.shape[0]), 0])
     
     @staticmethod 
-    def get_last_name(item_data: dict):
+    def get_last_name(item_data: dict) -> str:
         data = pd.read_csv(f"{Person.CLASS_PATH}/data/last_names.csv", sep=',', header=0, index_col="idx")
         # According to internet research, 7% of women and 2% of men in Germany 
         # have a double surname. A double surname consists of two surnames 
@@ -81,7 +81,7 @@ class Person(object):
                 second_last_name = str(data.iat[random.randrange(0, data.shape[0]), 0])
             return f"{first_last_name}-{second_last_name}"
         else: 
-            return data.iat[random.randrange(0, data.shape[0]), 0]
+            return str(data.iat[random.randrange(0, data.shape[0]), 0])
 
     @staticmethod
     def get_date_of_birth(item_data:dict) -> str :

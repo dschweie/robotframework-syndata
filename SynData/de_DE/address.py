@@ -2,13 +2,14 @@ import pandas as pd
 import random
 import pathlib
 
-from typing import Literal
+from pathlib import Path
+from typing import Literal, Final
 
 class Address(object):
-    CLASS_PATH = pathlib.Path(__file__).parent.resolve()
+    CLASS_PATH : Final[Path]= pathlib.Path(__file__).parent.resolve()
 
-    AGS_CITIES_FILE = "/data/address_ags_cities.csv"
-    STREETS_FILE = "/data/address_streets.csv"
+    AGS_CITIES_FILE : Final[str] = "/data/address_ags_cities.csv"
+    STREETS_FILE : Final[str] = "/data/address_streets.csv"
 
     @staticmethod
     def get_address_data(item_data: dict) -> dict:
@@ -25,7 +26,7 @@ class Address(object):
             "address.country"         : "Deutschland", 
             "address.country_code"    : "DE" 
         }
-        data = pd.read_csv(f"{Address.CLASS_PATH}{Address.STREETS_FILE}", index_col=False, sep=',', low_memory=False, 
+        data = pd.read_csv(filepath_or_buffer=f"{Address.CLASS_PATH}{Address.STREETS_FILE}", index_col=False, sep=',', low_memory=False, 
                            dtype= {"street":str,"nr_min":int, "nr_max":int, "nr_mode":str, "postcode": str, "city": str, "ags":str})
         for key in item_data.keys():
             match key:

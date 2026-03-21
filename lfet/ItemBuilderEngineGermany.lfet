@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<LFET version="LF-ET 2.4.1 (260304a)" language="German" saveDate="2026.03.18 at 10:53:51 CET" saveUser="dschweie">
+<LFET version="LF-ET 2.4.1 (260304a)" language="German" saveDate="2026.03.21 at 13:41:20 CET" saveUser="dschweie">
   <Conditions>
     <Condition uId="17699446339764473">
       <Title language="German" value="Context is"/>
@@ -373,7 +373,6 @@
         <ActionOccurrence uId="17733981321342271">
           <Title language="German" value="Item is stored into dict item_data."/>
           <Symbol language="German" value="item_data"/>
-          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="item_data.update({&quot;person.dob&quot;: Person.get_sex(item_data)})"/>
         </ActionOccurrence>
       </ActionOccurrences>
     </Action>
@@ -408,7 +407,6 @@
         <ActionOccurrence uId="17733952859215242">
           <Symbol language="German" value="item_data"/>
           <Title language="German" value="Item is stored into dict item_data."/>
-          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="item_data.update({&quot;person.last_name&quot;: Person.get_last_name(item_data)})"/>
         </ActionOccurrence>
       </ActionOccurrences>
     </Action>
@@ -439,7 +437,6 @@
         <ActionOccurrence uId="17733943932630031">
           <Title language="German" value="Item is stored into dict item_data."/>
           <Symbol language="German" value="item_data"/>
-          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="item_data.update({&quot;person.dob&quot;: Person.get_date_of_birth(item_data)})"/>
         </ActionOccurrence>
       </ActionOccurrences>
     </Action>
@@ -464,7 +461,7 @@
         <ActionOccurrence uId="17732427968926910">
           <Symbol language="German" value="local"/>
           <Title language="German" value="Item is stored in a local variable."/>
-          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="first_name = Person.get_first_name(item_data)&lt;br/&gt;last_name = Person.get_last_name(item_data)&lt;br/&gt;local_data = Communication.build_random_mail(item_data, first_name, last_name)"/>
+          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="first_name: str = Person.get_first_name(item_data)&lt;br/&gt;last_name: str = Person.get_last_name(item_data)&lt;br/&gt;local_data = Communication.build_random_mail(item_data=item_data, first_name=first_name, last_name=last_name)"/>
         </ActionOccurrence>
         <ActionOccurrence uId="17732428186569136">
           <Symbol language="German" value="context"/>
@@ -528,7 +525,6 @@
         <ActionOccurrence uId="17703809349358249">
           <Symbol language="German" value="not_consistent"/>
           <Title language="German" value="The generated test data is not necessarily consistent with other dependent values!"/>
-          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="instance.add_rbt_log_message(&quot;The generated test data is not necessarily consistent with other dependent values!&quot;, &quot;INFO&quot;)"/>
         </ActionOccurrence>
         <TestValue group="gherkin" type="tcpost" value="there must be no entry in the internal log"/>
       </ActionOccurrences>

@@ -6,7 +6,7 @@ import uuid
 
 import pandas as pd
 
-from typing import Literal
+from typing import Literal, Final
 from robot.api.deco import keyword, not_keyword, library
 from robot.libraries.BuiltIn import BuiltIn
 
@@ -176,12 +176,14 @@ class SynData:
     """
     # ROBOT_AUTO_KEYWORDS = False
 
-    MODE_DEF = 0
-    MODE_REP = 1
+    MODE_DEF : Final[int] = 0
+    MODE_REP : Final[int] = 1
+
+    MODE_LIST: Final[list] = ["default", "replay"]
 
     INSTANCE = None
 
-    def __init__(self, localization: str ="en_US", logging: bool =False, logfile: str =None, replayfile: str =None) -> None:
+    def __init__(self, localization: str ="en_US", logging: bool =False, logfile: str | None =None, replayfile: str | None =None) -> None:
         """
         The constructor is used to initialize the library.
 
@@ -192,8 +194,8 @@ class SynData:
         | ``replayfile``   | The parameter can be used to pass the full path to a log file so that the file is set as the data source for the keywords. If a file name is transferred here, many functions of the library, such as context management, are overridden. The default value is ``None``, which means that the generators are used to generate data. |
         """
         self.mode = SynData.MODE_DEF
-        self.context = None
-        self.data = {}
+        self.context: str | None = None
+        self.data: dict[str, dict] = {}
         self.ibe = ItemBuilderEngine()
         self.rbt_bi = None
         if(None == replayfile):
@@ -202,7 +204,7 @@ class SynData:
         else:
             self.mode = SynData.MODE_REP
             self.replayfile = replayfile
-        self.set_configuration(self.mode, localization, logging, logfile, replayfile)
+        self.set_configuration(SynData.MODE_LIST[self.mode], localization, logging, logfile, replayfile)
         SynData.INSTANCE = self
 
     #def get_keyword_names(self):
@@ -220,7 +222,7 @@ class SynData:
     #   ========================================================================
 
     @keyword(name="Set SynData Configuration", tags=["Management"])
-    def Set_SynData_Configuration(self, mode: Literal["default", "replay"] = "default", localization: str ="en_US", logging: bool =False, logfile: str =None , replay_file: str = None):
+    def Set_SynData_Configuration(self, mode: Literal["default", "replay"] = "default", localization: str ="en_US", logging: bool =False, logfile: str | None =None , replay_file: str | None = None):
         """
         This keyword can be used to reset the library configuration.
 
@@ -252,7 +254,7 @@ class SynData:
     #   ========================================================================
 
     @keyword(tags=["Management"])
-    def Set_Context(self, context: str, localization: str ='en_US', focus: Literal["global", "suite", "test"] ='test') -> str:
+    def Set_Context(self, context: str, localization: str ='en_US', focus: Literal["global", "suite", "test"] ='test') -> str | None:
         """
         The keyword can be used to set a context.
 
@@ -308,7 +310,7 @@ class SynData:
         self.context = None
 
     @keyword(tags=["Management"])
-    def Get_Context(self) -> str:
+    def Get_Context(self) -> str | None:
         """
         The keyword returns the name of the context, if a context is set.
         
@@ -319,8 +321,8 @@ class SynData:
             return None
         # return self.context
         if (None != self.context):
-            context_name = self.data.get(self.context).get("meta").get("name")
-            context_focus = self.data.get(self.context).get("meta").get("focus")
+            context_name = self.data.get(str(self.context), {}).get("meta", {}).get("name", "")
+            context_focus = self.data.get(str(self.context),{}).get("meta",{}).get("focus", "")
             if(       (f"{self.get_current_test_suite()}.{self.get_current_test_case()}.{context_name}" == self.context)
                   and ("test" == context_focus)):
                 # In this case, a context was detected that exactly matches the test case currently being executed.
@@ -718,7 +720,7 @@ class SynData:
         if ( None == self.context ):
             return None
         else: 
-            return self.data[self.context].get(item)
+            return self.data.get(str(self.context), {}).get(item)
         
     @not_keyword
     def get_item_with_set_option(self, item:str, value:str) -> str:
@@ -743,12 +745,12 @@ class SynData:
         if ( None == self.context ):
             return False
         else:
-            return item in self.data[self.context].keys()
+            return item in self.data.get(str(self.context), {}).keys()
 
     @not_keyword
     def add_item(self, item, value):
         if( None != self.context ):
-            self.data[self.context].update({item: value})
+            self.data.get(str(self.context), {}).update({item: value})
 
     @not_keyword
     def add_log_entry(self, keyword, item, value):
@@ -766,14 +768,14 @@ class SynData:
     def add_rbt_log_message(self, message: str, level):
         if(None == self.rbt_bi):
             self.rbt_bi = BuiltIn()
-        self.rbt_bi.log(message, level=level)
+        self.rbt_bi.log(message, level=level) # type: ignore
 
 
     @not_keyword
     def get_rbt_variable_value(self, variable: str) -> str:
         if(None == self.rbt_bi):
             self.rbt_bi = BuiltIn()
-        return str(self.rbt_bi.get_variable_value(variable))
+        return str(self.rbt_bi.get_variable_value(variable)) # type: ignore
 
     @not_keyword
     def get_current_test_suite(self) -> str:
@@ -788,7 +790,7 @@ class SynData:
         if ( None == self.Get_Context() ):
             return self.default_localization
         else:
-            return self.data.get(self.context).get("meta").get("localization")
+            return self.data.get(str(self.context), {}).get("meta", {}).get("localization")
 
     @not_keyword
     def get_replay_file(self) -> str:
