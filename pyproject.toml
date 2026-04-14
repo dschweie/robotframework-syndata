@@ -1,6 +1,6 @@
 [project]
 name = "robotframework-syndata"
-version = "0.1.2"
+version = "0.1.3"
 description = "Generation of synthetic test data that is consistent."
 authors = [
     {name = "Dirk O. Schweier",email = "dschweie@gmail.com"}
@@ -14,6 +14,7 @@ dependencies = [
     "pandas (>=3.0.0,<4.0.0)",
     "faker (>=40.0.0)",
     "pandas-stubs (>=3.0.0,<3.1.0)",
+    "babel (>=2.18.0)",
     "robotframework-pythonlibcore (>=4.4.1)"
 ]
 

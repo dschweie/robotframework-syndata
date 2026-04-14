@@ -3,7 +3,7 @@
 # 
 # Aktueller Benutzer: dschweie
 # Aktuelles Verzeichnis (user.dir): "E:\data\schweier\rbtfrmwrk\robotframework-syndata"
-# Benötigte Zeit: 00:00:00.850 (21.03.2026 13:43:55.549 - 21.03.2026 13:43:56.399)
+# Benötigte Zeit: 00:00:00.725 (14.04.2026 07:54:08.805 - 14.04.2026 07:54:09.530)
 # 
 # Entscheidungstabelle: E:\data\schweier\rbtfrmwrk\robotframework-syndata\.\lfet\ItemBuilderEngine.lfet
 # 
@@ -19,16 +19,16 @@
 #         ItemBuilderEngine
 #         | R06 | B01=REP | B04=equal | B05=equal
 #         
-#         Die dynamisch erzeugte GTD Teilmenge 'replay' enthält keine Datensätze. {(replay, GherkinReplayData, *, 76 Sätze), (replay, replay, test_case = "#current", 38 Sätze), (replay, replay, item = item.item=communication.mobile, 0 Sätze)}  (21.03.2026 13:43:56.196)
+#         Die dynamisch erzeugte GTD Teilmenge 'replay' enthält keine Datensätze. {(replay, GherkinReplayData, *, 76 Sätze), (replay, replay, test_case = "#current", 38 Sätze), (replay, replay, item = item.item=person.ssn, 0 Sätze)}  (14.04.2026 07:54:09.359)
 # 
 # Testfälle mit Warnungen: 0
 # 
 # Informationen: 1
 # 
 #     1. E:\data\schweier\rbtfrmwrk\robotframework-syndata\lfet\testdata\gherkin\items_common.csv
-#            Erfolgreich eingelesen: GherkinItems_com, 184 Sätze, Encoding UTF-8
+#            Erfolgreich eingelesen: GherkinItems_com, 186 Sätze, Encoding UTF-8
 #         E:\data\schweier\rbtfrmwrk\robotframework-syndata\lfet\testdata\gherkin\items_de.csv
-#            Erfolgreich eingelesen: GherkinItems_de, 73 Sätze, Encoding UTF-8
+#            Erfolgreich eingelesen: GherkinItems_de, 75 Sätze, Encoding UTF-8
 #         E:\data\schweier\rbtfrmwrk\robotframework-syndata\lfet\testdata\gherkin\replay.csv
 #            Erfolgreich eingelesen: GherkinReplayData, 76 Sätze, Encoding UTF-8
 
@@ -44,9 +44,9 @@ Feature: Choice of method for generating the test data
     *     that logging for SynData should be done in "SynData-unit_test"
     *     no context is set
     When  the builder engine is called:
-      | item            | item_data | keyword     |
-      | address.address | {}        | Get Address |
-    Then  the result for "address.address" should match "^\S.+\s\d+[A-Ha-h]?(\r\n?|\n)\d{5}\s.+$"
+      | item                 | item_data | keyword    |
+      | communication.mobile | {}        | Get Mobile |
+    Then  the result for "communication.mobile" should match "^[+]49\s\d+\s\d+$"
     *     rule "1" of "9" from decision table "ItemBuilderEngine" has been executed
     *     rule from decision table "ItemBuilderEngineGermany" has been executed
 
@@ -54,13 +54,13 @@ Feature: Choice of method for generating the test data
   Scenario: 0002 ItemBuilderEngine
     ItemBuilderEngine
     R02 : B01 Current Mode = DEF ; B02 Context is = None ; B06 Localization = *
-    Given SynData is in "default" mode and the localization is "en_AU"
+    Given SynData is in "default" mode and the localization is "en_US"
     *     that logging for SynData should be done in "SynData-unit_test"
     *     no context is set
     When  the builder engine is called:
-      | item                 | item_data | keyword          |
-      | address.country_code | {}        | Get Country Code |
-    Then  the result for "address.country_code" should match "^(A[DEFGLMORTUZ])|(B[ABDEFGHIJNORSTWYZ])|(C[ADFGHILMNORUVYZ])|(D[EJKMOZ])|(E[CEGRST])|(F[IJMR])|(G[ABDEHMNQRTWY])|(H[NRTU])|(I[DELNQRST])|(J[MOP])|(K[EGHIMNPRWZ])|(L[ABCIKRSTUVY])|(M[ACDEGHKLMNRTUVWXYZ])|(N[AEGILOPRZ])|(OM)|(P[AEGHKLTWY])|(QA)|(R[OSUW])|(S[ABCDEGIKLMNORSTVYZ])|(T[DGHJLMNORTVZ])|(U[AGSYZ])|(V[CENU])|(WS)|(YE)|(Z[AMW])$"
+      | item                  | item_data | keyword           |
+      | traffic.license_plate | {}        | Get License Plate |
+    Then  the result for "traffic.license_plate" should match "^.+$"
     *     rule "2" of "9" from decision table "ItemBuilderEngine" has been executed
     *     rule from decision table "ItemBuilderEngineFaker" has been executed
 
@@ -72,65 +72,65 @@ Feature: Choice of method for generating the test data
     *     that logging for SynData should be done in "SynData-unit_test"
     *     in SynData the context "ItemBuilderEngineR03" with focus "test" and localization "de_DE" is set
     *     in SynData items are stored
-      | data_json          |
-      | {"person.sex":"f"} |
+      | data_json |
+      | {}        |
     When  the builder engine is called:
-      | item              | item_data | keyword        |
-      | person.first_name | {}        | Get First Name |
-    Then  the result for "person.first_name" should match "^\S[^\d]+$"
+      | item                  | item_data | keyword               |
+      | address.postcode_city | {}        | Get Postcode And City |
+    Then  the result for "address.postcode_city" should match "^\d{5}\s.+$"
     *     rule "3" of "9" from decision table "ItemBuilderEngine" has been executed
     *     rule from decision table "ItemBuilderEngineGermany" has been executed
     *     the internal storage for the following items should be checked:
-      | data_json                                         |
-      | {"person.first_name":"#retval", "person.sex":"f"} |
+      | data_json                                                                                                                                                                                                                                                                                                                                                                           |
+      | {"address.address":"#stored", "address.address_country":"#stored", "address.city":"#stored", "address.country":"#stored", "address.country_code":"#stored", "address.house_number":"#stored", "address.postcode":"#stored", "address.postcode_city":"#retval", "address.state":"#stored", "address.street":"#stored", "address.street_address":"#stored", "location.ags":"#stored"} |
 
   @recommended
   Scenario: 0004 ItemBuilderEngine
     ItemBuilderEngine
     R04 : B01 Current Mode = DEF ; B02 Context is = Set ; B03 Requested item is = unknown ; B06 Localization = *
-    Given SynData is in "default" mode and the localization is "da_DK"
+    Given SynData is in "default" mode and the localization is "cs_CZ"
     *     that logging for SynData should be done in "SynData-unit_test"
-    *     in SynData the context "ItemBuilderEngineR04" with focus "test" and localization "da_DK" is set
+    *     in SynData the context "ItemBuilderEngineR04" with focus "test" and localization "cs_CZ" is set
     *     in SynData items are stored
       | data_json                      |
-      | {"person.first_name":"Mogens"} |
+      | {"person.last_name":"Novotný"} |
     When  the builder engine is called:
-      | item                | item_data | keyword   |
-      | communication.email | {}        | Get EMail |
-    Then  the result for "communication.email" should match "^.+@rf-syndata\.net"
+      | item        | item_data | keyword  |
+      | person.name | {}        | Get Name |
+    Then  the result for "person.name" should match "^\S[^\d]+\sNovotný$"
     *     rule "4" of "9" from decision table "ItemBuilderEngine" has been executed
     *     rule from decision table "ItemBuilderEngineFaker" has been executed
     *     the internal storage for the following items should be checked:
-      | data_json                                                                                                              |
-      | {"communication.email":"#retval", "person.first_name":"Mogens", "person.last_name":"#stored", "person.name":"#stored"} |
+      | data_json                                                                              |
+      | {"person.first_name":"#stored", "person.last_name":"Novotný", "person.name":"#retval"} |
 
   @recommended
   Scenario: 0005 ItemBuilderEngine
     ItemBuilderEngine
     R05 : B01 Current Mode = DEF ; B02 Context is = Set ; B03 Requested item is = known
-    Given SynData is in "default" mode and the localization is "no_NO"
+    Given SynData is in "default" mode and the localization is "de_DE"
     *     that logging for SynData should be done in "SynData-unit_test"
-    *     in SynData the context "ItemBuilderEngineR05" with focus "test" and localization "no_NO" is set
+    *     in SynData the context "ItemBuilderEngineR05" with focus "test" and localization "de_DE" is set
     *     in SynData items are stored
-      | data_json                                                 |
-      | {"person.first_name":"Anette", "person.last_name":"Aune"} |
+      | data_json |
+      | {}        |
     *     the builder engine is called:
-      | item                | item_data | keyword   |
-      | communication.email | {}        | Get EMail |
+      | item                  | item_data | keyword           |
+      | traffic.license_plate | {}        | Get License Plate |
     When  the builder engine is called:
-      | item                | item_data | keyword   |
-      | communication.email | {}        | Get EMail |
-    Then  the result for "communication.email" should match "^.+@rf-syndata\.net"
+      | item                  | item_data | keyword           |
+      | traffic.license_plate | {}        | Get License Plate |
+    Then  the result for "traffic.license_plate" should match "(?=.{5,10}$)^[A-ZÄÖÜ]{1,3}\s[A-Z]{1,2}\s[1-9]\d{0,3}[EH]?$"
     *     rule "5" of "9" from decision table "ItemBuilderEngine" has been executed
     *     the internal storage for the following items should be checked:
-      | data_json                                                                                                           |
-      | {"communication.email":"#retval", "person.first_name":"Anette", "person.last_name":"Aune", "person.name":"#stored"} |
+      | data_json                                                     |
+      | {"traffic.license_plate":"#retval", "location.ags":"#stored"} |
 
   @incomplete @recommended
   Scenario: 0006 ItemBuilderEngine
     ItemBuilderEngine
     R06 : B01 Current Mode = REP ; B04 Comparison current test case vs recorded test case = equal ; B05 Comparison current item vs recorded item = equal    messages:
-    # Die dynamisch erzeugte GTD Teilmenge 'replay' enthält keine Datensätze. {(replay, GherkinReplayData, *, 76 Sätze), (replay, replay, test_case = "#current", 38 Sätze), (replay, replay, item = item.item=communication.mobile, 0 Sätze)}  (21.03.2026 13:43:56.196)
+    # Die dynamisch erzeugte GTD Teilmenge 'replay' enthält keine Datensätze. {(replay, GherkinReplayData, *, 76 Sätze), (replay, replay, test_case = "#current", 38 Sätze), (replay, replay, item = item.item=person.ssn, 0 Sätze)}  (14.04.2026 07:54:09.359)
 
   @recommended
   Scenario: 0007 ItemBuilderEngine
@@ -140,13 +140,13 @@ Feature: Choice of method for generating the test data
       | mode   | replay_file             | localization | logging |
       | replay | replay_file_gherkin.csv | de_DE        | True    |
     *     the replay file contains the following data:
-      | item                   | value          | test_suite | test_case | keyword                     |
-      | address.street_address | Rathausplatz 1 | #current   | #current  | Get Street And House Number |
+      | item              |                  value | test_suite | test_case | keyword  |
+      | finance.bank_iban | DE39666923008322024858 | #current   | #current  | Get Iban |
     *     data for given test case is read
     When  the builder engine is called:
-      | item            | item_data | keyword     |
-      | address.country | {}        | Get Country |
-    Then  the result for "address.country" should match "^\S.+$"
+      | item                | item_data | keyword   |
+      | communication.email | {}        | Get EMail |
+    Then  the result for "communication.email" should match "^.+@.+$"
     *     rule "7" of "9" from decision table "ItemBuilderEngine" has been executed
     *     rule from decision table "ItemBuilderEngineGermany" has been executed
     *     the "warning" with id "SynData.NOREP" must be in the internal log
@@ -159,13 +159,13 @@ Feature: Choice of method for generating the test data
       | mode   | replay_file             | localization | logging |
       | replay | replay_file_gherkin.csv | en_US        | True    |
     *     the replay file contains the following data:
-      | item        | value          | test_suite | test_case | keyword  |
-      | person.name | Caitlin Dalton | #current   | #current  | Get Name |
+      | item              | value                  | test_suite | test_case | keyword  |
+      | finance.bank_iban | GB73FMDD61613437972712 | #current   | #current  | Get Iban |
     *     data for given test case is read
     When  the builder engine is called:
-      | item            | item_data | keyword     |
-      | address.address | {}        | Get Address |
-    Then  the result for "address.address" should match "^(.+((\r\n?|\n))?)+$"
+      | item        | item_data | keyword  |
+      | person.name | {}        | Get Name |
+    Then  the result for "person.name" should match "^\S[^\d]+\s[^\d]+$"
     *     rule "8" of "9" from decision table "ItemBuilderEngine" has been executed
     *     rule from decision table "ItemBuilderEngineFaker" has been executed
     *     the "warning" with id "SynData.NOREP" must be in the internal log
@@ -181,9 +181,9 @@ Feature: Choice of method for generating the test data
       | item              | value | test_suite | test_case            | keyword        |
       | person.first_name | Ellen | #current   | 4711 Dummy Test Case | Get First Name |
     When  the builder engine is called:
-      | item                | item_data | keyword   |
-      | communication.email | {}        | Get EMail |
-    Then  the result for "communication.email" should match "^.+@rf-syndata\.org"
+      | item         | item_data | keyword  |
+      | address.city | {}        | Get City |
+    Then  the result for "address.city" should match "^(.+((\r\n?|\n))?)+$"
     *     rule "9" of "9" from decision table "ItemBuilderEngine" has been executed
 
 ### end of generated test cases ###

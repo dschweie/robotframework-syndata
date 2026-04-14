@@ -1,7 +1,7 @@
 Encoding = UTF-8
 *GTD.GherkinItems_de
 
- domain   ; item                    ; context ; keyword                     ; item_data ; exp_type ; expected_term ; expected_stored_items ; preset_keys  ; preset_json ; localization
+ domain        ; item                    ; context ; keyword                     ; item_data ; exp_type ; expected_term ; expected_stored_items ; preset_keys  ; preset_json ; localization
 =======================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
  address       ; address.address         ;  false  ; Get Address                 ;        {} ;   regex  ; ^\S.+\s\d+[A-Ha-h]?(\r\n?|\n)\d{5}\s.+$ ; {} ; None ; {} ; de_DE
  address       ; address.address         ;  true   ; Get Address                 ;        {} ;   regex  ; ^\S.+\s\d+[A-Ha-h]?(\r\n?|\n)\d{5}\s.+$ ; {"address.address":"#retval", "address.address_country":"#stored", "address.city":"#stored", "address.country":"#stored", "address.country_code":"#stored", "address.house_number":"#stored", "address.postcode":"#stored", "address.postcode_city":"#stored", "address.state":"#stored", "address.street":"#stored", "address.street_address":"#stored", "location.ags":"#stored"} ; None ; {} ; de_DE
@@ -64,6 +64,8 @@ Encoding = UTF-8
  person        ; person.name             ;  true   ; Get Name                    ;        {} ;   regex  ; ^Marta\s[^\d]+$ ; {"person.first_name":"Marta", "person.last_name":"#stored", "person.name":"#retval"} ; person.first_name ; {"person.first_name":"Marta", "person.sex":"f"} ; de_DE
  person        ; person.name             ;  true   ; Get Name                    ;        {} ;   regex  ; ^\S[^\d]+\sMair$ ; {"person.first_name":"#stored", "person.last_name":"Mair", "person.name":"#retval"} ; person.last_name ; {"person.last_name":"Mair"} ; de_DE
  person        ; person.name             ;  true   ; Get Name                    ;        {} ;   regex  ; ^\S[^\d]+\s[^\d]+$ ; {"person.first_name":"#stored", "person.last_name":"#stored", "person.name":"#retval"} ; None ; {} ; de_DE
+ person        ; person.dob              ;  false  ; Get Date Of Birth           ;        {} ;   regex  ; ^\d{2}\.\d{2}\.\d{4} ; {} ; None ; {} ; de_DE
+ person        ; person.dob              ;  true   ; Get Date Of Birth           ;        {} ;   regex  ; ^\d{2}\.\d{2}\.\d{4} ; {"person.dob":"#retval"} ; None ; {} ; de_DE
  person        ; person.ssn              ;  false  ; Get Social Security Number  ;        {} ;   regex  ; ^\d{2}\s\d{6}\s[A-Z]\s\d{3}$ ; {} ; None ; {} ; de_DE
  person        ; person.ssn              ;  true   ; Get Social Security Number  ;        {} ;   regex  ; ^\d{2}\s\d{6}\s[A-Z]\s\d{3}$ ; {"person.ssn":"#retval", "person.sex":"#stored", "person.dob":"#stored", "person.last_name":"#stored"} ; None ; {} ; de_DE
  person        ; person.ssn              ;  true   ; Get Social Security Number  ;        {} ;   regex  ; ^\d{2}\s\d{6}\s[A-Z]\s[5-9]\d{2}$ ; {"person.ssn":"#retval", "person.sex":"#stored", "person.dob":"#stored", "person.last_name":"#stored"} ; person.sex ; {"person.sex":"f"} ; de_DE

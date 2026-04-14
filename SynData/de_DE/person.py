@@ -4,8 +4,9 @@ import random
 import string
 import pathlib
 from ..utils.stringtools import StringTools
+from ..utils.persontools import BasicPerson
 
-class Person(object):
+class Person(BasicPerson):
     CLASS_PATH = pathlib.Path(__file__).parent.resolve()
 
     @staticmethod 
@@ -85,23 +86,11 @@ class Person(object):
 
     @staticmethod
     def get_date_of_birth(item_data:dict) -> str :
-        value_from = int(item_data.get("age_from", "0"))*365
-        value_to = int(item_data.get("age_to", "100"))*365
+        value_from = int(item_data.get("preset.age_from", "0"))*365
+        value_to = int(item_data.get("preset.age_to", "100"))*365
         delta_days = random.randint(max(min(value_from,value_to), 0), max(value_from,value_to))
         dob = datetime.now() - timedelta(days=delta_days)
         return dob.strftime("%d.%m.%Y")
-
-    @staticmethod
-    def get_sex(item_data:dict) -> str:
-        match(str(item_data.get("preset.sex", "*")).lower()):
-            case "m" | "male" | "männlich": 
-                return "m"
-            case "f" | "female" | "w" | "weiblich":
-                return "w"
-            case "d" | "divers":
-                return "d"
-            case _:
-                return str(random.choices(["m", "f", "d"], weights=[49, 50, 1], k=1)[0])
 
     @staticmethod
     def get_social_security_number(item_data:dict) -> str :
@@ -134,3 +123,185 @@ class Person(object):
         for idx, char in enumerate(value):
             checksum += sum(int(d) for d in str(factor[idx] * int(char)))
         return f"{checksum % 10}"
+
+class Soldier(Person):
+    @staticmethod
+    def get_personal_identification_number(item_data:dict) -> str:
+        item_data["preset.age_from"] = item_data.get("preset.age_from", "17")
+        item_data["preset.age_to"] = item_data.get("preset.age_to", "64")
+        date_of_birth = str(item_data.get("person.dob", item_data.get("preset.dob", Person.get_date_of_birth(item_data))))
+        year_of_birth = int(date_of_birth[-4:])
+        date_string: str = f"{date_of_birth[0:2]}{date_of_birth[3:5]}{date_of_birth[-2:]}"
+        last_name = str(item_data.get("person.last_name", item_data.get("preset.last_name", random.choice(string.ascii_uppercase))))
+        char_last_name: str = StringTools.translate_to_ascii(last_name.upper())[0]
+        district: str = item_data.get("preset.kwea", Soldier.translate_location_to_registration_district(location=item_data.get("location.ags", "-"), year_of_birth=year_of_birth))
+        follow_number: str = random.choices(population=["1", "2", "3", "4", "5", "6", "7", "8", "9"], weights=[32, 16, 8, 4, 2, 1, 1, 1, 1], k=1)[0]
+        print(f"{date_string}{char_last_name}{district}{follow_number}")
+        check_digit = Soldier.calculate_check_digit_personal_identification_number(f"{date_string}{char_last_name}{district}{follow_number}")
+        print(f"{date_string} {char_last_name} {district}{follow_number}{check_digit}")
+        return f"{date_string} {char_last_name} {district}{follow_number}{check_digit}"
+    
+    @staticmethod
+    def calculate_check_digit_personal_identification_number(value:str) -> str:
+        factor = [2, 3, 4, 5, 6, 7, 1, 6, 7, 2, 3]
+        checksum = 0
+        for idx, char in enumerate(iterable=value.upper()):
+            match(char):
+                case             "S":
+                    checksum += factor[idx] * 4
+                case       "J" | "T":
+                    checksum += factor[idx] * 6
+                case       "K" | "U":
+                    checksum += factor[idx] * 8
+                case       "L" | "V":
+                    checksum += factor[idx] * 10
+                case "A" | "M" | "W":
+                    checksum += factor[idx] * 12
+                case "B" | "N" | "X":
+                    checksum += factor[idx] * 14
+                case "C" | "O" | "Y":
+                    checksum += factor[idx] * 16
+                case "D" | "P" | "Z":
+                    checksum += factor[idx] * 18
+                case "E" | "Q":
+                    checksum += factor[idx] * 20
+                case "F" | "R":
+                    checksum += factor[idx] * 22
+                case "G":
+                    checksum += factor[idx] * 24
+                case "H":
+                    checksum += factor[idx] * 26
+                case "I":
+                    checksum += factor[idx] * 28
+                case _:
+                    checksum += factor[idx] * int(char)
+        return f"{(11 - (checksum % 11)) % 10}"
+
+    @staticmethod
+    def translate_location_to_registration_district(location: str, year_of_birth: int) -> str:
+        state = location[0:2]
+        if year_of_birth < 1996:
+            kweas = {}
+            match (state):
+                case "01": # Schleswig-Holstein
+                    kweas.update({"106":"Kiel", "112":"Schleswig"})
+                case "02": # Freie und Hansestadt Hamburg
+                    kweas.update({"101":"Hamburg"})
+                case "03": # Niedersachsen
+                    kweas.update({"213":"Oldenburg", 
+                                  "210":"Meppen",
+                                  "207":"Hannover",
+                                  "202":"Braunschweig",
+                                  "209":"Lüneburg",
+                                  "215":"Stade"})
+                case "04": # Freie Hansestadt Bremen
+                    kweas.update({"213":"Oldenburg"})
+                case "05": # Nordrhein-Westfalen
+                    kweas.update({"310":"Düsseldorf", 
+                                  "318":"Köln",
+                                  "302":"Arnsberg",
+                                  "308":"Dortmund",
+                                  "315":"Herford",
+                                  "316":"Jülich",
+                                  "322":"Mönchengladbach",
+                                  "323":"Münster",
+                                  "324":"Recklinghausen"})
+                case "06": # Hessen
+                    kweas.update({"417":"Wiesbaden", 
+                                  "416":"Wetzlar",
+                                  "401":"Darmstadt",
+                                  "402":"Gelnhausen",
+                                  "408":"Kassel"})
+                case "07": # Rheinland-Pfalz
+                    kweas.update({"409":"Koblenz", 
+                                  "407":"Kaiserslautern"})
+                case "08": # Baden-Württemberg
+                    kweas.update({"513":"Stuttgart", 
+                                  "510":"Ravensburg", 
+                                  "508":"Mannheim", 
+                                  "505":"Karlsruhe", 
+                                  "502":"Donaueschingen", 
+                                  "501":"Schwäbisch Gmünd", 
+                                  "503":"Freiburg"})
+                case "09": # Freistaat Bayern
+                    kweas.update({"612":"München", 
+                                  "629":"Ingolstadt",
+                                  "611":"Kempten",
+                                  "617":"Traunstein",
+                                  "615":"Nürnberg",
+                                  "604":"Bamberg",
+                                  "619":"Würzburg",
+                                  "618":"Weiden",
+                                  "616":"Regensburg"})
+                case "10": # Saarland
+                    kweas.update({"424":"Saarlouis"})
+                case "11" if year_of_birth > 1973: # Berlin
+                    kweas.update({"725":"Berlin"})
+                case "12" if year_of_birth > 1973: # Brandenburg
+                    kweas.update({"717":"Potsdam", "704":"Cottbus"})
+                case "13" if year_of_birth > 1973: # Mecklenburg-Vorpommern
+                    kweas.update({"128":"Schwerin"})
+                case "14" if year_of_birth > 1973: # Freistaat Sachsen
+                    kweas.update({"705":"Dresden", "712":"Leipzig"})
+                case "15" if year_of_birth > 1973: # Sachsen-Anhalt
+                    kweas.update({"713":"Magdeburg"})
+                case "16" if year_of_birth > 1973: # Freistaat Thüringen
+                    kweas.update({"707":"Erfurt"})
+                case _:
+                    kweas.update({"106":"Kiel", 
+                                  "112":"Schleswig",
+                                  "101":"Hamburg",
+                                  "213":"Oldenburg", 
+                                  "210":"Meppen",
+                                  "207":"Hannover",
+                                  "202":"Braunschweig",
+                                  "209":"Lüneburg",
+                                  "215":"Stade", 
+                                  "213":"Oldenburg",
+                                  "310":"Düsseldorf", 
+                                  "318":"Köln",
+                                  "302":"Arnsberg",
+                                  "308":"Dortmund",
+                                  "315":"Herford",
+                                  "316":"Jülich",
+                                  "322":"Mönchengladbach",
+                                  "323":"Münster",
+                                  "324":"Recklinghausen",
+                                  "417":"Wiesbaden", 
+                                  "416":"Wetzlar",
+                                  "401":"Darmstadt",
+                                  "402":"Gelnhausen",
+                                  "408":"Kassel",
+                                  "409":"Koblenz", 
+                                  "407":"Kaiserslautern",
+                                  "513":"Stuttgart", 
+                                  "510":"Ravensburg", 
+                                  "508":"Mannheim", 
+                                  "505":"Karlsruhe", 
+                                  "502":"Donaueschingen", 
+                                  "501":"Schwäbisch Gmünd", 
+                                  "503":"Freiburg",
+                                  "612":"München", 
+                                  "629":"Ingolstadt",
+                                  "611":"Kempten",
+                                  "617":"Traunstein",
+                                  "615":"Nürnberg",
+                                  "604":"Bamberg",
+                                  "619":"Würzburg",
+                                  "618":"Weiden",
+                                  "616":"Regensburg", 
+                                  "424":"Saarlouis"})
+            retval = random.choice(list(kweas.keys()))
+        else:
+            karrcs = {"830":"Berlin", 
+                      "840":"Düsseldorf",
+                      "850":"Erfurt",
+                      "820":"Hannover",
+                      "860":"Mainz",
+                      "880":"München",
+                      "870":"Stuttgart",
+                      "810":"Wilhelmshafen"}
+            retval = random.choice(list(karrcs.keys()))
+        return retval
+    
+

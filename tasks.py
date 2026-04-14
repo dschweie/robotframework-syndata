@@ -134,3 +134,18 @@ def check_streets_ags(c):
                 if(last_hit != current_ags):
                     print(f"AGS {current_ags} liefert keinen Treffer.")
                     last_hit = current_ags
+
+@task
+def update_banks(c):
+    ags     = pd.read_csv("./syndata/de_DE/data/address_ags_cities.csv", index_col=False, sep=',',
+                        dtype={"ags":str, "postcode":str, "city":str, "type":str, "county":str, "state":str, "state_code":str})
+    ags = ags[["ags", "city", "state_code"]].drop_duplicates()
+
+    data_banks = pd.read_csv(f"./syndata/de_DE/data/finance_banks.csv", index_col=False, sep=',', low_memory=False, 
+                                dtype= {"blz":str, "city":str, "ags":str, "name":str, "pan":str})
+    for row in range(data_banks.shape[0]):
+        result = ags.query(f"city == '{data_banks["city"].iloc[row]}'")
+        if(1 == result.shape[0]):
+            data_banks.loc[row, "ags"] = str(result["ags"].iloc[0])
+    print(data_banks.head(30))
+    data_banks.to_csv("./syndata/de_DE/data/address_ags_cities_update.csv", encoding="UTF-8", index=False)

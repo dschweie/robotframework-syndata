@@ -14,7 +14,7 @@ from .item_builder_engine import ItemBuilderEngine
 from .common.country import Country
 from .common.finance import Finance
 
-@library(scope='GLOBAL', version='0.1.2', auto_keywords=False)
+@library(scope='GLOBAL', version='0.1.3', auto_keywords=False)
 class SynData:
     """ 
     Test data is required in many projects. In some cases, the test data is 
@@ -548,6 +548,20 @@ class SynData:
         return str(self.ibe.execute(self, self.get_current_localization(), "Get Last Name", "person.last_name", {}))
 
     @keyword(tags=["Person"])
+    def Get_Date_Of_Birth(self, min_age:int =0, max_age:int=99) -> str:
+        """
+        The keyword provides a date that can be interpreted as a date of birth.
+        
+        | =Arguments= | =Descripion= |
+        | ``min_age`` | The minimum age can be specified in the parameter. The default value is ``0``. |
+        | ``max_age`` | The maximum age can be specified in the parameter. The default value is ``0``. |
+        """
+        item_data = {}
+        item_data["preset.age_from"] = min_age
+        item_data["preset.age_to"] = max_age
+        return str(self.ibe.execute(self, self.get_current_localization(), "Get Date Of Birth", "person.dob", item_data))
+
+    @keyword(tags=["Person"])
     def Get_Social_Security_Number(self) -> str:
         """
         This keyword returns information assigned to an individual by a 
@@ -597,7 +611,7 @@ class SynData:
     #   ========================================================================
 
     @keyword
-    def Write_Table_To_File(self, rows:int, columns:list, localization:str, output:str, format="csv"):
+    def Write_Table_To_File(self, rows:int, columns:list, localization:str, output:str, format:str="csv"):
         """
         This keyword can be used to generate a file containing test data.
 

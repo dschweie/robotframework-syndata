@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<LFET version="LF-ET 2.4.1 (260304a)" language="German" saveDate="2026.03.21 at 13:41:20 CET" saveUser="dschweie">
+<LFET version="LF-ET 2.4.1 (260304a)" language="German" saveDate="2026.04.09 at 11:46:42 CEST" saveUser="dschweie">
   <Conditions>
     <Condition uId="17699446339764473">
       <Title language="German" value="Context is"/>
@@ -186,11 +186,19 @@
           <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;person.last_name&quot;"/>
           <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, item, item, item == &quot;${*LFET.Wert.Symbol}&quot;"/>
         </ConditionOccurrence>
+        <ConditionOccurrence uId="17756373131291083">
+          <Symbol language="German" value="person.dob"/>
+          <Title language="German" value="A date is returned that can be interpreted as a date of birth."/>
+          <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;person.dob&quot; == item )"/>
+          <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, item, item, item == &quot;${*LFET.Wert.Symbol}&quot;"/>
+          <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;person.dob&quot;"/>
+        </ConditionOccurrence>
         <ConditionOccurrence uId="17733917481088438">
           <Symbol language="German" value="person.ssn"/>
           <Title language="German" value="A social security number should be returned."/>
           <TestValue group="*ti.gtd.gherkin" type="tsi" value="table, item, item, item == &quot;${*LFET.Wert.Symbol}&quot;"/>
           <TestValue group="*ti.gtd.robot" type="tsi" value="tabelle, keyword, keyword, item = &quot;person.ssn&quot;"/>
+          <SourceCode codeLanguage="Python" sourceCodeType="LogArg" value="( &quot;person.ssn&quot; == item )"/>
         </ConditionOccurrence>
       </ConditionOccurrences>
     </Condition>
@@ -429,6 +437,11 @@
     <Action uId="17733943932600028">
       <Title language="German" value="Compile person.dob and add to ..."/>
       <ActionOccurrences>
+        <ActionOccurrence uId="17756376398254609">
+          <Title language="German" value="Item is stored in a local variable."/>
+          <Symbol language="German" value="local"/>
+          <SourceCode codeLanguage="Python" sourceCodeType="StmtSeq" value="local_data = Person.get_date_of_birth(item_data)"/>
+        </ActionOccurrence>
         <ActionOccurrence uId="17733943932740042">
           <Symbol language="German" value="context"/>
           <Title language="German" value="Item is stored in context."/>
@@ -574,7 +587,7 @@
       </ActionOccurrences>
     </Action>
   </Actions>
-  <Rules lastId="118">
+  <Rules lastId="120">
     <Rule id="47">
       <ConditionOccurrenceLink link="17695070862679776"/>
       <ConditionOccurrenceLink link="17703687043725472"/>
@@ -690,6 +703,13 @@
       <ActionOccurrenceLink link="17714812770633672"/>
       <ConditionOccurrenceLink link="17703687043705470"/>
       <ActionOccurrenceLink link="17714830602732096"/>
+    </Rule>
+    <Rule id="120">
+      <ConditionOccurrenceLink link="17703687043705470"/>
+      <ConditionOccurrenceLink link="17695070862679776"/>
+      <ConditionOccurrenceLink link="17756373131291083"/>
+      <ActionOccurrenceLink link="17756376398254609"/>
+      <ActionOccurrenceLink link="17714812770633672"/>
     </Rule>
     <Rule id="100">
       <ConditionOccurrenceLink link="17703687043705470"/>
@@ -860,6 +880,13 @@
       <ConditionOccurrenceLink link="17703687043705470"/>
       <ActionOccurrenceLink link="17714813847005342"/>
     </Rule>
+    <Rule id="119">
+      <ConditionOccurrenceLink link="17703687043705470"/>
+      <ConditionOccurrenceLink link="17695070862659774"/>
+      <ConditionOccurrenceLink link="17756373131291083"/>
+      <ActionOccurrenceLink link="17733943932740042"/>
+      <ActionOccurrenceLink link="17714813847005342"/>
+    </Rule>
     <Rule id="101">
       <ConditionOccurrenceLink link="17703687043705470"/>
       <ConditionOccurrenceLink link="17695070862659774"/>
@@ -987,7 +1014,7 @@
   </UrlsOut>
   <SourceCode codeLanguage="Python" sourceCodeType="Prolog" value="# $$BasicIndentLevel=2&lt;br/&gt;from .person import Person&lt;br/&gt;from .address import Address&lt;br/&gt;from .communication import Communication&lt;br/&gt;from .finance import Finance as deFinance&lt;br/&gt;from .traffic import Traffic&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;class ItemBuilderEngineGermany:&lt;br/&gt;&lt;br/&gt;    @staticmethod&lt;br/&gt;    def execute(instance, localization: str, keyword: str, item: str, item_data: dict):"/>
   <SourceCode codeLanguage="Python" sourceCodeType="Trace" value="instance.add_rbt_log_message(&quot;[SynData] Decision table $$EtName ($$Version), rule $$Rule of $$Rules has been executed&quot;, &quot;DEBUG&quot;)"/>
-  <TestValueGroups selectedGroup="gherkin">
+  <TestValueGroups selectedGroup="robot">
     <TestValueGroup name="*ti.gtd.gherkin"/>
     <TestValueGroup name="*ti.att.gherkin"/>
     <TestValueGroup name="*ti.check.robot"/>
